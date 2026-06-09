@@ -464,7 +464,17 @@ alert("Username atau Password Salah");
 }
 
 }
+function lihatPassword(){
 
+let x = document.getElementById("pass");
+
+if(x.type === "password"){
+    x.type = "text";
+}else{
+    x.type = "password";
+}
+
+}
 function showPage(page){
 
 let pages =
