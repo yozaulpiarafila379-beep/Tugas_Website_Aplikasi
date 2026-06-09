@@ -175,30 +175,184 @@ Password : <b>admin123</b>
 <!-- DASHBOARD -->
 <div id="dashboard" class="page active">
 
-<h2>Dashboard</h2>
+<h2>📊 Dashboard Gudang</h2>
+
+<div class="cards">
 
 <div class="card">
-<h3>Total Barang</h3>
-<h1>150</h1>
-</div>
-
-<div class="card">
-<h3>Barang Masuk</h3>
-<h1>85</h1>
+    <h3>Total Barang</h3>
+    <h1>150</h1>
+    <p>Barang Terdaftar</p>
 </div>
 
 <div class="card">
-<h3>Barang Keluar</h3>
-<h1>45</h1>
+    <h3>Barang Masuk</h3>
+    <h1>85</h1>
+    <p>Bulan Ini</p>
 </div>
 
 <div class="card">
-<h3>Total Supplier</h3>
-<h1>12</h1>
+    <h3>Barang Keluar</h3>
+    <h1>45</h1>
+    <p>Bulan Ini</p>
+</div>
+
+<div class="card">
+    <h3>Total Supplier</h3>
+    <h1>12</h1>
+    <p>Supplier Aktif</p>
+</div>
+
+<div class="card">
+    <h3>Stok Menipis</h3>
+    <h1>7</h1>
+    <p>Perlu Restok</p>
+</div>
+
+<div class="card">
+    <h3>Total Kategori</h3>
+    <h1>8</h1>
+    <p>Kategori Barang</p>
 </div>
 
 </div>
 
+<br>
+
+<div class="section">
+
+<h2>📈 Grafik Stok Barang</h2>
+
+<canvas id="stokChart" height="100"></canvas>
+
+</div>
+
+<br>
+
+<div class="section">
+
+<h2>📢 Notifikasi Gudang</h2>
+
+<table>
+<tr>
+<th>No</th>
+<th>Informasi</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Stok Mouse Logitech tersisa 3 unit</td>
+<td>Menipis</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Laptop Asus masuk 10 unit</td>
+<td>Masuk</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Printer Epson keluar 5 unit</td>
+<td>Keluar</td>
+</tr>
+</table>
+
+</div>
+
+<br>
+
+<div class="section">
+
+<h2>📦 Barang Terbaru</h2>
+
+<table>
+
+<tr>
+<th>Kode</th>
+<th>Nama Barang</th>
+<th>Kategori</th>
+<th>Stok</th>
+</tr>
+
+<tr>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>BRG002</td>
+<td>Printer Epson</td>
+<td>Elektronik</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+</tr>
+
+<tr>
+<td>BRG004</td>
+<td>Pulpen</td>
+<td>ATK</td>
+<td>40</td>
+</tr>
+
+<tr>
+<td>BRG005</td>
+<td>Mouse Logitech</td>
+<td>Aksesoris</td>
+<td>25</td>
+</tr>
+
+</table>
+
+</div>
+
+<br>
+
+<div class="section">
+
+<h2>📊 Statistik Gudang</h2>
+
+<table>
+
+<tr>
+<th>Keterangan</th>
+<th>Jumlah</th>
+</tr>
+
+<tr>
+<td>Total Nilai Persediaan</td>
+<td>Rp125.000.000</td>
+</tr>
+
+<tr>
+<td>Total Barang Aktif</td>
+<td>145</td>
+</tr>
+
+<tr>
+<td>Total Barang Tidak Aktif</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Total Transaksi Bulan Ini</td>
+<td>130</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
 <!-- DATA BARANG -->
 <div id="barang" class="page">
 
