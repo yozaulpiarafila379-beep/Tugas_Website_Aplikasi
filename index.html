@@ -7,124 +7,125 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f4f6f9;
+background:#f4f6f9;
 }
 
 /* LOGIN */
-#login-page{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#1e3a8a,#2563eb,#60a5fa);
+#login{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#1e3a8a,#2563eb);
 }
 
-.login-container{
-    width:400px;
-    background:white;
-    padding:40px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+.login-box{
+background:white;
+padding:30px;
+width:350px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
-.login-container h1{
-    text-align:center;
-    color:#1e3a8a;
-}
-
-.login-container p{
-    text-align:center;
-    margin-bottom:20px;
+.login-box h2{
+text-align:center;
+margin-bottom:20px;
+color:#1e3a8a;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin-top:5px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:8px;
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
 button{
-    width:100%;
-    padding:12px;
-    background:#2563eb;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+padding:10px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:5px;
+cursor:pointer;
 }
 
-button:hover{
-    background:#1e40af;
+.login-btn{
+width:100%;
 }
 
-/* DASHBOARD */
-#dashboard-page{
-    display:none;
+/* SISTEM */
+#sistem{
+display:none;
 }
 
 header{
-    background:#1e3a8a;
-    color:white;
-    text-align:center;
-    padding:20px;
+background:#1e3a8a;
+color:white;
+padding:15px;
+text-align:center;
 }
 
-.dashboard{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:20px;
+nav{
+background:#2563eb;
+padding:10px;
+text-align:center;
+}
+
+nav button{
+margin:5px;
+background:white;
+color:#2563eb;
+font-weight:bold;
+}
+
+.container{
+padding:20px;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
 }
 
 .card{
-    background:white;
-    border-radius:10px;
-    padding:20px;
-    text-align:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-.card h3{
-    color:#555;
-}
-
-.card h1{
-    color:#2563eb;
-    margin-top:10px;
-}
-
-.section{
-    background:white;
-    margin:20px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+background:white;
+padding:20px;
+border-radius:10px;
+margin:10px;
+display:inline-block;
+width:220px;
+text-align:center;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
+width:100%;
+border-collapse:collapse;
+margin-top:15px;
+background:white;
 }
 
 table th{
-    background:#2563eb;
-    color:white;
+background:#2563eb;
+color:white;
 }
 
-table th,table td{
-    border:1px solid #ddd;
-    padding:10px;
-    text-align:center;
+table th,
+table td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
 }
 </style>
 </head>
@@ -132,20 +133,18 @@ table th,table td{
 <body>
 
 <!-- LOGIN -->
-<div id="login-page">
+<div id="login">
 
-<div class="login-container">
+<div class="login-box">
 
-<h1>📦 GUDANGKU</h1>
-<p>Sistem Pendataan Barang Gudang</p>
+<h2>📦 Login Gudang</h2>
 
-<label>Username</label>
-<input type="text" id="username">
+<input type="text" id="user" placeholder="Username">
+<input type="password" id="pass" placeholder="Password">
 
-<label>Password</label>
-<input type="password" id="password">
-
-<button onclick="login()">LOGIN</button>
+<button class="login-btn" onclick="login()">
+Login
+</button>
 
 <br><br>
 
@@ -158,15 +157,25 @@ Password : <b>admin123</b>
 
 </div>
 
-<!-- DASHBOARD -->
-<div id="dashboard-page">
+<!-- SISTEM -->
+<div id="sistem">
 
 <header>
-<h1>Dashboard Gudang</h1>
-<p>Sistem Informasi Pendataan Barang</p>
+<h1>Sistem Informasi Pendataan Barang Gudang</h1>
 </header>
 
-<div class="dashboard">
+<nav>
+<button onclick="showPage('dashboard')">Dashboard</button>
+<button onclick="showPage('barang')">Data Barang</button>
+<button onclick="showPage('supplier')">Supplier</button>
+</nav>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="page active">
+
+<h2>Dashboard</h2>
 
 <div class="card">
 <h3>Total Barang</h3>
@@ -190,128 +199,19 @@ Password : <b>admin123</b>
 
 </div>
 
-<div class="section">
+<!-- DATA BARANG -->
+<div id="barang" class="page">
 
 <h2>📦 Data Barang</h2>
 
-<input type="text" id="search" placeholder="Cari Barang..."
-onkeyup="cariBarang()">
-
-<br><br>
-
-<input type="text" id="kode" placeholder="Kode Barang">
-<input type="text" id="nama" placeholder="Nama Barang">
-<input type="text" id="kategori" placeholder="Kategori">
-<input type="number" id="stok" placeholder="Stok">
-
-<button onclick="tambahBarang()">Tambah Barang</button>
-
-<br><br>
-
-<table id="tabelBarang">
-
-<thead>
-<tr>
-<th>Kode</th>
-<th>Nama Barang</th>
-<th>Kategori</th>
-<th>Stok</th>
-<th>Aksi</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-<td>BRG001</td>
-<td>Laptop Asus</td>
-<td>Elektronik</td>
-<td>20</td>
-<td>
-<button onclick="editBarang(this)">Edit</button>
-<button onclick="hapusBarang(this)">Hapus</button>
-</td>
-</tr>
-
-<!-- 1. LOGIN -->
-<div id="login-page">
-
-<h1>📦 GUDANGKU</h1>
-
-<input type="text" id="username" placeholder="Username">
-
-<input type="password" id="password" placeholder="Password">
-
-<button onclick="login()">Login</button>
-
-</div>
-
-
-<!-- 2. DASHBOARD -->
-<div id="dashboard-page" class="page" style="display:none;">
-
-<h1>Dashboard</h1>
-
-<div class="menu">
-
-<button onclick="showPage('dashboard-page')">
-Dashboard
-</button>
-
-<button onclick="showPage('barang-page')">
-Data Barang
-</button>
-
-<button onclick="showPage('supplier-page')">
-Data Supplier
-</button>
-
-</div>
-
-<h2>Total Barang : 150</h2>
-<h2>Barang Masuk : 85</h2>
-<h2>Barang Keluar : 45</h2>
-<h2>Total Supplier : 12</h2>
-
-</div>
-
-
-<!-- 3. DATA BARANG -->
-<div id="barang-page" class="page" style="display:none;">
-
-<h1>📦 Data Barang</h1>
-
-<div class="menu">
-
-<button onclick="showPage('dashboard-page')">
-Dashboard
-</button>
-
-<button onclick="showPage('barang-page')">
-Data Barang
-</button>
-
-<button onclick="showPage('supplier-page')">
-Data Supplier
-</button>
-
-</div>
-
-<br>
-
 <input type="text" placeholder="Kode Barang">
-
 <input type="text" placeholder="Nama Barang">
-
 <input type="text" placeholder="Kategori">
-
 <input type="number" placeholder="Stok">
 
 <button>Tambah Barang</button>
 
-<br><br>
-
-<table border="1">
+<table>
 
 <tr>
 <th>Kode</th>
@@ -334,66 +234,45 @@ Data Supplier
 <td>15</td>
 </tr>
 
+<tr>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+</tr>
+
 </table>
 
 </div>
 
+<!-- SUPPLIER -->
+<div id="supplier" class="page">
 
-<!-- 4. DATA SUPPLIER -->
-<div id="supplier-page" class="page" style="display:none;">
-
-<h1>🏢 Data Supplier</h1>
-
-<div class="menu">
-
-<button onclick="showPage('dashboard-page')">
-Dashboard
-</button>
-
-<button onclick="showPage('barang-page')">
-Data Barang
-</button>
-
-<button onclick="showPage('supplier-page')">
-Data Supplier
-</button>
-
-</div>
-
-<br>
+<h2>🏢 Data Supplier</h2>
 
 <input type="text" placeholder="Kode Supplier">
-
 <input type="text" placeholder="Nama Supplier">
-
-<input type="text" placeholder="Alamat">
-
 <input type="text" placeholder="Nomor Telepon">
 
 <button>Tambah Supplier</button>
 
-<br><br>
-
-<table border="1">
+<table>
 
 <tr>
 <th>Kode</th>
 <th>Nama Supplier</th>
-<th>Alamat</th>
 <th>Telepon</th>
 </tr>
 
 <tr>
 <td>SUP001</td>
 <td>PT Maju Jaya</td>
-<td>Palembang</td>
 <td>08123456789</td>
 </tr>
 
 <tr>
 <td>SUP002</td>
-<td>CV Sumber Rezeki</td>
-<td>Jakarta</td>
+<td>CV Sejahtera</td>
 <td>08234567890</td>
 </tr>
 
@@ -401,25 +280,24 @@ Data Supplier
 
 </div>
 
+</div>
+
+</div>
 
 <script>
 
 function login(){
 
-let username =
-document.getElementById("username").value;
+let user =
+document.getElementById("user").value;
 
-let password =
-document.getElementById("password").value;
+let pass =
+document.getElementById("pass").value;
 
-if(username=="admin" &&
-password=="admin123"){
+if(user=="admin" && pass=="admin123"){
 
-document.getElementById("login-page")
-.style.display="none";
-
-document.getElementById("dashboard-page")
-.style.display="block";
+document.getElementById("login").style.display="none";
+document.getElementById("sistem").style.display="block";
 
 }else{
 
@@ -429,177 +307,20 @@ alert("Username atau Password Salah");
 
 }
 
-function showPage(pageId){
+function showPage(page){
 
 let pages =
-document.querySelectorAll(".page");
+document.getElementsByClassName("page");
 
-pages.forEach(function(page){
+for(let i=0;i<pages.length;i++){
+pages[i].classList.remove("active");
+}
 
-page.style.display="none";
-
-});
-
-document.getElementById(pageId)
-.style.display="block";
+document.getElementById(page)
+.classList.add("active");
 
 }
 
-</script>
-function tambahBarang(){
-
-let kode=document.getElementById("kode").value;
-let nama=document.getElementById("nama").value;
-let kategori=document.getElementById("kategori").value;
-let stok=document.getElementById("stok").value;
-
-if(kode==""||nama==""||kategori==""||stok==""){
-alert("Lengkapi data!");
-return;
-}
-
-let tabel=document
-.getElementById("tabelBarang")
-.getElementsByTagName("tbody")[0];
-
-let row=tabel.insertRow();
-
-row.insertCell(0).innerHTML=kode;
-row.insertCell(1).innerHTML=nama;
-row.insertCell(2).innerHTML=kategori;
-row.insertCell(3).innerHTML=stok;
-row.insertCell(4).innerHTML=
-'<button onclick="editBarang(this)">Edit</button> '+
-'<button onclick="hapusBarang(this)">Hapus</button>';
-
-document.getElementById("kode").value="";
-document.getElementById("nama").value="";
-document.getElementById("kategori").value="";
-document.getElementById("stok").value="";
-}
-
-function hapusBarang(btn){
-
-if(confirm("Hapus data barang?")){
-btn.parentNode.parentNode.remove();
-}
-
-}
-
-function editBarang(btn){
-
-let row=btn.parentNode.parentNode;
-
-let kode=row.cells[0].innerHTML;
-let nama=row.cells[1].innerHTML;
-let kategori=row.cells[2].innerHTML;
-let stok=row.cells[3].innerHTML;
-
-document.getElementById("kode").value=kode;
-document.getElementById("nama").value=nama;
-document.getElementById("kategori").value=kategori;
-document.getElementById("stok").value=stok;
-
-row.remove();
-
-}
-
-function cariBarang(){
-
-let input=document.getElementById("search");
-let filter=input.value.toUpperCase();
-
-let table=document.getElementById("tabelBarang");
-let tr=table.getElementsByTagName("tr");
-
-for(let i=1;i<tr.length;i++){
-
-let td=tr[i].getElementsByTagName("td")[1];
-
-if(td){
-
-let txtValue=td.textContent||td.innerText;
-
-if(txtValue.toUpperCase().indexOf(filter)>-1){
-tr[i].style.display="";
-}else{
-tr[i].style.display="none";
-}
-
-}
-
-}
-
-}
-
-</script>
-
-<div class="section">
-
-<h2>Stok Barang</h2>
-
-<table>
-
-<tr>
-<th>Kode</th>
-<th>Nama Barang</th>
-<th>Stok</th>
-</tr>
-
-<tr>
-<td>BRG001</td>
-<td>Laptop Asus</td>
-<td>20</td>
-</tr>
-
-<tr>
-<td>BRG002</td>
-<td>Printer Epson</td>
-<td>15</td>
-</tr>
-
-<tr>
-<td>BRG003</td>
-<td>Kertas A4</td>
-<td>50</td>
-</tr>
-
-<tr>
-<td>BRG004</td>
-<td>Pulpen</td>
-<td>40</td>
-</tr>
-
-<tr>
-<td>BRG005</td>
-<td>Mouse Logitech</td>
-<td>25</td>
-</tr>
-
-</table>
-
-</div>
-
-</div>
-
-<script>
-function login(){
-
-let username=document.getElementById("username").value;
-let password=document.getElementById("password").value;
-
-if(username==="admin" && password==="admin123"){
-
-document.getElementById("login-page").style.display="none";
-document.getElementById("dashboard-page").style.display="block";
-
-}else{
-
-alert("Username atau Password Salah!");
-
-}
-
-}
 </script>
 
 </body>
