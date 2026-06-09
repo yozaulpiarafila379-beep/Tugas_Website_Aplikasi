@@ -192,6 +192,167 @@ Password : <b>admin123</b>
 
 <div class="section">
 
+<h2>📦 Data Barang</h2>
+
+<input type="text" id="search" placeholder="Cari Barang..."
+onkeyup="cariBarang()">
+
+<br><br>
+
+<input type="text" id="kode" placeholder="Kode Barang">
+<input type="text" id="nama" placeholder="Nama Barang">
+<input type="text" id="kategori" placeholder="Kategori">
+<input type="number" id="stok" placeholder="Stok">
+
+<button onclick="tambahBarang()">Tambah Barang</button>
+
+<br><br>
+
+<table id="tabelBarang">
+
+<thead>
+<tr>
+<th>Kode</th>
+<th>Nama Barang</th>
+<th>Kategori</th>
+<th>Stok</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
+<td>
+<button onclick="editBarang(this)">Edit</button>
+<button onclick="hapusBarang(this)">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>BRG002</td>
+<td>Printer Epson</td>
+<td>Elektronik</td>
+<td>15</td>
+<td>
+<button onclick="editBarang(this)">Edit</button>
+<button onclick="hapusBarang(this)">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+<td>
+<button onclick="editBarang(this)">Edit</button>
+<button onclick="hapusBarang(this)">Hapus</button>
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+function tambahBarang(){
+
+let kode=document.getElementById("kode").value;
+let nama=document.getElementById("nama").value;
+let kategori=document.getElementById("kategori").value;
+let stok=document.getElementById("stok").value;
+
+if(kode==""||nama==""||kategori==""||stok==""){
+alert("Lengkapi data!");
+return;
+}
+
+let tabel=document
+.getElementById("tabelBarang")
+.getElementsByTagName("tbody")[0];
+
+let row=tabel.insertRow();
+
+row.insertCell(0).innerHTML=kode;
+row.insertCell(1).innerHTML=nama;
+row.insertCell(2).innerHTML=kategori;
+row.insertCell(3).innerHTML=stok;
+row.insertCell(4).innerHTML=
+'<button onclick="editBarang(this)">Edit</button> '+
+'<button onclick="hapusBarang(this)">Hapus</button>';
+
+document.getElementById("kode").value="";
+document.getElementById("nama").value="";
+document.getElementById("kategori").value="";
+document.getElementById("stok").value="";
+}
+
+function hapusBarang(btn){
+
+if(confirm("Hapus data barang?")){
+btn.parentNode.parentNode.remove();
+}
+
+}
+
+function editBarang(btn){
+
+let row=btn.parentNode.parentNode;
+
+let kode=row.cells[0].innerHTML;
+let nama=row.cells[1].innerHTML;
+let kategori=row.cells[2].innerHTML;
+let stok=row.cells[3].innerHTML;
+
+document.getElementById("kode").value=kode;
+document.getElementById("nama").value=nama;
+document.getElementById("kategori").value=kategori;
+document.getElementById("stok").value=stok;
+
+row.remove();
+
+}
+
+function cariBarang(){
+
+let input=document.getElementById("search");
+let filter=input.value.toUpperCase();
+
+let table=document.getElementById("tabelBarang");
+let tr=table.getElementsByTagName("tr");
+
+for(let i=1;i<tr.length;i++){
+
+let td=tr[i].getElementsByTagName("td")[1];
+
+if(td){
+
+let txtValue=td.textContent||td.innerText;
+
+if(txtValue.toUpperCase().indexOf(filter)>-1){
+tr[i].style.display="";
+}else{
+tr[i].style.display="none";
+}
+
+}
+
+}
+
+}
+
+</script>
+
+<div class="section">
+
 <h2>Stok Barang</h2>
 
 <table>
