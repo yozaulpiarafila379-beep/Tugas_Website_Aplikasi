@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Sistem Pendataan Barang Gudang</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1e3a8a,#2563eb,#60a5fa);
+}
+
+.login-container{
+    width:400px;
+    background:#fff;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.logo h1{
+    color:#1e3a8a;
+    font-size:28px;
+}
+
+.logo p{
+    color:#666;
+    font-size:14px;
+}
+
+h2{
+    text-align:center;
+    color:#333;
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#444;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+}
+
+input:focus{
+    border-color:#2563eb;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1e40af;
+}
+
+.footer{
+    text-align:center;
+    margin-top:20px;
+    color:#777;
+    font-size:12px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="login-container">
+
+    <div class="logo">
+        <h1>📦 GUDANGKU</h1>
+        <p>Sistem Pendataan Barang Gudang</p>
+    </div>
+
+    <h2>Login Admin</h2>
+
+    <form>
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" placeholder="Masukkan Username">
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" placeholder="Masukkan Password">
+        </div>
+
+        <button type="submit">LOGIN</button>
+    </form>
+
+    <div class="footer">
+        © 2026 Sistem Informasi Pendataan Barang di Gudang
+    </div>
+
+</div>
+
+</body>
+</html>
