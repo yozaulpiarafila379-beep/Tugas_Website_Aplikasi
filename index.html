@@ -233,36 +233,219 @@ onkeyup="cariBarang()">
 </td>
 </tr>
 
+<!-- 1. LOGIN -->
+<div id="login-page">
+
+<h1>📦 GUDANGKU</h1>
+
+<input type="text" id="username" placeholder="Username">
+
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+</div>
+
+
+<!-- 2. DASHBOARD -->
+<div id="dashboard-page" class="page" style="display:none;">
+
+<h1>Dashboard</h1>
+
+<div class="menu">
+
+<button onclick="showPage('dashboard-page')">
+Dashboard
+</button>
+
+<button onclick="showPage('barang-page')">
+Data Barang
+</button>
+
+<button onclick="showPage('supplier-page')">
+Data Supplier
+</button>
+
+</div>
+
+<h2>Total Barang : 150</h2>
+<h2>Barang Masuk : 85</h2>
+<h2>Barang Keluar : 45</h2>
+<h2>Total Supplier : 12</h2>
+
+</div>
+
+
+<!-- 3. DATA BARANG -->
+<div id="barang-page" class="page" style="display:none;">
+
+<h1>📦 Data Barang</h1>
+
+<div class="menu">
+
+<button onclick="showPage('dashboard-page')">
+Dashboard
+</button>
+
+<button onclick="showPage('barang-page')">
+Data Barang
+</button>
+
+<button onclick="showPage('supplier-page')">
+Data Supplier
+</button>
+
+</div>
+
+<br>
+
+<input type="text" placeholder="Kode Barang">
+
+<input type="text" placeholder="Nama Barang">
+
+<input type="text" placeholder="Kategori">
+
+<input type="number" placeholder="Stok">
+
+<button>Tambah Barang</button>
+
+<br><br>
+
+<table border="1">
+
+<tr>
+<th>Kode</th>
+<th>Nama Barang</th>
+<th>Kategori</th>
+<th>Stok</th>
+</tr>
+
+<tr>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
+</tr>
+
 <tr>
 <td>BRG002</td>
 <td>Printer Epson</td>
 <td>Elektronik</td>
 <td>15</td>
-<td>
-<button onclick="editBarang(this)">Edit</button>
-<button onclick="hapusBarang(this)">Hapus</button>
-</td>
 </tr>
-
-<tr>
-<td>BRG003</td>
-<td>Kertas A4</td>
-<td>ATK</td>
-<td>50</td>
-<td>
-<button onclick="editBarang(this)">Edit</button>
-<button onclick="hapusBarang(this)">Hapus</button>
-</td>
-</tr>
-
-</tbody>
 
 </table>
 
 </div>
 
+
+<!-- 4. DATA SUPPLIER -->
+<div id="supplier-page" class="page" style="display:none;">
+
+<h1>🏢 Data Supplier</h1>
+
+<div class="menu">
+
+<button onclick="showPage('dashboard-page')">
+Dashboard
+</button>
+
+<button onclick="showPage('barang-page')">
+Data Barang
+</button>
+
+<button onclick="showPage('supplier-page')">
+Data Supplier
+</button>
+
+</div>
+
+<br>
+
+<input type="text" placeholder="Kode Supplier">
+
+<input type="text" placeholder="Nama Supplier">
+
+<input type="text" placeholder="Alamat">
+
+<input type="text" placeholder="Nomor Telepon">
+
+<button>Tambah Supplier</button>
+
+<br><br>
+
+<table border="1">
+
+<tr>
+<th>Kode</th>
+<th>Nama Supplier</th>
+<th>Alamat</th>
+<th>Telepon</th>
+</tr>
+
+<tr>
+<td>SUP001</td>
+<td>PT Maju Jaya</td>
+<td>Palembang</td>
+<td>08123456789</td>
+</tr>
+
+<tr>
+<td>SUP002</td>
+<td>CV Sumber Rezeki</td>
+<td>Jakarta</td>
+<td>08234567890</td>
+</tr>
+
+</table>
+
+</div>
+
+
 <script>
 
+function login(){
+
+let username =
+document.getElementById("username").value;
+
+let password =
+document.getElementById("password").value;
+
+if(username=="admin" &&
+password=="admin123"){
+
+document.getElementById("login-page")
+.style.display="none";
+
+document.getElementById("dashboard-page")
+.style.display="block";
+
+}else{
+
+alert("Username atau Password Salah");
+
+}
+
+}
+
+function showPage(pageId){
+
+let pages =
+document.querySelectorAll(".page");
+
+pages.forEach(function(page){
+
+page.style.display="none";
+
+});
+
+document.getElementById(pageId)
+.style.display="block";
+
+}
+
+</script>
 function tambahBarang(){
 
 let kode=document.getElementById("kode").value;
