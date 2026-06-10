@@ -1064,6 +1064,23 @@ function editMasuk(index){
   editIndexMasuk = index;
 }
 
+if(!localStorage.getItem("barangMasuk")){
+  localStorage.setItem("barangMasuk", JSON.stringify([
+    {
+      tanggal:"2026-06-10",
+      barang:"Laptop Asus",
+      supplier:"PT Sumber Jaya",
+      jumlah:5
+    },
+    {
+      tanggal:"2026-06-11",
+      barang:"Printer Epson",
+      supplier:"CV Maju Bersama",
+      jumlah:3
+    }
+  ]));
+}
+  
 // HAPUS
 function hapusMasuk(index){
 
@@ -1091,9 +1108,13 @@ function resetMasuk(){
 }
 
 // LOAD AWAL
-renderMasuk();
+renderSupplier();
 
 </script>
+
+<script>
+
+// DATA BARANG MASUK
   
 </body>
 </html>
