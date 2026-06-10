@@ -766,6 +766,80 @@ style="width:100%;padding:10px;">
 </div>
 </div>
 
+<!-- BARANG KELUAR -->
+<div id="keluar" class="page">
+
+  <!-- INPUT -->
+  <div class="section">
+    <h3>📤 Input Barang Keluar</h3>
+
+    <input id="tanggalKeluar" type="date"
+    style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="barangKeluar"
+    placeholder="Nama Barang"
+    style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="tujuanKeluar"
+    placeholder="Tujuan / Penerima"
+    style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="jumlahKeluar"
+    type="number"
+    placeholder="Jumlah Barang"
+    style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <button onclick="tambahKeluar()"
+    style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan
+    </button>
+
+    <button onclick="resetKeluar()"
+    style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+      🔄 Reset
+    </button>
+  </div>
+
+  <!-- PENCARIAN -->
+  <div class="section">
+    <h3>🔍 Cari Barang Keluar</h3>
+
+    <input
+    id="searchKeluar"
+    placeholder="Cari Nama Barang..."
+    onkeyup="cariKeluar()"
+    style="width:100%;padding:10px;">
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="section">
+    <h3>📋 Data Barang Keluar</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Nama Barang</th>
+          <th>Tujuan</th>
+          <th>Jumlah</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelKeluar"></tbody>
+    </table>
+
+    <br>
+
+    <p>
+      <b>Total Data :</b>
+      <span id="totalKeluar">0</span>
+    </p>
+  </div>
+</div>
+
+
   
 </div>
 </div>
