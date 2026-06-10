@@ -767,56 +767,74 @@ style="width:100%;padding:10px;">
 </div>
 
 <!-- BARANG KELUAR -->
+<!-- BARANG KELUAR -->
 <div id="keluar" class="page">
 
-  <!-- INPUT -->
+  <!-- INPUT BARANG KELUAR -->
   <div class="section">
+
     <h3>📤 Input Barang Keluar</h3>
 
-    <input id="tanggalKeluar" type="date"
+    <input
+    id="tanggalKeluar"
+    type="date"
     style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <input id="barangKeluar"
+    <input
+    id="barangKeluar"
+    type="text"
     placeholder="Nama Barang"
     style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <input id="tujuanKeluar"
+    <input
+    id="tujuanKeluar"
+    type="text"
     placeholder="Tujuan / Penerima"
     style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <input id="jumlahKeluar"
+    <input
+    id="jumlahKeluar"
     type="number"
     placeholder="Jumlah Barang"
     style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <button onclick="tambahKeluar()"
-    style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+    <button
+    onclick="tambahKeluar()"
+    style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
       💾 Simpan
     </button>
 
-    <button onclick="resetKeluar()"
-    style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+    <button
+    onclick="resetKeluar()"
+    style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;cursor:pointer;">
       🔄 Reset
     </button>
+
   </div>
 
   <!-- PENCARIAN -->
   <div class="section">
+
     <h3>🔍 Cari Barang Keluar</h3>
 
     <input
     id="searchKeluar"
+    type="text"
     placeholder="Cari Nama Barang..."
     onkeyup="cariKeluar()"
     style="width:100%;padding:10px;">
+
   </div>
 
-  <!-- OUTPUT -->
+  <!-- DATA BARANG KELUAR -->
   <div class="section">
+
     <h3>📋 Data Barang Keluar</h3>
 
     <table>
+
       <thead>
+
         <tr>
           <th>No</th>
           <th>Tanggal</th>
@@ -825,18 +843,75 @@ style="width:100%;padding:10px;">
           <th>Jumlah</th>
           <th>Aksi</th>
         </tr>
+
       </thead>
 
-      <tbody id="tabelKeluar"></tbody>
+      <tbody id="tabelKeluar">
+
+        <tr>
+          <td>1</td>
+          <td>2026-06-10</td>
+          <td>Laptop Asus</td>
+          <td>Divisi IT</td>
+          <td>2</td>
+          <td>
+            <button style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Edit
+            </button>
+
+            <button style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Hapus
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>2026-06-11</td>
+          <td>Printer Epson</td>
+          <td>Kantor Cabang</td>
+          <td>1</td>
+          <td>
+            <button style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Edit
+            </button>
+
+            <button style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Hapus
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td>2026-06-12</td>
+          <td>Mouse Logitech</td>
+          <td>Bagian Administrasi</td>
+          <td>5</td>
+          <td>
+            <button style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Edit
+            </button>
+
+            <button style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Hapus
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+
     </table>
 
     <br>
 
     <p>
       <b>Total Data :</b>
-      <span id="totalKeluar">0</span>
+      <span id="totalKeluar">3</span>
     </p>
+
   </div>
+
 </div>
 
 
