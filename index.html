@@ -2026,6 +2026,26 @@ function cariKeluar(){
 // LOAD AWAL
 renderKeluar();
 </script>
+
+<script>
+function logout(){
+
+  let konfirmasi = confirm("Apakah Anda yakin ingin logout?");
+
+  if(konfirmasi){
+
+    document.getElementById("sistem").style.display = "none";
+    document.getElementById("login").style.display = "flex";
+
+    document.getElementById("user").value = "";
+    document.getElementById("pass").value = "";
+
+    alert("Berhasil Logout");
+
+  }
+
+}
+</script>
   
 </body>
 </html>
