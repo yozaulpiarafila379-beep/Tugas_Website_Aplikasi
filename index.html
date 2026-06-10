@@ -611,188 +611,51 @@ Tampilkan
   <p><b>Total Data Barang:</b> 4 item</p>
 </div>
 </div>
-
-<!-- ================= SUPPLIER ================= -->
-<div id="supplier" class="page">
-
-<!-- INPUT SUPPLIER -->
-<div class="section">
-<h3>🏢 Input Supplier</h3>
-
-<input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
-
-<button onclick="tambahSupplier()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
-💾 Simpan Supplier
-</button>
+  
 </div>
-
-<!-- OUTPUT SUPPLIER -->
-<div class="section">
-<h3>📋 Data Supplier</h3>
-
-<table>
-<thead>
-<tr>
-<th>No</th>
-<th>Kode</th>
-<th>Nama</th>
-<th>Telepon</th>
-<th>Alamat</th>
-<th>Aksi</th>
-</tr>
-</thead>
-
-<tbody id="tabelSupplier"></tbody>
-</table>
 </div>
-
-</div>
-
-<!-- ================= SUPPLIER ================= -->
-<div id="supplier" class="page">
-
-  <!-- INPUT -->
-  <div class="section">
-    <h3>🏢 Input Supplier</h3>
-
-    <input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
-
-    <button onclick="tambahSupplier()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
-      💾 Simpan Supplier
-    </button>
-  </div>
-
-  <!-- OUTPUT -->
-  <div class="section">
-    <h3>📋 Data Supplier</h3>
-
-    <!-- SEARCH -->
-    <input id="searchSupplier" onkeyup="renderSupplier()" placeholder="Cari nama supplier..."
-      style="width:100%;padding:10px;margin-bottom:10px;">
-
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Kode</th>
-          <th>Nama</th>
-          <th>Telepon</th>
-          <th>Alamat</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-
-      <tbody id="tabelSupplier"></tbody>
-    </table>
-  </div>
-
-</div>
-
 </div>
 
 </div>
 
 <script>
-let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
+function login(){
 
-// simpan localStorage
-function simpanSupplier(){
-  localStorage.setItem("supplier", JSON.stringify(supplier));
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
+
+if(user=="admin" && pass=="admin123"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("sistem").style.display="block";
+
+}else{
+
+alert("Username atau Password Salah");
+
+}
 }
 
-// tambah supplier
-function tambahSupplier(){
+function logout(){
 
-  let data = {
-    kode: document.getElementById("kodeSupplier").value,
-    nama: document.getElementById("namaSupplier").value,
-    telepon: document.getElementById("teleponSupplier").value,
-    alamat: document.getElementById("alamatSupplier").value
-  };
+document.getElementById("sistem").style.display="none";
+document.getElementById("login").style.display="flex";
 
-  if(!data.kode || !data.nama || !data.telepon || !data.alamat){
-    alert("Semua data wajib diisi!");
-    return;
-  }
-
-  supplier.push(data);
-  simpanSupplier();
-  renderSupplier();
-
-  // reset
-  document.getElementById("kodeSupplier").value = "";
-  document.getElementById("namaSupplier").value = "";
-  document.getElementById("teleponSupplier").value = "";
-  document.getElementById("alamatSupplier").value = "";
 }
 
-// tampil + search
-function renderSupplier(){
+function showPage(id){
 
-  let tabel = document.getElementById("tabelSupplier");
-  let keyword = document.getElementById("searchSupplier").value.toLowerCase();
+let pages=document.getElementsByClassName("page");
 
-  tabel.innerHTML = "";
-
-  supplier
-  .filter(s => s.nama.toLowerCase().includes(keyword))
-  .forEach((s, i) => {
-
-    tabel.innerHTML += `
-      <tr>
-        <td>${i+1}</td>
-        <td>${s.kode}</td>
-        <td>${s.nama}</td>
-        <td>${s.telepon}</td>
-        <td>${s.alamat}</td>
-        <td>
-          <button onclick="editSupplier(${i})"
-            style="background:#f59e0b;color:white;border:none;padding:5px 10px;border-radius:5px;">
-            Edit
-          </button>
-
-          <button onclick="hapusSupplier(${i})"
-            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
-            Hapus
-          </button>
-        </td>
-      </tr>
-    `;
-  });
+for(let i=0;i<pages.length;i++){
+pages[i].classList.remove("active");
 }
 
-// hapus
-function hapusSupplier(index){
-  supplier.splice(index,1);
-  simpanSupplier();
-  renderSupplier();
+document.getElementById(id).classList.add("active");
+
 }
-
-// edit
-function editSupplier(index){
-
-  let s = supplier[index];
-
-  document.getElementById("kodeSupplier").value = s.kode;
-  document.getElementById("namaSupplier").value = s.nama;
-  document.getElementById("teleponSupplier").value = s.telepon;
-  document.getElementById("alamatSupplier").value = s.alamat;
-
-  // hapus dulu data lama
-  supplier.splice(index,1);
-  simpanSupplier();
-  renderSupplier();
-}
-
-// load awal
-renderSupplier();
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
