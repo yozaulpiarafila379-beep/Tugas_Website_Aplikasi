@@ -262,30 +262,96 @@ Password : admin123
 <!-- DASHBOARD -->
 <div id="dashboard" class="page active">
 
+<!-- FILTER DASHBOARD (INPUT) -->
+<div class="section">
+
+<h3>🔍 Filter Dashboard</h3>
+
+<input type="date" style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+<option>Semua Kategori</option>
+<option>Elektronik</option>
+<option>ATK</option>
+<option>Aksesoris</option>
+</select>
+
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+<option>Bulan Ini</option>
+<option>Januari</option>
+<option>Februari</option>
+<option>Maret</option>
+<option>April</option>
+<option>Mei</option>
+<option>Juni</option>
+<option>Juli</option>
+<option>Agustus</option>
+<option>September</option>
+<option>Oktober</option>
+<option>November</option>
+<option>Desember</option>
+</select>
+
+<button style="padding:12px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
+Tampilkan
+</button>
+
+</div>
+
+<!-- OUTPUT DASHBOARD -->
 <div class="cards">
 
 <div class="card">
 <h4>Total Barang</h4>
 <h1>150</h1>
+<p>Barang Terdaftar</p>
 </div>
 
 <div class="card">
 <h4>Barang Masuk</h4>
 <h1>85</h1>
+<p>Bulan Ini</p>
 </div>
 
 <div class="card">
 <h4>Barang Keluar</h4>
 <h1>45</h1>
+<p>Bulan Ini</p>
 </div>
 
 <div class="card">
 <h4>Total Supplier</h4>
 <h1>12</h1>
+<p>Supplier Aktif</p>
+</div>
+
+<div class="card">
+<h4>Stok Menipis</h4>
+<h1>7</h1>
+<p>Perlu Restok</p>
+</div>
+
+<div class="card">
+<h4>Total Kategori</h4>
+<h1>8</h1>
+<p>Kategori Barang</p>
+</div>
+
+<div class="card">
+<h4>Total Transaksi</h4>
+<h1>130</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Nilai Persediaan</h4>
+<h1>Rp125 Jt</h1>
+<p>Total Aset Gudang</p>
 </div>
 
 </div>
 
+<!-- GRAFIK -->
 <div class="section">
 
 <h3>📈 Grafik Stok Barang</h3>
@@ -294,6 +360,42 @@ Password : admin123
 
 </div>
 
+<!-- NOTIFIKASI -->
+<div class="section">
+
+<h3>📢 Notifikasi Gudang</h3>
+
+<table>
+
+<tr>
+<th>No</th>
+<th>Informasi</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Stok Mouse Logitech tersisa 3 unit</td>
+<td>Menipis</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Laptop Asus masuk 10 unit</td>
+<td>Masuk</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Printer Epson keluar 5 unit</td>
+<td>Keluar</td>
+</tr>
+
+</table>
+
+</div>
+
+<!-- BARANG TERBARU -->
 <div class="section">
 
 <h3>📦 Barang Terbaru</h3>
@@ -333,6 +435,54 @@ Password : admin123
 <td>Mouse Logitech</td>
 <td>Aksesoris</td>
 <td>25</td>
+</tr>
+
+<tr>
+<td>BRG005</td>
+<td>Keyboard Logitech</td>
+<td>Aksesoris</td>
+<td>18</td>
+</tr>
+
+</table>
+
+</div>
+
+<!-- STATISTIK -->
+<div class="section">
+
+<h3>📊 Statistik Gudang</h3>
+
+<table>
+
+<tr>
+<th>Keterangan</th>
+<th>Jumlah</th>
+</tr>
+
+<tr>
+<td>Total Barang Aktif</td>
+<td>145</td>
+</tr>
+
+<tr>
+<td>Total Barang Tidak Aktif</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Total Supplier Aktif</td>
+<td>12</td>
+</tr>
+
+<tr>
+<td>Total Transaksi Bulan Ini</td>
+<td>130</td>
+</tr>
+
+<tr>
+<td>Total Nilai Persediaan</td>
+<td>Rp125.000.000</td>
 </tr>
 
 </table>
