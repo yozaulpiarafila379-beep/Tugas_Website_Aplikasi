@@ -689,6 +689,83 @@ style="width:100%;padding:10px;">
 </p>
 </div>
 </div>
+
+<!-- BARANG MASUK -->
+<div id="masuk" class="page">
+
+<div class="section">
+<h3>📥 Form Barang Masuk</h3>
+
+<input type="date" id="tanggalMasuk"
+style="width:100%;padding:10px;margin-bottom:10px;">
+
+<input type="text" id="namaBarangMasuk"
+placeholder="Nama Barang"
+style="width:100%;padding:10px;margin-bottom:10px;">
+
+<input type="text" id="supplierMasuk"
+placeholder="Supplier"
+style="width:100%;padding:10px;margin-bottom:10px;">
+
+<input type="number" id="jumlahMasuk"
+placeholder="Jumlah Barang"
+style="width:100%;padding:10px;margin-bottom:10px;">
+
+<button onclick="tambahBarangMasuk()"
+style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+💾 Simpan
+</button>
+
+<button onclick="resetBarangMasuk()"
+style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+🔄 Reset
+</button>
+
+</div>
+
+<div class="section">
+
+<h3>🔍 Cari Barang Masuk</h3>
+
+<input type="text"
+id="cariBarangMasuk"
+placeholder="Cari Nama Barang..."
+onkeyup="cariBarangMasuk()"
+style="width:100%;padding:10px;">
+
+</div>
+
+<div class="section">
+
+<h3>📋 Data Barang Masuk</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>No</th>
+<th>Tanggal</th>
+<th>Nama Barang</th>
+<th>Supplier</th>
+<th>Jumlah</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody id="tabelBarangMasuk">
+</tbody>
+
+</table>
+
+<br>
+
+<p>
+<b>Total Transaksi :</b>
+<span id="totalBarangMasuk">0</span>
+</p>
+</div>
+</div>
+
   
 </div>
 </div>
@@ -986,6 +1063,236 @@ Hapus
 }
 
 renderSupplier();
+</script>
+
+<script>
+
+// DATA AWAL
+if(!localStorage.getItem("barangMasuk")){
+
+localStorage.setItem("barangMasuk",JSON.stringify([
+{
+tanggal:"2026-06-10",
+barang:"Laptop Asus",
+supplier:"PT Sumber Jaya",
+jumlah:5
+},
+{
+tanggal:"2026-06-11",
+barang:"Printer Epson",
+supplier:"CV Maju Bersama",
+jumlah:3
+}
+]));
+
+}
+
+let barangMasuk =
+JSON.parse(localStorage.getItem("barangMasuk")) || [];
+
+let editMasukIndex = -1;
+
+// SIMPAN
+function simpanBarangMasuk(){
+
+localStorage.setItem(
+"barangMasuk",
+JSON.stringify(barangMasuk)
+);
+
+}
+
+// TAMBAH / UPDATE
+function tambahBarangMasuk(){
+
+let tanggal =
+document.getElementById("tanggalMasuk").value;
+
+let barang =
+document.getElementById("namaBarangMasuk").value;
+
+let supplier =
+document.getElementById("supplierMasuk").value;
+
+let jumlah =
+document.getElementById("jumlahMasuk").value;
+
+if(
+tanggal=="" ||
+barang=="" ||
+supplier=="" ||
+jumlah==""
+){
+alert("Semua data wajib diisi!");
+return;
+}
+
+let data = {
+tanggal,
+barang,
+supplier,
+jumlah
+};
+
+if(editMasukIndex==-1){
+
+barangMasuk.push(data);
+
+}else{
+
+barangMasuk[editMasukIndex]=data;
+editMasukIndex=-1;
+
+}
+
+simpanBarangMasuk();
+renderBarangMasuk();
+resetBarangMasuk();
+
+}
+
+// TAMPIL DATA
+function renderBarangMasuk(){
+
+let tabel =
+document.getElementById("tabelBarangMasuk");
+
+tabel.innerHTML="";
+
+barangMasuk.forEach((b,i)=>{
+
+tabel.innerHTML += `
+<tr>
+
+<td>${i+1}</td>
+<td>${b.tanggal}</td>
+<td>${b.barang}</td>
+<td>${b.supplier}</td>
+<td>${b.jumlah}</td>
+
+<td>
+
+<button
+onclick="editBarangMasuk(${i})"
+style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Edit
+</button>
+
+<button
+onclick="hapusBarangMasuk(${i})"
+style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Hapus
+</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("totalBarangMasuk").innerText =
+barangMasuk.length;
+
+}
+
+// EDIT
+function editBarangMasuk(index){
+
+let b = barangMasuk[index];
+
+document.getElementById("tanggalMasuk").value =
+b.tanggal;
+
+document.getElementById("namaBarangMasuk").value =
+b.barang;
+
+document.getElementById("supplierMasuk").value =
+b.supplier;
+
+document.getElementById("jumlahMasuk").value =
+b.jumlah;
+
+editMasukIndex = index;
+
+}
+
+// HAPUS
+function hapusBarangMasuk(index){
+
+if(confirm("Yakin ingin menghapus data?")){
+
+barangMasuk.splice(index,1);
+
+simpanBarangMasuk();
+renderBarangMasuk();
+
+}
+
+}
+
+// RESET
+function resetBarangMasuk(){
+
+document.getElementById("tanggalMasuk").value="";
+document.getElementById("namaBarangMasuk").value="";
+document.getElementById("supplierMasuk").value="";
+document.getElementById("jumlahMasuk").value="";
+
+editMasukIndex=-1;
+
+}
+
+// CARI
+function cariBarangMasuk(){
+
+let keyword =
+document.getElementById("cariBarangMasuk")
+.value.toLowerCase();
+
+let tabel =
+document.getElementById("tabelBarangMasuk");
+
+tabel.innerHTML="";
+
+barangMasuk
+.filter(b =>
+b.barang.toLowerCase().includes(keyword)
+)
+.forEach((b,i)=>{
+
+tabel.innerHTML += `
+<tr>
+
+<td>${i+1}</td>
+<td>${b.tanggal}</td>
+<td>${b.barang}</td>
+<td>${b.supplier}</td>
+<td>${b.jumlah}</td>
+
+<td>
+
+<button onclick="editBarangMasuk(${i})"
+style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Edit
+</button>
+
+<button onclick="hapusBarangMasuk(${i})"
+style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Hapus
+</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
+// LOAD AWAL
+renderBarangMasuk();
 </script>
   
 </body>
