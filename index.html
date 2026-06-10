@@ -615,42 +615,44 @@ Tampilkan
 <!-- SUPPLIER -->
 <div id="supplier" class="page">
 
-<!-- INPUT SUPPLIER -->
-<div class="section">
-<h3>🏢 Input Supplier</h3>
+  <!-- INPUT -->
+  <div class="section">
+    <h3>🏢 Input Supplier</h3>
 
-<input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
-<input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
 
-<button onclick="tambahSupplier()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
-💾 Simpan Supplier
-</button>
-</div>
+    <button onclick="tambahSupplier()"
+      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan Supplier
+    </button>
+  </div>
 
-<!-- OUTPUT SUPPLIER -->
-<div class="section">
-<h3>📋 Data Supplier</h3>
+  <!-- OUTPUT -->
+  <div class="section">
+    <h3>📋 Data Supplier</h3>
 
-<table>
-<thead>
-<tr>
-<th>No</th>
-<th>Kode</th>
-<th>Nama</th>
-<th>Telepon</th>
-<th>Alamat</th>
-<th>Aksi</th>
-</tr>
-</thead>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Telepon</th>
+          <th>Alamat</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
 
-<tbody id="tabelSupplier"></tbody>
-</table>
+      <tbody id="tabelSupplier"></tbody>
+    </table>
 
-<br>
-<p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
-</div>
+    <br>
+    <p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
+  </div>
+
 </div>
   
 </div>
@@ -806,4 +808,107 @@ renderSupplier();
 </script>
   
 </body>
+  // 🔥 DATA AWAL SUPPLIER (BIAR TIDAK KOSONG)
+if(localStorage.getItem("supplier") === null){
+  localStorage.setItem("supplier", JSON.stringify([
+    {
+      kode: "SUP001",
+      nama: "PT Sumber Jaya",
+      telepon: "08123456789",
+      alamat: "Palembang"
+    },
+    {
+      kode: "SUP002",
+      nama: "CV Maju Bersama",
+      telepon: "082233445566",
+      alamat: "Jakarta"
+    }
+  ]));
+}
+
+// ambil data
+let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
+
+// simpan
+function simpanSupplier(){
+  localStorage.setItem("supplier", JSON.stringify(supplier));
+}
+
+// tambah
+function tambahSupplier(){
+
+  let kode = document.getElementById("kodeSupplier").value;
+  let nama = document.getElementById("namaSupplier").value;
+  let telepon = document.getElementById("teleponSupplier").value;
+  let alamat = document.getElementById("alamatSupplier").value;
+
+  // validasi
+  if(kode === "" || nama === "" || telepon === "" || alamat === ""){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  supplier.push({
+    kode: kode,
+    nama: nama,
+    telepon: telepon,
+    alamat: alamat
+  });
+
+  simpanSupplier();
+  renderSupplier();
+
+  // reset input
+  document.getElementById("kodeSupplier").value = "";
+  document.getElementById("namaSupplier").value = "";
+  document.getElementById("teleponSupplier").value = "";
+  document.getElementById("alamatSupplier").value = "";
+}
+
+// tampil output
+function renderSupplier(){
+
+  let tabel = document.getElementById("tabelSupplier");
+  tabel.innerHTML = "";
+
+  if(supplier.length === 0){
+    tabel.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center;color:gray;">
+          Belum ada data supplier
+        </td>
+      </tr>
+    `;
+  } else {
+    supplier.forEach((s,i)=>{
+      tabel.innerHTML += `
+        <tr>
+          <td>${i+1}</td>
+          <td>${s.kode}</td>
+          <td>${s.nama}</td>
+          <td>${s.telepon}</td>
+          <td>${s.alamat}</td>
+          <td>
+            <button onclick="hapusSupplier(${i})"
+              style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+              Hapus
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+  }
+
+  document.getElementById("totalSupplier").innerText = supplier.length;
+}
+
+// hapus
+function hapusSupplier(index){
+  supplier.splice(index,1);
+  simpanSupplier();
+  renderSupplier();
+}
+
+// load awal
+renderSupplier();
 </html>
