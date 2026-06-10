@@ -259,47 +259,131 @@ Password : admin123
 
 <div class="container">
 
-<!-- DASHBOARD -->
-<div id="dashboard" class="page active">
+<!-- DASHBOARD LENGKAP -->
 
+<!-- HEADER RINGKAS DASHBOARD -->
+<div class="section">
+<h3>📊 Dashboard Overview</h3>
+<p>Ringkasan data utama sistem gudang</p>
+</div>
+
+<!-- STATISTIK UTAMA -->
 <div class="cards">
 
 <div class="card">
 <h4>Total Barang</h4>
 <h1>150</h1>
+<p>Semua item tersimpan</p>
 </div>
 
 <div class="card">
 <h4>Barang Masuk</h4>
 <h1>85</h1>
+<p>Bulan ini</p>
 </div>
 
 <div class="card">
 <h4>Barang Keluar</h4>
 <h1>45</h1>
+<p>Bulan ini</p>
+</div>
+
+<div class="card">
+<h4>Stok Menipis</h4>
+<h1>7</h1>
+<p>Perlu restock</p>
 </div>
 
 <div class="card">
 <h4>Total Supplier</h4>
 <h1>12</h1>
+<p>Aktif</p>
+</div>
+
+<div class="card">
+<h4>Kategori Barang</h4>
+<h1>8</h1>
+<p>Jenis produk</p>
 </div>
 
 </div>
 
+<!-- FILTER DASHBOARD -->
 <div class="section">
+<h3>🔍 Filter Data</h3>
 
+<input type="date" style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
+
+<select style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
+<option>Semua Kategori</option>
+<option>Elektronik</option>
+<option>ATK</option>
+<option>Aksesoris</option>
+</select>
+
+<select style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
+<option>Bulan Ini</option>
+<option>Januari</option>
+<option>Februari</option>
+<option>Maret</option>
+<option>April</option>
+<option>Mei</option>
+<option>Juni</option>
+<option>Juli</option>
+<option>Agustus</option>
+<option>September</option>
+<option>Oktober</option>
+<option>November</option>
+<option>Desember</option>
+</select>
+
+<button style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+Tampilkan
+</button>
+</div>
+
+<!-- GRAFIK -->
+<div class="section">
 <h3>📈 Grafik Stok Barang</h3>
-
 <canvas id="stokChart"></canvas>
-
 </div>
 
+<!-- NOTIFIKASI -->
 <div class="section">
+<h3>📢 Notifikasi Gudang</h3>
 
+<table>
+<tr>
+<th>No</th>
+<th>Informasi</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Stok Mouse Logitech tinggal 3 unit</td>
+<td>⚠ Menipis</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Laptop Asus masuk 10 unit</td>
+<td>✔ Masuk</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Printer Epson keluar 5 unit</td>
+<td>📤 Keluar</td>
+</tr>
+</table>
+</div>
+
+<!-- BARANG TERBARU -->
+<div class="section">
 <h3>📦 Barang Terbaru</h3>
 
 <table>
-
 <tr>
 <th>Kode</th>
 <th>Nama Barang</th>
@@ -334,11 +418,34 @@ Password : admin123
 <td>Aksesoris</td>
 <td>25</td>
 </tr>
-
 </table>
-
 </div>
 
+<!-- AKTIVITAS TERBARU -->
+<div class="section">
+<h3>📊 Aktivitas Terbaru</h3>
+
+<table>
+<tr>
+<th>Waktu</th>
+<th>Aktivitas</th>
+</tr>
+
+<tr>
+<td>08:10</td>
+<td>Barang masuk: Laptop Asus</td>
+</tr>
+
+<tr>
+<td>10:30</td>
+<td>Barang keluar: Printer Epson</td>
+</tr>
+
+<tr>
+<td>12:00</td>
+<td>Update stok: Mouse Logitech</td>
+</tr>
+</table>
 </div>
 
 </div>
