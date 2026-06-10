@@ -615,26 +615,22 @@ Tampilkan
 <!-- SUPPLIER -->
 <div id="supplier" class="page">
 
-  <!-- INPUT SUPPLIER -->
+  <!-- INPUT -->
   <div class="section">
-    <h3>🏢 Form Input Supplier</h3>
+    <h3>🏢 Input Supplier</h3>
 
-    <input id="kodeSupplier" placeholder="Kode Supplier">
-    <input id="namaSupplier" placeholder="Nama Supplier">
-    <input id="teleponSupplier" placeholder="No Telepon">
-    <input id="alamatSupplier" placeholder="Alamat">
+    <input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
+    <input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <button onclick="tambahSupplier()">💾 Simpan</button>
-    <button onclick="resetSupplier()" style="background:gray;">🔄 Reset</button>
+    <button onclick="tambahSupplier()"
+      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan Supplier
+    </button>
   </div>
 
-  <!-- SEARCH -->
-  <div class="section">
-    <h3>🔍 Pencarian Supplier</h3>
-    <input id="searchSupplier" placeholder="Cari nama supplier..." onkeyup="searchSupplier()">
-  </div>
-
-  <!-- OUTPUT SUPPLIER -->
+  <!-- OUTPUT -->
   <div class="section">
     <h3>📋 Data Supplier</h3>
 
@@ -739,9 +735,8 @@ display:true
 </script>
 
 <script>
-
-// DATA AWAL (biar tidak kosong)
-if(!localStorage.getItem("supplier")){
+// 🔥 DATA AWAL (BIAR TIDAK KOSONG)
+if(localStorage.getItem("supplier") === null){
   localStorage.setItem("supplier", JSON.stringify([
     {
       kode: "SUP001",
@@ -758,16 +753,14 @@ if(!localStorage.getItem("supplier")){
   ]));
 }
 
-// ambil data
 let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
-let editIndex = -1;
 
-// simpan
-function simpanData(){
+// SIMPAN
+function simpanSupplier(){
   localStorage.setItem("supplier", JSON.stringify(supplier));
 }
 
-// TAMBAH / UPDATE
+// TAMBAH
 function tambahSupplier(){
 
   let kode = document.getElementById("kodeSupplier").value;
@@ -775,23 +768,20 @@ function tambahSupplier(){
   let telepon = document.getElementById("teleponSupplier").value;
   let alamat = document.getElementById("alamatSupplier").value;
 
-  if(!kode || !nama || !telepon || !alamat){
+  if(kode === "" || nama === "" || telepon === "" || alamat === ""){
     alert("Semua data wajib diisi!");
     return;
   }
 
-  let data = { kode, nama, telepon, alamat };
+  supplier.push({ kode, nama, telepon, alamat });
 
-  if(editIndex >= 0){
-    supplier[editIndex] = data;
-    editIndex = -1;
-  }else{
-    supplier.push(data);
-  }
-
-  simpanData();
+  simpanSupplier();
   renderSupplier();
-  resetSupplier();
+
+  document.getElementById("kodeSupplier").value = "";
+  document.getElementById("namaSupplier").value = "";
+  document.getElementById("teleponSupplier").value = "";
+  document.getElementById("alamatSupplier").value = "";
 }
 
 // TAMPIL DATA
@@ -803,11 +793,10 @@ function renderSupplier(){
   if(supplier.length === 0){
     tabel.innerHTML = `
       <tr>
-        <td colspan="6" style="text-align:center;color:gray;">
-          Belum ada data supplier
-        </td>
+        <td colspan="6">Belum ada data supplier</td>
       </tr>
     `;
+    return;
   }
 
   supplier.forEach((s,i)=>{
@@ -819,8 +808,10 @@ function renderSupplier(){
         <td>${s.telepon}</td>
         <td>${s.alamat}</td>
         <td>
-          <button onclick="editSupplier(${i})" style="background:orange;color:white;">Edit</button>
-          <button onclick="hapusSupplier(${i})" style="background:red;color:white;">Hapus</button>
+          <button onclick="hapusSupplier(${i})"
+            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+            Hapus
+          </button>
         </td>
       </tr>
     `;
@@ -829,69 +820,15 @@ function renderSupplier(){
   document.getElementById("totalSupplier").innerText = supplier.length;
 }
 
-// EDIT
-function editSupplier(index){
-
-  let s = supplier[index];
-
-  document.getElementById("kodeSupplier").value = s.kode;
-  document.getElementById("namaSupplier").value = s.nama;
-  document.getElementById("teleponSupplier").value = s.telepon;
-  document.getElementById("alamatSupplier").value = s.alamat;
-
-  editIndex = index;
-}
-
 // HAPUS
 function hapusSupplier(index){
-
-  if(confirm("Yakin ingin hapus data ini?")){
-    supplier.splice(index,1);
-    simpanData();
-    renderSupplier();
-  }
-}
-
-// RESET FORM
-function resetSupplier(){
-  document.getElementById("kodeSupplier").value = "";
-  document.getElementById("namaSupplier").value = "";
-  document.getElementById("teleponSupplier").value = "";
-  document.getElementById("alamatSupplier").value = "";
-  editIndex = -1;
-}
-
-// SEARCH
-function searchSupplier(){
-
-  let keyword = document.getElementById("searchSupplier").value.toLowerCase();
-  let tabel = document.getElementById("tabelSupplier");
-  tabel.innerHTML = "";
-
-  let hasil = supplier.filter(s =>
-    s.nama.toLowerCase().includes(keyword)
-  );
-
-  hasil.forEach((s,i)=>{
-    tabel.innerHTML += `
-      <tr>
-        <td>${i+1}</td>
-        <td>${s.kode}</td>
-        <td>${s.nama}</td>
-        <td>${s.telepon}</td>
-        <td>${s.alamat}</td>
-        <td>
-          <button onclick="editSupplier(${i})">Edit</button>
-          <button onclick="hapusSupplier(${i})">Hapus</button>
-        </td>
-      </tr>
-    `;
-  });
+  supplier.splice(index,1);
+  simpanSupplier();
+  renderSupplier();
 }
 
 // LOAD AWAL
 renderSupplier();
-
 </script>
   
 </body>
