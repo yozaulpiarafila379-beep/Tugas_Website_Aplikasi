@@ -1368,6 +1368,244 @@ Hapus
 // LOAD AWAL
 renderBarangMasuk();
 </script>
+
+<script>
+
+// DATA AWAL
+if(localStorage.getItem("barangKeluar") === null){
+
+  localStorage.setItem(
+    "barangKeluar",
+    JSON.stringify([
+      {
+        tanggal:"2026-06-10",
+        barang:"Laptop Asus",
+        tujuan:"Divisi IT",
+        jumlah:2
+      },
+      {
+        tanggal:"2026-06-11",
+        barang:"Printer Epson",
+        tujuan:"Kantor Cabang",
+        jumlah:1
+      }
+    ])
+  );
+
+}
+
+let barangKeluarData =
+JSON.parse(localStorage.getItem("barangKeluar")) || [];
+
+let editKeluarIndex = -1;
+
+// SIMPAN
+function simpanKeluar(){
+
+  localStorage.setItem(
+    "barangKeluar",
+    JSON.stringify(barangKeluarData)
+  );
+
+}
+
+// TAMBAH / EDIT
+function tambahKeluar(){
+
+  let tanggal =
+  document.getElementById("tanggalKeluar").value;
+
+  let barang =
+  document.getElementById("barangKeluar").value;
+
+  let tujuan =
+  document.getElementById("tujuanKeluar").value;
+
+  let jumlah =
+  document.getElementById("jumlahKeluar").value;
+
+  if(
+    tanggal=="" ||
+    barang=="" ||
+    tujuan=="" ||
+    jumlah==""
+  ){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  let data = {
+    tanggal,
+    barang,
+    tujuan,
+    jumlah
+  };
+
+  if(editKeluarIndex == -1){
+
+    barangKeluarData.push(data);
+
+  }else{
+
+    barangKeluarData[editKeluarIndex] = data;
+    editKeluarIndex = -1;
+
+  }
+
+  simpanKeluar();
+  renderKeluar();
+  resetKeluar();
+
+}
+
+// TAMPILKAN DATA
+function renderKeluar(){
+
+  let tabel =
+  document.getElementById("tabelKeluar");
+
+  tabel.innerHTML = "";
+
+  if(barangKeluarData.length == 0){
+
+    tabel.innerHTML =
+    `<tr>
+      <td colspan="6">
+        Belum ada data
+      </td>
+    </tr>`;
+
+  }
+
+  barangKeluarData.forEach((b,i)=>{
+
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.tanggal}</td>
+        <td>${b.barang}</td>
+        <td>${b.tujuan}</td>
+        <td>${b.jumlah}</td>
+
+        <td>
+
+          <button
+          onclick="editKeluar(${i})"
+          style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+          Edit
+          </button>
+
+          <button
+          onclick="hapusKeluar(${i})"
+          style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+          Hapus
+          </button>
+
+        </td>
+
+      </tr>
+    `;
+
+  });
+
+  document.getElementById("totalKeluar").innerText =
+  barangKeluarData.length;
+
+}
+
+// EDIT
+function editKeluar(index){
+
+  let b = barangKeluarData[index];
+
+  document.getElementById("tanggalKeluar").value =
+  b.tanggal;
+
+  document.getElementById("barangKeluar").value =
+  b.barang;
+
+  document.getElementById("tujuanKeluar").value =
+  b.tujuan;
+
+  document.getElementById("jumlahKeluar").value =
+  b.jumlah;
+
+  editKeluarIndex = index;
+
+}
+
+// HAPUS
+function hapusKeluar(index){
+
+  if(confirm("Yakin ingin menghapus data?")){
+
+    barangKeluarData.splice(index,1);
+
+    simpanKeluar();
+    renderKeluar();
+
+  }
+
+}
+
+// RESET
+function resetKeluar(){
+
+  document.getElementById("tanggalKeluar").value="";
+  document.getElementById("barangKeluar").value="";
+  document.getElementById("tujuanKeluar").value="";
+  document.getElementById("jumlahKeluar").value="";
+
+  editKeluarIndex = -1;
+
+}
+
+// CARI DATA
+function cariKeluar(){
+
+  let keyword =
+  document.getElementById("searchKeluar")
+  .value.toLowerCase();
+
+  let tabel =
+  document.getElementById("tabelKeluar");
+
+  tabel.innerHTML = "";
+
+  let hasil =
+  barangKeluarData.filter(b =>
+    b.barang.toLowerCase().includes(keyword)
+  );
+
+  hasil.forEach((b,i)=>{
+
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.tanggal}</td>
+        <td>${b.barang}</td>
+        <td>${b.tujuan}</td>
+        <td>${b.jumlah}</td>
+
+        <td>
+          <button onclick="editKeluar(${i})">
+          Edit
+          </button>
+
+          <button onclick="hapusKeluar(${i})">
+          Hapus
+          </button>
+        </td>
+      </tr>
+    `;
+
+  });
+
+}
+
+// LOAD AWAL
+renderKeluar();
+</script>
   
 </body>
 </html>
