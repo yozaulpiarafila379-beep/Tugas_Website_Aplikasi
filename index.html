@@ -656,7 +656,56 @@ Tampilkan
     <br>
     <p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
   </div>
+</div>
 
+<!-- BARANG MASUK -->
+<div id="masuk" class="page">
+
+  <!-- INPUT -->
+  <div class="section">
+    <h3>📥 Input Barang Masuk</h3>
+
+    <input id="tanggalMasuk" type="date" style="width:100%;padding:10px;margin-bottom:10px;">
+    
+    <input id="barangMasuk" placeholder="Nama Barang" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="supplierMasuk" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="jumlahMasuk" type="number" placeholder="Jumlah" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <button onclick="tambahMasuk()"
+      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan
+    </button>
+
+    <button onclick="resetMasuk()"
+      style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+      🔄 Reset
+    </button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="section">
+    <h3>📋 Data Barang Masuk</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Barang</th>
+          <th>Supplier</th>
+          <th>Jumlah</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelMasuk"></tbody>
+    </table>
+
+    <br>
+    <p><b>Total Data:</b> <span id="totalMasuk">0</span></p>
+  </div>
 </div>
   
 </div>
@@ -892,6 +941,116 @@ function searchSupplier(){
 // LOAD AWAL
 renderSupplier();
 
+</script>
+
+<script>
+// =====================
+// DATA AWAL BARANG MASUK (5 DATA)
+// =====================
+if(!localStorage.getItem("barangMasuk")){
+  localStorage.setItem("barangMasuk", JSON.stringify([
+    {
+      tanggal: "2026-06-10",
+      barang: "Laptop Asus",
+      supplier: "PT Sumber Jaya",
+      jumlah: 5
+    },
+    {
+      tanggal: "2026-06-11",
+      barang: "Printer Epson",
+      supplier: "CV Maju Bersama",
+      jumlah: 3
+    },
+    {
+      tanggal: "2026-06-12",
+      barang: "Mouse Logitech",
+      supplier: "PT Sumber Jaya",
+      jumlah: 10
+    },
+    {
+      tanggal: "2026-06-13",
+      barang: "Keyboard Logitech",
+      supplier: "CV Maju Bersama",
+      jumlah: 7
+    },
+    {
+      tanggal: "2026-06-14",
+      barang: "Kertas A4",
+      supplier: "PT Sumber Jaya",
+      jumlah: 20
+    }
+  ]));
+}
+
+// ambil data
+let barangMasukData = JSON.parse(localStorage.getItem("barangMasuk")) || [];
+
+// simpan
+function simpanMasuk(){
+  localStorage.setItem("barangMasuk", JSON.stringify(barangMasukData));
+}
+
+// tambah data
+function tambahMasuk(){
+
+  let data = {
+    tanggal: document.getElementById("tanggalMasuk").value,
+    barang: document.getElementById("barangMasuk").value,
+    supplier: document.getElementById("supplierMasuk").value,
+    jumlah: document.getElementById("jumlahMasuk").value
+  };
+
+  if(!data.tanggal || !data.barang || !data.supplier || !data.jumlah){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  barangMasukData.push(data);
+  simpanMasuk();
+  renderMasuk();
+
+  document.getElementById("tanggalMasuk").value = "";
+  document.getElementById("barangMasuk").value = "";
+  document.getElementById("supplierMasuk").value = "";
+  document.getElementById("jumlahMasuk").value = "";
+}
+
+// tampil data (OUTPUT)
+function renderMasuk(){
+
+  let tabel = document.getElementById("tabelMasuk");
+  tabel.innerHTML = "";
+
+  barangMasukData.forEach((b,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.tanggal}</td>
+        <td>${b.barang}</td>
+        <td>${b.supplier}</td>
+        <td>${b.jumlah}</td>
+        <td>
+          <button onclick="hapusMasuk(${i})"
+            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+            Hapus
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("totalMasuk").innerText = barangMasukData.length;
+}
+
+// hapus data
+function hapusMasuk(index){
+  barangMasukData.splice(index,1);
+  simpanMasuk();
+  renderMasuk();
+}
+
+// load awal
+renderMasuk();
 </script>
   
 </body>
