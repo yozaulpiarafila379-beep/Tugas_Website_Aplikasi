@@ -615,44 +615,79 @@ Tampilkan
 <!-- SUPPLIER -->
 <div id="supplier" class="page">
 
-  <!-- INPUT -->
-  <div class="section">
-    <h3>🏢 Input Supplier</h3>
+<!-- FORM INPUT -->
+<div class="section">
+<h3>🏢 Form Supplier</h3>
 
-    <input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
-    <input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
+<input id="kodeSupplier" placeholder="Kode Supplier"
+style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <button onclick="tambahSupplier()"
-      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
-      💾 Simpan Supplier
-    </button>
-  </div>
+<input id="namaSupplier" placeholder="Nama Supplier"
+style="width:100%;padding:10px;margin-bottom:10px;">
 
-  <!-- OUTPUT -->
-  <div class="section">
-    <h3>📋 Data Supplier</h3>
+<input id="teleponSupplier" placeholder="No Telepon"
+style="width:100%;padding:10px;margin-bottom:10px;">
 
-    <table>
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Kode</th>
-          <th>Nama</th>
-          <th>Telepon</th>
-          <th>Alamat</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
+<input id="alamatSupplier" placeholder="Alamat"
+style="width:100%;padding:10px;margin-bottom:10px;">
 
-      <tbody id="tabelSupplier"></tbody>
-    </table>
+<button onclick="tambahSupplier()"
+style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+💾 Simpan
+</button>
 
-    <br>
-    <p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
-  </div>
+<button onclick="resetSupplier()"
+style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+🔄 Reset
+</button>
 
+</div>
+
+<!-- PENCARIAN -->
+<div class="section">
+
+<h3>🔍 Cari Supplier</h3>
+
+<input type="text"
+id="cariSupplier"
+placeholder="Masukkan Nama Supplier..."
+onkeyup="cariSupplier()"
+style="width:100%;padding:10px;">
+
+</div>
+
+<!-- TABEL -->
+<div class="section">
+
+<h3>📋 Data Supplier</h3>
+
+<table>
+
+<thead>
+
+<tr>
+<th>No</th>
+<th>Kode</th>
+<th>Nama Supplier</th>
+<th>Telepon</th>
+<th>Alamat</th>
+<th>Aksi</th>
+</tr>
+
+</thead>
+
+<tbody id="tabelSupplier">
+</tbody>
+
+</table>
+
+<br>
+
+<p>
+<b>Total Supplier :</b>
+<span id="totalSupplier">0</span>
+</p>
+</div>
 </div>
   
 </div>
@@ -735,99 +770,221 @@ display:true
 </script>
 
 <script>
-// 🔥 DATA AWAL (BIAR TIDAK KOSONG)
-if(localStorage.getItem("supplier") === null){
-  localStorage.setItem("supplier", JSON.stringify([
-    {
-      kode: "SUP001",
-      nama: "PT Sumber Jaya",
-      telepon: "08123456789",
-      alamat: "Palembang"
-    },
-    {
-      kode: "SUP002",
-      nama: "CV Maju Bersama",
-      telepon: "082233445566",
-      alamat: "Jakarta"
-    }
-  ]));
+
+if(!localStorage.getItem("supplier")){
+
+localStorage.setItem("supplier",JSON.stringify([
+{
+kode:"SUP001",
+nama:"PT Sumber Jaya",
+telepon:"08123456789",
+alamat:"Palembang"
+},
+{
+kode:"SUP002",
+nama:"CV Maju Bersama",
+telepon:"082233445566",
+alamat:"Jakarta"
+}
+]));
+
 }
 
-let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
+let supplier=
+JSON.parse(localStorage.getItem("supplier"))||[];
 
-// SIMPAN
+let editSupplierIndex=-1;
+
 function simpanSupplier(){
-  localStorage.setItem("supplier", JSON.stringify(supplier));
+localStorage.setItem(
+"supplier",
+JSON.stringify(supplier)
+);
 }
 
-// TAMBAH
 function tambahSupplier(){
 
-  let kode = document.getElementById("kodeSupplier").value;
-  let nama = document.getElementById("namaSupplier").value;
-  let telepon = document.getElementById("teleponSupplier").value;
-  let alamat = document.getElementById("alamatSupplier").value;
+let kode=
+document.getElementById("kodeSupplier").value;
 
-  if(kode === "" || nama === "" || telepon === "" || alamat === ""){
-    alert("Semua data wajib diisi!");
-    return;
-  }
+let nama=
+document.getElementById("namaSupplier").value;
 
-  supplier.push({ kode, nama, telepon, alamat });
+let telepon=
+document.getElementById("teleponSupplier").value;
 
-  simpanSupplier();
-  renderSupplier();
+let alamat=
+document.getElementById("alamatSupplier").value;
 
-  document.getElementById("kodeSupplier").value = "";
-  document.getElementById("namaSupplier").value = "";
-  document.getElementById("teleponSupplier").value = "";
-  document.getElementById("alamatSupplier").value = "";
+if(
+kode==""||
+nama==""||
+telepon==""||
+alamat==""
+){
+alert("Semua data wajib diisi");
+return;
 }
 
-// TAMPIL DATA
+let data={
+kode,
+nama,
+telepon,
+alamat
+};
+
+if(editSupplierIndex==-1){
+
+supplier.push(data);
+
+}else{
+
+supplier[editSupplierIndex]=data;
+editSupplierIndex=-1;
+
+}
+
+simpanSupplier();
+renderSupplier();
+resetSupplier();
+
+}
+
 function renderSupplier(){
 
-  let tabel = document.getElementById("tabelSupplier");
-  tabel.innerHTML = "";
+let tabel=
+document.getElementById("tabelSupplier");
 
-  if(supplier.length === 0){
-    tabel.innerHTML = `
-      <tr>
-        <td colspan="6">Belum ada data supplier</td>
-      </tr>
-    `;
-    return;
-  }
+tabel.innerHTML="";
 
-  supplier.forEach((s,i)=>{
-    tabel.innerHTML += `
-      <tr>
-        <td>${i+1}</td>
-        <td>${s.kode}</td>
-        <td>${s.nama}</td>
-        <td>${s.telepon}</td>
-        <td>${s.alamat}</td>
-        <td>
-          <button onclick="hapusSupplier(${i})"
-            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
-            Hapus
-          </button>
-        </td>
-      </tr>
-    `;
-  });
+supplier.forEach((s,i)=>{
 
-  document.getElementById("totalSupplier").innerText = supplier.length;
+tabel.innerHTML+=`
+<tr>
+
+<td>${i+1}</td>
+<td>${s.kode}</td>
+<td>${s.nama}</td>
+<td>${s.telepon}</td>
+<td>${s.alamat}</td>
+
+<td>
+
+<button
+onclick="editSupplier(${i})"
+style="
+background:orange;
+color:white;
+border:none;
+padding:5px 10px;
+border-radius:5px;">
+Edit
+</button>
+
+<button
+onclick="hapusSupplier(${i})"
+style="
+background:red;
+color:white;
+border:none;
+padding:5px 10px;
+border-radius:5px;">
+Hapus
+</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById("totalSupplier").innerText=
+supplier.length;
+
 }
 
-// HAPUS
+function editSupplier(index){
+
+let s=supplier[index];
+
+document.getElementById("kodeSupplier").value=s.kode;
+document.getElementById("namaSupplier").value=s.nama;
+document.getElementById("teleponSupplier").value=s.telepon;
+document.getElementById("alamatSupplier").value=s.alamat;
+
+editSupplierIndex=index;
+
+}
+
 function hapusSupplier(index){
-  supplier.splice(index,1);
-  simpanSupplier();
-  renderSupplier();
+
+if(confirm("Yakin ingin menghapus data supplier?")){
+
+supplier.splice(index,1);
+
+simpanSupplier();
+renderSupplier();
+
 }
 
-// LOAD AWAL
+}
+
+function resetSupplier(){
+
+document.getElementById("kodeSupplier").value="";
+document.getElementById("namaSupplier").value="";
+document.getElementById("teleponSupplier").value="";
+document.getElementById("alamatSupplier").value="";
+
+editSupplierIndex=-1;
+
+}
+
+function cariSupplier(){
+
+let keyword=
+document.getElementById("cariSupplier")
+.value.toLowerCase();
+
+let tabel=
+document.getElementById("tabelSupplier");
+
+tabel.innerHTML="";
+
+supplier
+.filter(s=>
+s.nama.toLowerCase().includes(keyword)
+)
+.forEach((s,i)=>{
+
+tabel.innerHTML+=`
+<tr>
+<td>${i+1}</td>
+<td>${s.kode}</td>
+<td>${s.nama}</td>
+<td>${s.telepon}</td>
+<td>${s.alamat}</td>
+<td>
+
+<button onclick="editSupplier(${i})"
+style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Edit
+</button>
+
+<button onclick="hapusSupplier(${i})"
+style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Hapus
+</button>
+
+</td>
+</tr>
+`;
+
+});
+
+}
+
 renderSupplier();
 </script>
   
