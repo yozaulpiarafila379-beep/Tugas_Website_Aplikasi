@@ -240,6 +240,7 @@ Password : admin123
 </div>
 
 <button onclick="showPage('dashboard')">📊 Dashboard</button>
+<button onclick="showPage('barang')">📦 Data Barang</button> 
 <button>📦 Data Barang</button>
 <button>🏢 Supplier</button>
 <button>📥 Barang Masuk</button>
@@ -491,6 +492,166 @@ Tampilkan
 
 </div>
 
+<!-- DATA BARANG -->
+<div id="barang" class="page">
+
+<div class="section">
+
+<h3>📦 Input Data Barang</h3>
+
+<table>
+<tr>
+<td>Kode Barang</td>
+<td><input type="text" placeholder="Masukkan Kode Barang" style="width:100%;padding:10px;"></td>
+</tr>
+
+<tr>
+<td>Nama Barang</td>
+<td><input type="text" placeholder="Masukkan Nama Barang" style="width:100%;padding:10px;"></td>
+</tr>
+
+<tr>
+<td>Kategori</td>
+<td>
+<select style="width:100%;padding:10px;">
+<option>Elektronik</option>
+<option>ATK</option>
+<option>Aksesoris</option>
+<option>Lainnya</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Stok</td>
+<td><input type="number" placeholder="Jumlah Stok" style="width:100%;padding:10px;"></td>
+</tr>
+
+<tr>
+<td>Harga</td>
+<td><input type="number" placeholder="Harga Barang" style="width:100%;padding:10px;"></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<button style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+💾 Simpan
+</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+
+<h3>🔍 Pencarian Barang</h3>
+
+<input
+type="text"
+placeholder="Cari Nama Barang..."
+style="width:300px;padding:10px;border:1px solid #ccc;border-radius:8px;"
+>
+
+</div>
+
+<div class="section">
+
+<h3>📋 Data Barang</h3>
+
+<table>
+
+<tr>
+<th>No</th>
+<th>Kode</th>
+<th>Nama Barang</th>
+<th>Kategori</th>
+<th>Stok</th>
+<th>Harga</th>
+<th>Aksi</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
+<td>Rp8.500.000</td>
+<td>
+<button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+
+<button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>BRG002</td>
+<td>Printer Epson</td>
+<td>Elektronik</td>
+<td>15</td>
+<td>Rp2.500.000</td>
+<td>
+<button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+
+<button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+<td>Rp65.000</td>
+<td>
+<button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+
+<button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>BRG004</td>
+<td>Mouse Logitech</td>
+<td>Aksesoris</td>
+<td>25</td>
+<td>Rp175.000</td>
+<td>
+<button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+
+<button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>BRG005</td>
+<td>Keyboard Logitech</td>
+<td>Aksesoris</td>
+<td>18</td>
+<td>Rp250.000</td>
+<td>
+<button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+
+<button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<p><b>Total Data Barang :</b> 5 Data</p>
+
+</div>
+
+</div>
+  
 </div>
 </div>
 </div>
