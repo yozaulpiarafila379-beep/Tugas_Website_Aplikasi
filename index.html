@@ -735,80 +735,7 @@ display:true
 </script>
 
 <script>
-let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
-
-// simpan ke localStorage
-function simpanSupplier(){
-localStorage.setItem("supplier", JSON.stringify(supplier));
-}
-
-// tambah supplier
-function tambahSupplier(){
-
-let data = {
-kode: document.getElementById("kodeSupplier").value,
-nama: document.getElementById("namaSupplier").value,
-telepon: document.getElementById("teleponSupplier").value,
-alamat: document.getElementById("alamatSupplier").value
-};
-
-// VALIDASI
-if(!data.kode || !data.nama || !data.telepon || !data.alamat){
-alert("Semua data wajib diisi!");
-return;
-}
-
-supplier.push(data);
-simpanSupplier();
-renderSupplier();
-
-// reset input
-document.getElementById("kodeSupplier").value = "";
-document.getElementById("namaSupplier").value = "";
-document.getElementById("teleponSupplier").value = "";
-document.getElementById("alamatSupplier").value = "";
-}
-
-// tampil data (OUTPUT)
-function renderSupplier(){
-
-let tabel = document.getElementById("tabelSupplier");
-tabel.innerHTML = "";
-
-supplier.forEach((s,i)=>{
-tabel.innerHTML += `
-<tr>
-<td>${i+1}</td>
-<td>${s.kode}</td>
-<td>${s.nama}</td>
-<td>${s.telepon}</td>
-<td>${s.alamat}</td>
-<td>
-<button onclick="hapusSupplier(${i})"
-style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
-Hapus
-</button>
-</td>
-</tr>
-`;
-});
-
-document.getElementById("totalSupplier").innerText = supplier.length;
-}
-
-// hapus data
-function hapusSupplier(index){
-supplier.splice(index,1);
-simpanSupplier();
-renderSupplier();
-}
-
-// load awal
-renderSupplier();
-</script>
-  
-</body>
-  // 🔥 DATA AWAL SUPPLIER (BIAR TIDAK KOSONG)
+// 🔥 DATA AWAL (BIAR TIDAK KOSONG)
 if(localStorage.getItem("supplier") === null){
   localStorage.setItem("supplier", JSON.stringify([
     {
@@ -826,15 +753,14 @@ if(localStorage.getItem("supplier") === null){
   ]));
 }
 
-// ambil data
 let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
 
-// simpan
+// SIMPAN
 function simpanSupplier(){
   localStorage.setItem("supplier", JSON.stringify(supplier));
 }
 
-// tambah
+// TAMBAH
 function tambahSupplier(){
 
   let kode = document.getElementById("kodeSupplier").value;
@@ -842,30 +768,23 @@ function tambahSupplier(){
   let telepon = document.getElementById("teleponSupplier").value;
   let alamat = document.getElementById("alamatSupplier").value;
 
-  // validasi
   if(kode === "" || nama === "" || telepon === "" || alamat === ""){
     alert("Semua data wajib diisi!");
     return;
   }
 
-  supplier.push({
-    kode: kode,
-    nama: nama,
-    telepon: telepon,
-    alamat: alamat
-  });
+  supplier.push({ kode, nama, telepon, alamat });
 
   simpanSupplier();
   renderSupplier();
 
-  // reset input
   document.getElementById("kodeSupplier").value = "";
   document.getElementById("namaSupplier").value = "";
   document.getElementById("teleponSupplier").value = "";
   document.getElementById("alamatSupplier").value = "";
 }
 
-// tampil output
+// TAMPIL DATA
 function renderSupplier(){
 
   let tabel = document.getElementById("tabelSupplier");
@@ -874,41 +793,43 @@ function renderSupplier(){
   if(supplier.length === 0){
     tabel.innerHTML = `
       <tr>
-        <td colspan="6" style="text-align:center;color:gray;">
-          Belum ada data supplier
+        <td colspan="6">Belum ada data supplier</td>
+      </tr>
+    `;
+    return;
+  }
+
+  supplier.forEach((s,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${s.kode}</td>
+        <td>${s.nama}</td>
+        <td>${s.telepon}</td>
+        <td>${s.alamat}</td>
+        <td>
+          <button onclick="hapusSupplier(${i})"
+            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+            Hapus
+          </button>
         </td>
       </tr>
     `;
-  } else {
-    supplier.forEach((s,i)=>{
-      tabel.innerHTML += `
-        <tr>
-          <td>${i+1}</td>
-          <td>${s.kode}</td>
-          <td>${s.nama}</td>
-          <td>${s.telepon}</td>
-          <td>${s.alamat}</td>
-          <td>
-            <button onclick="hapusSupplier(${i})"
-              style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
-              Hapus
-            </button>
-          </td>
-        </tr>
-      `;
-    });
-  }
+  });
 
   document.getElementById("totalSupplier").innerText = supplier.length;
 }
 
-// hapus
+// HAPUS
 function hapusSupplier(index){
   supplier.splice(index,1);
   simpanSupplier();
   renderSupplier();
 }
 
-// load awal
+// LOAD AWAL
 renderSupplier();
+</script>
+  
+</body>
 </html>
