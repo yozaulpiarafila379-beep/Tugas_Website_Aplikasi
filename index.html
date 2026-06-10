@@ -1365,6 +1365,1377 @@ function resetKeluar(){
 // LOAD AWAL
 renderKeluar();
 </script>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistem Informasi Gudang</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+background:#f1f5f9;
+}
+
+/* LOGIN */
+#login{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+}
+
+.login-box{
+width:380px;
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.login-box h2{
+text-align:center;
+margin-bottom:20px;
+color:#2563eb;
+}
+
+.login-box input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:1px solid #d1d5db;
+border-radius:8px;
+}
+
+.login-btn{
+width:100%;
+padding:12px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+.login-btn:hover{
+background:#1d4ed8;
+}
+
+/* SISTEM */
+#sistem{
+display:none;
+}
+
+.layout{
+display:flex;
+}
+
+/* SIDEBAR */
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e3a8a;
+color:white;
+position:fixed;
+left:0;
+top:0;
+padding:20px;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+margin-bottom:30px;
+text-align:center;
+}
+
+.sidebar button{
+width:100%;
+padding:12px;
+margin-bottom:10px;
+border:none;
+border-radius:8px;
+background:transparent;
+color:white;
+text-align:left;
+cursor:pointer;
+font-size:15px;
+}
+
+.sidebar button:hover{
+background:rgba(255,255,255,.15);
+}
+
+/* CONTENT */
+.content{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+.header{
+background:white;
+padding:18px 25px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.header h2{
+color:#1e293b;
+}
+
+.container{
+padding:25px;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+/* CARD */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.card h4{
+color:#64748b;
+font-size:14px;
+}
+
+.card h1{
+margin-top:10px;
+color:#2563eb;
+}
+
+/* SECTION */
+.section{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.section h3{
+margin-bottom:15px;
+color:#1e293b;
+}
+
+/* TABLE */
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th{
+background:#2563eb;
+color:white;
+padding:12px;
+}
+
+table td{
+padding:10px;
+border:1px solid #e5e7eb;
+text-align:center;
+}
+
+table tr:nth-child(even){
+background:#f8fafc;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+
+<div class="login-box">
+
+<h2>📦 Login Gudang</h2>
+
+<input type="text" id="user" placeholder="Username">
+
+<input type="password" id="pass" placeholder="Password">
+
+<button class="login-btn" onclick="login()">
+Login
+</button>
+
+<br><br>
+
+<center>
+Username : admin<br>
+Password : admin123
+</center>
+
+</div>
+
+</div>
+
+<!-- SISTEM -->
+<div id="sistem">
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+  <div class="logo">
+    📦 GudangApp
+  </div>
+
+  <button onclick="showPage('dashboard')">📊 Dashboard</button>
+  <button onclick="showPage('barang')">📦 Data Barang</button>
+  <button onclick="showPage('supplier')">🏢 Supplier</button>
+  <button onclick="showPage('masuk')">📥 Barang Masuk</button>
+  <button onclick="showPage('keluar')">📤 Barang Keluar</button>
+  <button onclick="showPage('laporan')">📄 Laporan</button>
+  <button onclick="showPage('profil')">👤 Profil Admin</button>
+  <button onclick="logout()">🚪 Logout</button>
+
+</div>
+  
+<!-- CONTENT -->
+<div class="content">
+
+<div class="header">
+<h2>Sistem Informasi Pendataan Barang Gudang</h2>
+</div>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="page active">
+
+<!-- FILTER DASHBOARD (INPUT) -->
+<div class="section">
+
+<h3>🔍 Filter Dashboard</h3>
+
+<input type="date" style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+<option>Semua Kategori</option>
+<option>Elektronik</option>
+<option>ATK</option>
+<option>Aksesoris</option>
+</select>
+
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
+<option>Bulan Ini</option>
+<option>Januari</option>
+<option>Februari</option>
+<option>Maret</option>
+<option>April</option>
+<option>Mei</option>
+<option>Juni</option>
+<option>Juli</option>
+<option>Agustus</option>
+<option>September</option>
+<option>Oktober</option>
+<option>November</option>
+<option>Desember</option>
+</select>
+
+<button style="padding:12px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
+Tampilkan
+</button>
+
+</div>
+
+<!-- OUTPUT DASHBOARD -->
+<div class="cards">
+
+<div class="card">
+<h4>Total Barang</h4>
+<h1>150</h1>
+<p>Barang Terdaftar</p>
+</div>
+
+<div class="card">
+<h4>Barang Masuk</h4>
+<h1>85</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Barang Keluar</h4>
+<h1>45</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Total Supplier</h4>
+<h1>12</h1>
+<p>Supplier Aktif</p>
+</div>
+
+<div class="card">
+<h4>Stok Menipis</h4>
+<h1>7</h1>
+<p>Perlu Restok</p>
+</div>
+
+<div class="card">
+<h4>Total Kategori</h4>
+<h1>8</h1>
+<p>Kategori Barang</p>
+</div>
+
+<div class="card">
+<h4>Total Transaksi</h4>
+<h1>130</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Nilai Persediaan</h4>
+<h1>Rp125 Jt</h1>
+<p>Total Aset Gudang</p>
+</div>
+
+</div>
+
+<!-- GRAFIK -->
+<div class="section">
+
+<h3>📈 Grafik Stok Barang</h3>
+
+<canvas id="stokChart"></canvas>
+
+</div>
+
+<!-- NOTIFIKASI -->
+<div class="section">
+
+<h3>📢 Notifikasi Gudang</h3>
+
+<table>
+
+<tr>
+<th>No</th>
+<th>Informasi</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Stok Mouse Logitech tersisa 3 unit</td>
+<td>Menipis</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Laptop Asus masuk 10 unit</td>
+<td>Masuk</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Printer Epson keluar 5 unit</td>
+<td>Keluar</td>
+</tr>
+
+</table>
+
+</div>
+
+<!-- BARANG TERBARU -->
+<div class="section">
+
+<h3>📦 Barang Terbaru</h3>
+
+<table>
+
+<tr>
+<th>Kode</th>
+<th>Nama Barang</th>
+<th>Kategori</th>
+<th>Stok</th>
+</tr>
+
+<tr>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
+</tr>
+
+<tr>
+<td>BRG002</td>
+<td>Printer Epson</td>
+<td>Elektronik</td>
+<td>15</td>
+</tr>
+
+<tr>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+</tr>
+
+<tr>
+<td>BRG004</td>
+<td>Mouse Logitech</td>
+<td>Aksesoris</td>
+<td>25</td>
+</tr>
+
+<tr>
+<td>BRG005</td>
+<td>Keyboard Logitech</td>
+<td>Aksesoris</td>
+<td>18</td>
+</tr>
+
+</table>
+
+</div>
+
+<!-- STATISTIK -->
+<div class="section">
+
+<h3>📊 Statistik Gudang</h3>
+
+<table>
+
+<tr>
+<th>Keterangan</th>
+<th>Jumlah</th>
+</tr>
+
+<tr>
+<td>Total Barang Aktif</td>
+<td>145</td>
+</tr>
+
+<tr>
+<td>Total Barang Tidak Aktif</td>
+<td>5</td>
+</tr>
+
+<tr>
+<td>Total Supplier Aktif</td>
+<td>12</td>
+</tr>
+
+<tr>
+<td>Total Transaksi Bulan Ini</td>
+<td>130</td>
+</tr>
+
+<tr>
+<td>Total Nilai Persediaan</td>
+<td>Rp125.000.000</td>
+</tr>
+
+</table>
+
+</div>
+</div>
+
+<!-- DATA BARANG -->
+<div id="barang" class="page">
+
+<!-- INPUT DATA BARANG -->
+<div class="section">
+  <h3>📦 Input Data Barang</h3>
+
+  <table>
+    <tr>
+      <td>Kode Barang</td>
+      <td><input type="text" placeholder="Masukkan Kode Barang" style="width:100%;padding:10px;"></td>
+    </tr>
+
+    <tr>
+      <td>Nama Barang</td>
+      <td><input type="text" placeholder="Masukkan Nama Barang" style="width:100%;padding:10px;"></td>
+    </tr>
+
+    <tr>
+      <td>Kategori</td>
+      <td>
+        <select style="width:100%;padding:10px;">
+          <option>Elektronik</option>
+          <option>ATK</option>
+          <option>Aksesoris</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Stok</td>
+      <td><input type="number" placeholder="Jumlah Stok" style="width:100%;padding:10px;"></td>
+    </tr>
+
+    <tr>
+      <td>Harga</td>
+      <td><input type="number" placeholder="Harga Barang" style="width:100%;padding:10px;"></td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <button style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
+          💾 Simpan Data
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- OUTPUT / TAMPILAN DATA BARANG -->
+<div class="section">
+  <h3>📋 Data Barang</h3>
+
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Kode</th>
+      <th>Nama Barang</th>
+      <th>Kategori</th>
+      <th>Stok</th>
+      <th>Harga</th>
+      <th>Aksi</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>BRG001</td>
+      <td>Laptop Asus</td>
+      <td>Elektronik</td>
+      <td>20</td>
+      <td>Rp8.500.000</td>
+      <td>
+        <button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+        <button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>BRG002</td>
+      <td>Printer Epson</td>
+      <td>Elektronik</td>
+      <td>15</td>
+      <td>Rp2.500.000</td>
+      <td>
+        <button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+        <button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>3</td>
+      <td>BRG003</td>
+      <td>Kertas A4</td>
+      <td>ATK</td>
+      <td>50</td>
+      <td>Rp65.000</td>
+      <td>
+        <button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+        <button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>4</td>
+      <td>BRG004</td>
+      <td>Mouse Logitech</td>
+      <td>Aksesoris</td>
+      <td>25</td>
+      <td>Rp175.000</td>
+      <td>
+        <button style="background:#f59e0b;color:white;border:none;padding:6px 10px;border-radius:5px;">Edit</button>
+        <button style="background:#ef4444;color:white;border:none;padding:6px 10px;border-radius:5px;">Hapus</button>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+  <p><b>Total Data Barang:</b> 4 item</p>
+</div>
+</div>
+
+<!-- SUPPLIER -->
+<div id="supplier" class="page">
+
+  <!-- INPUT SUPPLIER -->
+  <div class="section">
+    <h3>🏢 Form Input Supplier</h3>
+
+    <input id="kodeSupplier" placeholder="Kode Supplier">
+    <input id="namaSupplier" placeholder="Nama Supplier">
+    <input id="teleponSupplier" placeholder="No Telepon">
+    <input id="alamatSupplier" placeholder="Alamat">
+
+    <button onclick="tambahSupplier()">💾 Simpan</button>
+    <button onclick="resetSupplier()" style="background:gray;">🔄 Reset</button>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="section">
+    <h3>🔍 Pencarian Supplier</h3>
+    <input id="searchSupplier" placeholder="Cari nama supplier..." onkeyup="searchSupplier()">
+  </div>
+
+  <!-- OUTPUT SUPPLIER -->
+  <div class="section">
+    <h3>📋 Data Supplier</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+          <th>Telepon</th>
+          <th>Alamat</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelSupplier"></tbody>
+    </table>
+
+    <br>
+    <p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
+  </div>
+</div>
+
+<!-- BARANG MASUK -->
+<div id="masuk" class="page">
+
+  <!-- INPUT -->
+  <div class="section">
+    <h3>📥 Input Barang Masuk</h3>
+
+    <input id="tanggalMasuk" type="date" style="width:100%;padding:10px;margin-bottom:10px;">
+    
+    <input id="barangMasuk" placeholder="Nama Barang" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="supplierMasuk" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="jumlahMasuk" type="number" placeholder="Jumlah" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <button onclick="tambahMasuk()"
+      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan
+    </button>
+
+    <button onclick="resetMasuk()"
+      style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+      🔄 Reset
+    </button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="section">
+    <h3>📋 Data Barang Masuk</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Barang</th>
+          <th>Supplier</th>
+          <th>Jumlah</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelMasuk"></tbody>
+    </table>
+
+    <br>
+    <p><b>Total Data:</b> <span id="totalMasuk">0</span></p>
+  </div>
+</div>
+
+<!-- BARANG KELUAR -->
+<div id="keluar" class="page">
+
+  <!-- INPUT -->
+  <div class="section">
+    <h3>📤 Input Barang Keluar</h3>
+
+    <input id="kodeKeluar" placeholder="Kode Transaksi (TRK-001)" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="barangKeluar" placeholder="Nama Barang" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="tujuanKeluar" placeholder="Tujuan (PT / CV / Toko)" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="jumlahKeluar" type="number" placeholder="Jumlah" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <input id="keteranganKeluar" placeholder="Keterangan (Penjualan / Distribusi / Retur)" style="width:100%;padding:10px;margin-bottom:10px;">
+
+    <button onclick="tambahKeluar()"
+      style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      💾 Simpan
+    </button>
+
+    <button onclick="resetKeluar()"
+      style="padding:10px 20px;background:gray;color:white;border:none;border-radius:8px;">
+      🔄 Reset
+    </button>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="section">
+    <h3>📋 Data Barang Keluar</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Barang</th>
+          <th>Tujuan</th>
+          <th>Jumlah</th>
+          <th>Keterangan</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelKeluar"></tbody>
+    </table>
+
+    <br>
+    <p><b>Total Data:</b> <span id="totalKeluar">0</span></p>
+  </div>
+</div>
+
+<!-- ===================== -->
+<!-- LAPORAN GUDANG -->
+<!-- ===================== -->
+<div id="laporan" class="page">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h3>📄 Laporan Gudang Lengkap</h3>
+
+    <button onclick="renderLaporan()" 
+      style="padding:10px 15px;background:#2563eb;color:white;border:none;border-radius:8px;">
+      🔄 Refresh Laporan
+    </button>
+  </div>
+
+  <!-- ===================== -->
+  <!-- RINGKASAN -->
+  <!-- ===================== -->
+  <div class="cards">
+
+    <div class="card">
+      <h4>Barang Masuk</h4>
+      <h1 id="lapMasuk">0</h1>
+    </div>
+
+    <div class="card">
+      <h4>Barang Keluar</h4>
+      <h1 id="lapKeluar">0</h1>
+    </div>
+
+    <div class="card">
+      <h4>Supplier</h4>
+      <h1 id="lapSupplier">0</h1>
+    </div>
+
+    <div class="card">
+      <h4>Total Transaksi</h4>
+      <h1 id="lapTransaksi">0</h1>
+    </div>
+
+  </div>
+
+  <!-- ===================== -->
+  <!-- STOK SEDERHANA -->
+  <!-- ===================== -->
+  <div class="section">
+    <h3>📦 Ringkasan Stok Barang</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nama Barang</th>
+          <th>Total Masuk</th>
+          <th>Total Keluar</th>
+          <th>Stok Akhir</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="lapStok"></tbody>
+    </table>
+  </div>
+
+  <!-- ===================== -->
+  <!-- LAPORAN BARANG MASUK -->
+  <!-- ===================== -->
+  <div class="section">
+    <h3>📥 Laporan Barang Masuk</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal</th>
+          <th>Barang</th>
+          <th>Supplier</th>
+          <th>Jumlah</th>
+        </tr>
+      </thead>
+      <tbody id="lapMasukTable"></tbody>
+    </table>
+  </div>
+
+  <!-- ===================== -->
+  <!-- LAPORAN BARANG KELUAR -->
+  <!-- ===================== -->
+  <div class="section">
+    <h3>📤 Laporan Barang Keluar</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Barang</th>
+          <th>Tujuan</th>
+          <th>Jumlah</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+      <tbody id="lapKeluarTable"></tbody>
+    </table>
+  </div>
+
+</div>
+  
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function login(){
+
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
+
+if(user=="admin" && pass=="admin123"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("sistem").style.display="block";
+
+}else{
+
+alert("Username atau Password Salah");
+
+}
+}
+
+function logout(){
+
+document.getElementById("sistem").style.display="none";
+document.getElementById("login").style.display="flex";
+
+}
+
+function showPage(id){
+
+let pages=document.getElementsByClassName("page");
+
+for(let i=0;i<pages.length;i++){
+pages[i].classList.remove("active");
+}
+
+document.getElementById(id).classList.add("active");
+
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+new Chart(document.getElementById('stokChart'),{
+
+type:'bar',
+
+data:{
+labels:[
+'Laptop',
+'Printer',
+'Kertas A4',
+'Mouse',
+'Keyboard'
+],
+
+datasets:[{
+label:'Jumlah Stok',
+data:[20,15,50,25,18],
+borderWidth:1
+}]
+},
+
+options:{
+responsive:true,
+plugins:{
+legend:{
+display:true
+}
+}
+}
+
+});
+</script>
+
+<script>
+
+// DATA AWAL (biar tidak kosong)
+if(!localStorage.getItem("supplier")){
+  localStorage.setItem("supplier", JSON.stringify([
+    {
+      kode: "SUP001",
+      nama: "PT Sumber Jaya",
+      telepon: "08123456789",
+      alamat: "Palembang"
+    },
+    {
+      kode: "SUP002",
+      nama: "CV Maju Bersama",
+      telepon: "082233445566",
+      alamat: "Jakarta"
+    }
+  ]));
+}
+
+// ambil data
+let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
+let editIndex = -1;
+
+// simpan
+function simpanData(){
+  localStorage.setItem("supplier", JSON.stringify(supplier));
+}
+
+// TAMBAH / UPDATE
+function tambahSupplier(){
+
+  let kode = document.getElementById("kodeSupplier").value;
+  let nama = document.getElementById("namaSupplier").value;
+  let telepon = document.getElementById("teleponSupplier").value;
+  let alamat = document.getElementById("alamatSupplier").value;
+
+  if(!kode || !nama || !telepon || !alamat){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  let data = { kode, nama, telepon, alamat };
+
+  if(editIndex >= 0){
+    supplier[editIndex] = data;
+    editIndex = -1;
+  }else{
+    supplier.push(data);
+  }
+
+  simpanData();
+  renderSupplier();
+  resetSupplier();
+}
+
+// TAMPIL DATA
+function renderSupplier(){
+
+  let tabel = document.getElementById("tabelSupplier");
+  tabel.innerHTML = "";
+
+  if(supplier.length === 0){
+    tabel.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align:center;color:gray;">
+          Belum ada data supplier
+        </td>
+      </tr>
+    `;
+  }
+
+  supplier.forEach((s,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${s.kode}</td>
+        <td>${s.nama}</td>
+        <td>${s.telepon}</td>
+        <td>${s.alamat}</td>
+        <td>
+          <button onclick="editSupplier(${i})" style="background:orange;color:white;">Edit</button>
+          <button onclick="hapusSupplier(${i})" style="background:red;color:white;">Hapus</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("totalSupplier").innerText = supplier.length;
+}
+
+// EDIT
+function editSupplier(index){
+
+  let s = supplier[index];
+
+  document.getElementById("kodeSupplier").value = s.kode;
+  document.getElementById("namaSupplier").value = s.nama;
+  document.getElementById("teleponSupplier").value = s.telepon;
+  document.getElementById("alamatSupplier").value = s.alamat;
+
+  editIndex = index;
+}
+
+// HAPUS
+function hapusSupplier(index){
+
+  if(confirm("Yakin ingin hapus data ini?")){
+    supplier.splice(index,1);
+    simpanData();
+    renderSupplier();
+  }
+}
+
+// RESET FORM
+function resetSupplier(){
+  document.getElementById("kodeSupplier").value = "";
+  document.getElementById("namaSupplier").value = "";
+  document.getElementById("teleponSupplier").value = "";
+  document.getElementById("alamatSupplier").value = "";
+  editIndex = -1;
+}
+
+// SEARCH
+function searchSupplier(){
+
+  let keyword = document.getElementById("searchSupplier").value.toLowerCase();
+  let tabel = document.getElementById("tabelSupplier");
+  tabel.innerHTML = "";
+
+  let hasil = supplier.filter(s =>
+    s.nama.toLowerCase().includes(keyword)
+  );
+
+  hasil.forEach((s,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${s.kode}</td>
+        <td>${s.nama}</td>
+        <td>${s.telepon}</td>
+        <td>${s.alamat}</td>
+        <td>
+          <button onclick="editSupplier(${i})">Edit</button>
+          <button onclick="hapusSupplier(${i})">Hapus</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// LOAD AWAL
+renderSupplier();
+
+</script>
+
+<script>
+// =====================
+// DATA AWAL BARANG MASUK (5 DATA)
+// =====================
+if(!localStorage.getItem("barangMasuk")){
+  localStorage.setItem("barangMasuk", JSON.stringify([
+    {
+      tanggal: "2026-06-10",
+      barang: "Laptop Asus",
+      supplier: "PT Sumber Jaya",
+      jumlah: 5
+    },
+    {
+      tanggal: "2026-06-11",
+      barang: "Printer Epson",
+      supplier: "CV Maju Bersama",
+      jumlah: 3
+    },
+    {
+      tanggal: "2026-06-12",
+      barang: "Mouse Logitech",
+      supplier: "PT Sumber Jaya",
+      jumlah: 10
+    },
+    {
+      tanggal: "2026-06-13",
+      barang: "Keyboard Logitech",
+      supplier: "CV Maju Bersama",
+      jumlah: 7
+    },
+    {
+      tanggal: "2026-06-14",
+      barang: "Kertas A4",
+      supplier: "PT Sumber Jaya",
+      jumlah: 20
+    }
+  ]));
+}
+
+// ambil data
+let barangMasukData = JSON.parse(localStorage.getItem("barangMasuk")) || [];
+
+// simpan
+function simpanMasuk(){
+  localStorage.setItem("barangMasuk", JSON.stringify(barangMasukData));
+}
+
+// tambah data
+function tambahMasuk(){
+
+  let data = {
+    tanggal: document.getElementById("tanggalMasuk").value,
+    barang: document.getElementById("barangMasuk").value,
+    supplier: document.getElementById("supplierMasuk").value,
+    jumlah: document.getElementById("jumlahMasuk").value
+  };
+
+  if(!data.tanggal || !data.barang || !data.supplier || !data.jumlah){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  barangMasukData.push(data);
+  simpanMasuk();
+  renderMasuk();
+
+  document.getElementById("tanggalMasuk").value = "";
+  document.getElementById("barangMasuk").value = "";
+  document.getElementById("supplierMasuk").value = "";
+  document.getElementById("jumlahMasuk").value = "";
+}
+
+// tampil data (OUTPUT)
+function renderMasuk(){
+
+  let tabel = document.getElementById("tabelMasuk");
+  tabel.innerHTML = "";
+
+  barangMasukData.forEach((b,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.tanggal}</td>
+        <td>${b.barang}</td>
+        <td>${b.supplier}</td>
+        <td>${b.jumlah}</td>
+        <td>
+          <button onclick="hapusMasuk(${i})"
+            style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+            Hapus
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("totalMasuk").innerText = barangMasukData.length;
+}
+
+// hapus data
+function hapusMasuk(index){
+  barangMasukData.splice(index,1);
+  simpanMasuk();
+  renderMasuk();
+}
+
+// load awal
+renderMasuk();
+</script>
+
+<script>
+// =====================
+// DATA AWAL (5 DATA REALISTIS)
+// =====================
+if(!localStorage.getItem("barangKeluar")){
+  localStorage.setItem("barangKeluar", JSON.stringify([
+    {
+      kode: "TRK-001",
+      barang: "Laptop Asus",
+      tujuan: "PT Maju Jaya",
+      jumlah: 2,
+      keterangan: "Penjualan"
+    },
+    {
+      kode: "TRK-002",
+      barang: "Printer Epson",
+      tujuan: "CV Sumber Makmur",
+      jumlah: 1,
+      keterangan: "Distribusi"
+    },
+    {
+      kode: "TRK-003",
+      barang: "Mouse Logitech",
+      tujuan: "Toko Digital Store",
+      jumlah: 10,
+      keterangan: "Penjualan"
+    },
+    {
+      kode: "TRK-004",
+      barang: "Keyboard Logitech",
+      tujuan: "PT Global Tech",
+      jumlah: 5,
+      keterangan: "Distribusi"
+    },
+    {
+      kode: "TRK-005",
+      barang: "Kertas A4",
+      tujuan: "CV Office Supply",
+      jumlah: 20,
+      keterangan: "Penjualan"
+    }
+  ]));
+}
+
+let barangKeluar = JSON.parse(localStorage.getItem("barangKeluar")) || [];
+let editIndexKeluar = -1;
+
+// =====================
+// SIMPAN LOCALSTORAGE
+// =====================
+function simpanKeluar(){
+  localStorage.setItem("barangKeluar", JSON.stringify(barangKeluar));
+}
+
+// =====================
+// TAMBAH / EDIT DATA
+// =====================
+function tambahKeluar(){
+
+  let data = {
+    kode: document.getElementById("kodeKeluar").value,
+    barang: document.getElementById("barangKeluar").value,
+    tujuan: document.getElementById("tujuanKeluar").value,
+    jumlah: document.getElementById("jumlahKeluar").value,
+    keterangan: document.getElementById("keteranganKeluar").value
+  };
+
+  if(!data.kode || !data.barang || !data.tujuan || !data.jumlah || !data.keterangan){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  if(editIndexKeluar >= 0){
+    barangKeluar[editIndexKeluar] = data;
+    editIndexKeluar = -1;
+  }else{
+    barangKeluar.push(data);
+  }
+
+  simpanKeluar();
+  renderKeluar();
+  resetKeluar();
+}
+
+// =====================
+// TAMPIL DATA
+// =====================
+function renderKeluar(){
+
+  let tabel = document.getElementById("tabelKeluar");
+  tabel.innerHTML = "";
+
+  barangKeluar.forEach((b,i)=>{
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.kode}</td>
+        <td>${b.barang}</td>
+        <td>${b.tujuan}</td>
+        <td>${b.jumlah}</td>
+        <td>${b.keterangan}</td>
+        <td>
+          <button onclick="editKeluar(${i})" style="background:orange;color:white;padding:5px 10px;">Edit</button>
+          <button onclick="hapusKeluar(${i})" style="background:red;color:white;padding:5px 10px;">Hapus</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("totalKeluar").innerText = barangKeluar.length;
+}
+
+// =====================
+// EDIT DATA
+// =====================
+function editKeluar(index){
+  let b = barangKeluar[index];
+
+  document.getElementById("kodeKeluar").value = b.kode;
+  document.getElementById("barangKeluar").value = b.barang;
+  document.getElementById("tujuanKeluar").value = b.tujuan;
+  document.getElementById("jumlahKeluar").value = b.jumlah;
+  document.getElementById("keteranganKeluar").value = b.keterangan;
+
+  editIndexKeluar = index;
+}
+
+// =====================
+// HAPUS DATA
+// =====================
+function hapusKeluar(index){
+
+  if(confirm("Yakin ingin hapus data ini?")){
+    barangKeluar.splice(index,1);
+    simpanKeluar();
+    renderKeluar();
+  }
+}
+
+// =====================
+// RESET FORM
+// =====================
+function resetKeluar(){
+  document.getElementById("kodeKeluar").value = "";
+  document.getElementById("barangKeluar").value = "";
+  document.getElementById("tujuanKeluar").value = "";
+  document.getElementById("jumlahKeluar").value = "";
+  document.getElementById("keteranganKeluar").value = "";
+  editIndexKeluar = -1;
+}
+
+// LOAD AWAL
+renderKeluar();
+</script>
+  
+</body>
+</html>
   
 </body>
 </html>
