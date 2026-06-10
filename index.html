@@ -1052,6 +1052,159 @@ function hapusMasuk(index){
 // load awal
 renderMasuk();
 </script>
+
+<script>
+
+// DATA BARANG MASUK
+let barangMasukData =
+JSON.parse(localStorage.getItem("barangMasuk")) || [];
+
+let editIndexMasuk = -1;
+
+// SIMPAN
+function simpanMasuk(){
+  localStorage.setItem(
+    "barangMasuk",
+    JSON.stringify(barangMasukData)
+  );
+}
+
+// TAMBAH / EDIT
+function tambahMasuk(){
+
+  let tanggal =
+  document.getElementById("tanggalMasuk").value;
+
+  let barang =
+  document.getElementById("barangMasuk").value;
+
+  let supplier =
+  document.getElementById("supplierMasuk").value;
+
+  let jumlah =
+  document.getElementById("jumlahMasuk").value;
+
+  if(
+    tanggal=="" ||
+    barang=="" ||
+    supplier=="" ||
+    jumlah==""
+  ){
+    alert("Semua data wajib diisi!");
+    return;
+  }
+
+  let data = {
+    tanggal,
+    barang,
+    supplier,
+    jumlah
+  };
+
+  if(editIndexMasuk == -1){
+    barangMasukData.push(data);
+  }else{
+    barangMasukData[editIndexMasuk] = data;
+    editIndexMasuk = -1;
+  }
+
+  simpanMasuk();
+  renderMasuk();
+  resetMasuk();
+}
+
+// TAMPILKAN DATA
+function renderMasuk(){
+
+  let tabel =
+  document.getElementById("tabelMasuk");
+
+  tabel.innerHTML = "";
+
+  barangMasukData.forEach((b,i)=>{
+
+    tabel.innerHTML += `
+      <tr>
+        <td>${i+1}</td>
+        <td>${b.tanggal}</td>
+        <td>${b.barang}</td>
+        <td>${b.supplier}</td>
+        <td>${b.jumlah}</td>
+
+        <td>
+
+          <button
+          onclick="editMasuk(${i})"
+          style="background:orange;color:white;border:none;padding:5px 10px;border-radius:5px;">
+          Edit
+          </button>
+
+          <button
+          onclick="hapusMasuk(${i})"
+          style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+          Hapus
+          </button>
+
+        </td>
+      </tr>
+    `;
+
+  });
+
+  document.getElementById("totalMasuk").innerText =
+  barangMasukData.length;
+}
+
+// EDIT
+function editMasuk(index){
+
+  let b = barangMasukData[index];
+
+  document.getElementById("tanggalMasuk").value =
+  b.tanggal;
+
+  document.getElementById("barangMasuk").value =
+  b.barang;
+
+  document.getElementById("supplierMasuk").value =
+  b.supplier;
+
+  document.getElementById("jumlahMasuk").value =
+  b.jumlah;
+
+  editIndexMasuk = index;
+}
+
+// HAPUS
+function hapusMasuk(index){
+
+  if(confirm("Yakin ingin menghapus data?")){
+
+    barangMasukData.splice(index,1);
+
+    simpanMasuk();
+    renderMasuk();
+
+  }
+
+}
+
+// RESET
+function resetMasuk(){
+
+  document.getElementById("tanggalMasuk").value="";
+  document.getElementById("barangMasuk").value="";
+  document.getElementById("supplierMasuk").value="";
+  document.getElementById("jumlahMasuk").value="";
+
+  editIndexMasuk = -1;
+
+}
+
+// LOAD AWAL
+renderMasuk();
+
+</script>
   
 </body>
 </html>
