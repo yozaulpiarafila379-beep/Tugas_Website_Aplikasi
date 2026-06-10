@@ -168,41 +168,12 @@ Password : <b>admin123</b>
 <h1>Sistem Informasi Pendataan Barang Gudang</h1>
 </header>
 
-<div class="sidebar">
-    <h2>📦 GudangApp</h2>
+<nav>
+<button onclick="showPage('dashboard')">Dashboard</button>
+<button onclick="showPage('barang')">Data Barang</button>
+<button onclick="showPage('supplier')">Supplier</button>
+</nav>
 
-    <button onclick="showPage('dashboard')">
-        📊 Dashboard
-    </button>
-
-    <button onclick="showPage('barang')">
-        📦 Data Barang
-    </button>
-
-    <button onclick="showPage('supplier')">
-        🏢 Supplier
-    </button>
-
-    <button onclick="showPage('barangmasuk')">
-        📥 Barang Masuk
-    </button>
-
-    <button onclick="showPage('barangkeluar')">
-        📤 Barang Keluar
-    </button>
-
-    <button onclick="showPage('laporan')">
-        📄 Laporan
-    </button>
-
-    <button onclick="showPage('profil')">
-        👤 Profil
-    </button>
-
-    <button onclick="logout()">
-        🚪 Logout
-    </button>
-</div>
 <div class="container">
 
 <!-- DASHBOARD -->
@@ -248,19 +219,8 @@ Password : <b>admin123</b>
     <p>Kategori Barang</p>
 </div>
 
-<div class="card">
-    <h3>Total Nilai Persediaan</h3>
-    <h1>Rp125 Jt</h1>
-    <p>Nilai Stok Gudang</p>
 </div>
 
-<div class="card">
-    <h3>Total Transaksi</h3>
-    <h1>130</h1>
-    <p>Bulan Ini</p>
-</div>
-
-</div>
 <br>
 
 <div class="section">
@@ -405,78 +365,42 @@ Password : <b>admin123</b>
 <input type="text" placeholder="Kode Barang">
 <input type="text" placeholder="Nama Barang">
 <input type="text" placeholder="Kategori">
-<input type="text" placeholder="Satuan">
-<input type="number" placeholder="Harga Beli">
-<input type="number" placeholder="Harga Jual">
 <input type="number" placeholder="Stok">
 
 <button>Tambah Barang</button>
-<button>Edit Barang</button>
-<button>Hapus Barang</button>
-<button>Cari Barang</button>
-
-<br><br>
-<h3>📺 Barang Elektronik</h3>
 
 <table>
+
 <tr>
 <th>Kode</th>
 <th>Nama Barang</th>
-<th>Satuan</th>
-<th>Harga Beli</th>
-<th>Harga Jual</th>
+<th>Kategori</th>
 <th>Stok</th>
 </tr>
 
-<tr><td>BRG001</td><td>Laptop Asus</td><td>Unit</td><td>7000000</td><td>7500000</td><td>20</td></tr>
-<tr><td>BRG002</td><td>Printer Epson</td><td>Unit</td><td>2500000</td><td>2800000</td><td>15</td></tr>
-<tr><td>BRG003</td><td>Monitor LG</td><td>Unit</td><td>1800000</td><td>2000000</td><td>12</td></tr>
-<tr><td>BRG004</td><td>CPU Rakitan</td><td>Unit</td><td>5500000</td><td>6000000</td><td>10</td></tr>
-<tr><td>BRG005</td><td>Scanner Canon</td><td>Unit</td><td>1200000</td><td>1400000</td><td>8</td></tr>
-</table>
-
-<br>
-
-<h3>📝 Barang ATK</h3>
-
-<table>
 <tr>
-<th>Kode</th>
-<th>Nama Barang</th>
-<th>Satuan</th>
-<th>Harga Beli</th>
-<th>Harga Jual</th>
-<th>Stok</th>
+<td>BRG001</td>
+<td>Laptop Asus</td>
+<td>Elektronik</td>
+<td>20</td>
 </tr>
 
-<tr><td>BRG006</td><td>Kertas A4</td><td>Box</td><td>45000</td><td>50000</td><td>50</td></tr>
-<tr><td>BRG007</td><td>Pulpen Pilot</td><td>Box</td><td>30000</td><td>35000</td><td>40</td></tr>
-<tr><td>BRG008</td><td>Pensil 2B</td><td>Box</td><td>25000</td><td>30000</td><td>35</td></tr>
-<tr><td>BRG009</td><td>Penghapus</td><td>Box</td><td>10000</td><td>15000</td><td>25</td></tr>
-<tr><td>BRG010</td><td>Map Folder</td><td>Pack</td><td>20000</td><td>25000</td><td>30</td></tr>
-</table>
-
-<br>
-
-<h3>🖱️ Barang Aksesoris</h3>
-
-<table>
 <tr>
-<th>Kode</th>
-<th>Nama Barang</th>
-<th>Satuan</th>
-<th>Harga Beli</th>
-<th>Harga Jual</th>
-<th>Stok</th>
+<td>BRG002</td>
+<td>Printer Epson</td>
+<td>Elektronik</td>
+<td>15</td>
 </tr>
 
-<tr><td>BRG011</td><td>Mouse Logitech</td><td>Unit</td><td>150000</td><td>175000</td><td>25</td></tr>
-<tr><td>BRG012</td><td>Keyboard Logitech</td><td>Unit</td><td>250000</td><td>300000</td><td>18</td></tr>
-<tr><td>BRG013</td><td>Flashdisk 32GB</td><td>Unit</td><td>80000</td><td>100000</td><td>40</td></tr>
-<tr><td>BRG014</td><td>Headset Gaming</td><td>Unit</td><td>250000</td><td>300000</td><td>12</td></tr>
-<tr><td>BRG015</td><td>Webcam HD</td><td>Unit</td><td>350000</td><td>400000</td><td>10</td></tr>
+<tr>
+<td>BRG003</td>
+<td>Kertas A4</td>
+<td>ATK</td>
+<td>50</td>
+</tr>
+
 </table>
-    
+
 </div>
 
 <!-- SUPPLIER -->
@@ -486,228 +410,28 @@ Password : <b>admin123</b>
 
 <input type="text" placeholder="Kode Supplier">
 <input type="text" placeholder="Nama Supplier">
-<input type="text" placeholder="Alamat">
 <input type="text" placeholder="Nomor Telepon">
-<input type="email" placeholder="Email">
 
 <button>Tambah Supplier</button>
-<button>Edit Supplier</button>
-<button>Hapus Supplier</button>
-<button>Cari Supplier</button>
-
-<br><br>    
-<h3>Supplier Utama</h3>
 
 <table>
+
 <tr>
 <th>Kode</th>
 <th>Nama Supplier</th>
-<th>Alamat</th>
 <th>Telepon</th>
-<th>Email</th>
 </tr>
 
 <tr>
 <td>SUP001</td>
 <td>PT Maju Jaya</td>
-<td>Jakarta</td>
 <td>08123456789</td>
-<td>majujaya@gmail.com</td>
 </tr>
 
 <tr>
 <td>SUP002</td>
 <td>CV Sejahtera</td>
-<td>Bandung</td>
 <td>08234567890</td>
-<td>sejahtera@gmail.com</td>
-</tr>
-</table>
-<br>
-
-<h3>Supplier Menengah</h3>
-
-<table>
-<tr>
-<th>Kode</th>
-<th>Nama Supplier</th>
-<th>Alamat</th>
-<th>Telepon</th>
-<th>Email</th>
-</tr>
-
-<tr>
-<td>SUP003</td>
-<td>PT Sumber Makmur</td>
-<td>Surabaya</td>
-<td>08345678901</td>
-<td>sumbermakmur@gmail.com</td>
-</tr>
-
-<tr>
-<td>SUP004</td>
-<td>CV Berkah Abadi</td>
-<td>Palembang</td>
-<td>08456789012</td>
-<td>berkahabadi@gmail.com</td>
-</tr>
-</table>
-<br>
-
-<h3>Supplier Cadangan</h3>
-
-<table>
-<tr>
-<th>Kode</th>
-<th>Nama Supplier</th>
-<th>Alamat</th>
-<th>Telepon</th>
-<th>Email</th>
-</tr>
-
-<tr>
-<td>SUP005</td>
-<td>PT Nusantara Jaya</td>
-<td>Medan</td>
-<td>08567890123</td>
-<td>nusantarajaya@gmail.com</td>
-</tr>
-</table>    
-
-</div>
-
-<!-- BARANG MASUK -->
-<div id="barangmasuk" class="page">
-    <h2>📥 Barang Masuk</h2>
-
-    <input type="date" placeholder="Tanggal Masuk">
-    <input type="text" placeholder="Kode Barang">
-    <input type="text" placeholder="Nama Barang">
-    <input type="text" placeholder="Supplier">
-    <input type="number" placeholder="Jumlah Masuk">
-
-    <button>Tambah Data</button>
-    <button>Edit Data</button>
-    <button>Hapus Data</button>
-    <button>Cari Data</button>
-
-    <!-- Tabel Barang Masuk -->
-</div>
-<table>
-<tr>
-<th>No</th>
-<th>Tanggal Masuk</th>
-<th>Kode Barang</th>
-<th>Nama Barang</th>
-<th>Supplier</th>
-<th>Jumlah Masuk</th>
-</tr>
-
-<tr>
-<td>1</td>
-<td>01-06-2026</td>
-<td>BRG001</td>
-<td>Laptop Asus</td>
-<td>PT Maju Jaya</td>
-<td>10</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>03-06-2026</td>
-<td>BRG002</td>
-<td>Printer Epson</td>
-<td>CV Sejahtera</td>
-<td>5</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>05-06-2026</td>
-<td>BRG006</td>
-<td>Kertas A4</td>
-<td>PT Sumber Makmur</td>
-<td>20</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>07-06-2026</td>
-<td>BRG011</td>
-<td>Mouse Logitech</td>
-<td>PT Nusantara Jaya</td>
-<td>15</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>08-06-2026</td>
-<td>BRG012</td>
-<td>Keyboard Logitech</td>
-<td>CV Berkah Abadi</td>
-<td>10</td>
-</tr>
-
-</table>
-
-<br>
-
-<h3>📦 Informasi Penambahan Stok</h3>
-
-<table>
-
-<tr>
-<th>No</th>
-<th>Kode Barang</th>
-<th>Nama Barang</th>
-<th>Stok Sebelum</th>
-<th>Jumlah Masuk</th>
-<th>Stok Sesudah</th>
-</tr>
-
-<tr>
-<td>1</td>
-<td>BRG001</td>
-<td>Laptop Asus</td>
-<td>10</td>
-<td>10</td>
-<td>20</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>BRG002</td>
-<td>Printer Epson</td>
-<td>10</td>
-<td>5</td>
-<td>15</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>BRG006</td>
-<td>Kertas A4</td>
-<td>30</td>
-<td>20</td>
-<td>50</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>BRG011</td>
-<td>Mouse Logitech</td>
-<td>10</td>
-<td>15</td>
-<td>25</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>BRG012</td>
-<td>Keyboard Logitech</td>
-<td>8</td>
-<td>10</td>
-<td>18</td>
 </tr>
 
 </table>
@@ -715,7 +439,9 @@ Password : <b>admin123</b>
 </div>
 
 </div>
+
 </div>
+
 <script>
 
 function login(){
