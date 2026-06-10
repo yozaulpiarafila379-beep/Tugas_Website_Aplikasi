@@ -611,6 +611,47 @@ Tampilkan
   <p><b>Total Data Barang:</b> 4 item</p>
 </div>
 </div>
+
+<!-- SUPPLIER -->
+<div id="supplier" class="page">
+
+<!-- INPUT SUPPLIER -->
+<div class="section">
+<h3>🏢 Input Supplier</h3>
+
+<input id="kodeSupplier" placeholder="Kode Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+<input id="namaSupplier" placeholder="Nama Supplier" style="width:100%;padding:10px;margin-bottom:10px;">
+<input id="teleponSupplier" placeholder="No Telepon" style="width:100%;padding:10px;margin-bottom:10px;">
+<input id="alamatSupplier" placeholder="Alamat" style="width:100%;padding:10px;margin-bottom:10px;">
+
+<button onclick="tambahSupplier()" style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
+💾 Simpan Supplier
+</button>
+</div>
+
+<!-- OUTPUT SUPPLIER -->
+<div class="section">
+<h3>📋 Data Supplier</h3>
+
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Kode</th>
+<th>Nama</th>
+<th>Telepon</th>
+<th>Alamat</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody id="tabelSupplier"></tbody>
+</table>
+
+<br>
+<p><b>Total Supplier:</b> <span id="totalSupplier">0</span></p>
+</div>
+</div>
   
 </div>
 </div>
@@ -691,5 +732,78 @@ display:true
 });
 </script>
 
+<script>
+let supplier = JSON.parse(localStorage.getItem("supplier")) || [];
+
+// simpan ke localStorage
+function simpanSupplier(){
+localStorage.setItem("supplier", JSON.stringify(supplier));
+}
+
+// tambah supplier
+function tambahSupplier(){
+
+let data = {
+kode: document.getElementById("kodeSupplier").value,
+nama: document.getElementById("namaSupplier").value,
+telepon: document.getElementById("teleponSupplier").value,
+alamat: document.getElementById("alamatSupplier").value
+};
+
+// VALIDASI
+if(!data.kode || !data.nama || !data.telepon || !data.alamat){
+alert("Semua data wajib diisi!");
+return;
+}
+
+supplier.push(data);
+simpanSupplier();
+renderSupplier();
+
+// reset input
+document.getElementById("kodeSupplier").value = "";
+document.getElementById("namaSupplier").value = "";
+document.getElementById("teleponSupplier").value = "";
+document.getElementById("alamatSupplier").value = "";
+}
+
+// tampil data (OUTPUT)
+function renderSupplier(){
+
+let tabel = document.getElementById("tabelSupplier");
+tabel.innerHTML = "";
+
+supplier.forEach((s,i)=>{
+tabel.innerHTML += `
+<tr>
+<td>${i+1}</td>
+<td>${s.kode}</td>
+<td>${s.nama}</td>
+<td>${s.telepon}</td>
+<td>${s.alamat}</td>
+<td>
+<button onclick="hapusSupplier(${i})"
+style="background:red;color:white;border:none;padding:5px 10px;border-radius:5px;">
+Hapus
+</button>
+</td>
+</tr>
+`;
+});
+
+document.getElementById("totalSupplier").innerText = supplier.length;
+}
+
+// hapus data
+function hapusSupplier(index){
+supplier.splice(index,1);
+simpanSupplier();
+renderSupplier();
+}
+
+// load awal
+renderSupplier();
+</script>
+  
 </body>
 </html>
