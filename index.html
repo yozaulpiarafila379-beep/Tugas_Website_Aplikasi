@@ -259,69 +259,24 @@ Password : admin123
 
 <div class="container">
 
-<!-- DASHBOARD LENGKAP -->
+<!-- DASHBOARD -->
+<div id="dashboard" class="page active">
 
-<!-- HEADER RINGKAS DASHBOARD -->
+<!-- FILTER DASHBOARD (INPUT) -->
 <div class="section">
-<h3>📊 Dashboard Overview</h3>
-<p>Ringkasan data utama sistem gudang</p>
-</div>
 
-<!-- STATISTIK UTAMA -->
-<div class="cards">
+<h3>🔍 Filter Dashboard</h3>
 
-<div class="card">
-<h4>Total Barang</h4>
-<h1>150</h1>
-<p>Semua item tersimpan</p>
-</div>
+<input type="date" style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
 
-<div class="card">
-<h4>Barang Masuk</h4>
-<h1>85</h1>
-<p>Bulan ini</p>
-</div>
-
-<div class="card">
-<h4>Barang Keluar</h4>
-<h1>45</h1>
-<p>Bulan ini</p>
-</div>
-
-<div class="card">
-<h4>Stok Menipis</h4>
-<h1>7</h1>
-<p>Perlu restock</p>
-</div>
-
-<div class="card">
-<h4>Total Supplier</h4>
-<h1>12</h1>
-<p>Aktif</p>
-</div>
-
-<div class="card">
-<h4>Kategori Barang</h4>
-<h1>8</h1>
-<p>Jenis produk</p>
-</div>
-
-</div>
-
-<!-- FILTER DASHBOARD -->
-<div class="section">
-<h3>🔍 Filter Data</h3>
-
-<input type="date" style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
-
-<select style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
 <option>Semua Kategori</option>
 <option>Elektronik</option>
 <option>ATK</option>
 <option>Aksesoris</option>
 </select>
 
-<select style="padding:10px;margin-right:10px;border:1px solid #ccc;border-radius:8px;">
+<select style="padding:12px;border:1px solid #d1d5db;border-radius:8px;margin-right:10px;">
 <option>Bulan Ini</option>
 <option>Januari</option>
 <option>Februari</option>
@@ -337,22 +292,81 @@ Password : admin123
 <option>Desember</option>
 </select>
 
-<button style="padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:8px;">
+<button style="padding:12px 20px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;">
 Tampilkan
 </button>
+
+</div>
+
+<!-- OUTPUT DASHBOARD -->
+<div class="cards">
+
+<div class="card">
+<h4>Total Barang</h4>
+<h1>150</h1>
+<p>Barang Terdaftar</p>
+</div>
+
+<div class="card">
+<h4>Barang Masuk</h4>
+<h1>85</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Barang Keluar</h4>
+<h1>45</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Total Supplier</h4>
+<h1>12</h1>
+<p>Supplier Aktif</p>
+</div>
+
+<div class="card">
+<h4>Stok Menipis</h4>
+<h1>7</h1>
+<p>Perlu Restok</p>
+</div>
+
+<div class="card">
+<h4>Total Kategori</h4>
+<h1>8</h1>
+<p>Kategori Barang</p>
+</div>
+
+<div class="card">
+<h4>Total Transaksi</h4>
+<h1>130</h1>
+<p>Bulan Ini</p>
+</div>
+
+<div class="card">
+<h4>Nilai Persediaan</h4>
+<h1>Rp125 Jt</h1>
+<p>Total Aset Gudang</p>
+</div>
+
 </div>
 
 <!-- GRAFIK -->
 <div class="section">
+
 <h3>📈 Grafik Stok Barang</h3>
+
 <canvas id="stokChart"></canvas>
+
 </div>
 
 <!-- NOTIFIKASI -->
 <div class="section">
+
 <h3>📢 Notifikasi Gudang</h3>
 
 <table>
+
 <tr>
 <th>No</th>
 <th>Informasi</th>
@@ -361,29 +375,33 @@ Tampilkan
 
 <tr>
 <td>1</td>
-<td>Stok Mouse Logitech tinggal 3 unit</td>
-<td>⚠ Menipis</td>
+<td>Stok Mouse Logitech tersisa 3 unit</td>
+<td>Menipis</td>
 </tr>
 
 <tr>
 <td>2</td>
 <td>Laptop Asus masuk 10 unit</td>
-<td>✔ Masuk</td>
+<td>Masuk</td>
 </tr>
 
 <tr>
 <td>3</td>
 <td>Printer Epson keluar 5 unit</td>
-<td>📤 Keluar</td>
+<td>Keluar</td>
 </tr>
+
 </table>
+
 </div>
 
 <!-- BARANG TERBARU -->
 <div class="section">
+
 <h3>📦 Barang Terbaru</h3>
 
 <table>
+
 <tr>
 <th>Kode</th>
 <th>Nama Barang</th>
@@ -418,34 +436,59 @@ Tampilkan
 <td>Aksesoris</td>
 <td>25</td>
 </tr>
+
+<tr>
+<td>BRG005</td>
+<td>Keyboard Logitech</td>
+<td>Aksesoris</td>
+<td>18</td>
+</tr>
+
 </table>
+
 </div>
 
-<!-- AKTIVITAS TERBARU -->
+<!-- STATISTIK -->
 <div class="section">
-<h3>📊 Aktivitas Terbaru</h3>
+
+<h3>📊 Statistik Gudang</h3>
 
 <table>
+
 <tr>
-<th>Waktu</th>
-<th>Aktivitas</th>
+<th>Keterangan</th>
+<th>Jumlah</th>
 </tr>
 
 <tr>
-<td>08:10</td>
-<td>Barang masuk: Laptop Asus</td>
+<td>Total Barang Aktif</td>
+<td>145</td>
 </tr>
 
 <tr>
-<td>10:30</td>
-<td>Barang keluar: Printer Epson</td>
+<td>Total Barang Tidak Aktif</td>
+<td>5</td>
 </tr>
 
 <tr>
-<td>12:00</td>
-<td>Update stok: Mouse Logitech</td>
+<td>Total Supplier Aktif</td>
+<td>12</td>
 </tr>
+
+<tr>
+<td>Total Transaksi Bulan Ini</td>
+<td>130</td>
+</tr>
+
+<tr>
+<td>Total Nilai Persediaan</td>
+<td>Rp125.000.000</td>
+</tr>
+
 </table>
+
+</div>
+
 </div>
 
 </div>
