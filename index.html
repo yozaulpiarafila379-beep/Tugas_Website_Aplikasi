@@ -435,3 +435,151 @@ di Gudang
 
 </div>
 </div>
+
+<!-- 1 -->
+<div class="section">
+
+<h2>1. Class User (Login Sistem)</h2>
+
+<ul>
+
+<li>
+<b>Class User</b> digunakan untuk merepresentasikan data pengguna yang memiliki hak akses terhadap sistem informasi pendataan barang di gudang.
+</li>
+
+<li>
+Class User memiliki atribut berupa <b>username</b>, <b>password</b>, dan <b>levelUser</b> yang digunakan sebagai informasi autentikasi pengguna.
+</li>
+
+<li>
+Constructor <b>User()</b> digunakan untuk melakukan inisialisasi data ketika objek User dibuat.
+</li>
+
+<li>
+Method <b>login()</b> digunakan untuk melakukan proses validasi username dan password pengguna sebelum mengakses sistem.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek User dan menjalankan proses autentikasi melalui method login().
+</li>
+
+<li>
+Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegagalan pengguna dalam melakukan login.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+<li>Username pengguna</li>
+<li>Password pengguna</li>
+<li>Level akses pengguna</li>
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek dari class User menggunakan constructor.</li>
+<li>Menyimpan data pengguna ke dalam atribut class.</li>
+<li>Menjalankan method login() untuk melakukan validasi.</li>
+<li>Melakukan pengecekan kesesuaian data pengguna.</li>
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+<li>Informasi login berhasil.</li>
+<li>Informasi login gagal.</li>
+<li>Menampilkan data pengguna yang berhasil masuk.</li>
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class User {
+
+  String username;
+  String password;
+  String levelUser;
+
+
+  // Constructor
+  User(
+    this.username,
+    this.password,
+    this.levelUser
+  );
+
+
+  // Method Login
+  void login(){
+
+    if(username == "admin" && password == "12345"){
+
+      print("Login berhasil");
+      print("User : $username");
+      print("Level : $levelUser");
+
+    }else{
+
+      print("Login gagal");
+
+    }
+
+  }
+
+}
+
+
+void main(){
+
+  // Input data user
+  var user1 = User(
+    "admin",
+    "12345",
+    "Admin Gudang"
+  );
+
+
+  // Proses login
+  user1.login();
+
+}
+</code></pre>
+
+</div>
+
+
+<button class="button"
+onclick="runDart('dart1','https://dartpad.dev/embed-inline.html?split=60&run=true')">
+
+Tampilkan DartPad 1
+
+</button>
+
+
+<iframe id="dart1"
+style="display:none; width:100%; height:300px;">
+</iframe>
+
+
+</div>
