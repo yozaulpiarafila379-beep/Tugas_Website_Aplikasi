@@ -46,8 +46,6 @@ body::before{
 
 }
 
-
-
 /* HEADER */
 
 .header{
@@ -62,8 +60,6 @@ body::before{
     1px solid rgba(34,211,238,.5);
 
 }
-
-
 
 /* JUDUL UTAMA */
 
@@ -84,8 +80,6 @@ body::before{
     0 0 15px rgba(34,211,238,.7);
 
 }
-
-
 
 /* IDENTITAS */
 
@@ -124,8 +118,6 @@ hr{
 
 }
 
-
-
 /* BOX SECTION */
 
 .section{
@@ -154,8 +146,6 @@ hr{
 
 }
 
-
-
 .section:hover{
 
     transform:
@@ -164,14 +154,11 @@ hr{
 
     border-color:#a855f7;
 
-
     box-shadow:
 
     0 0 30px rgba(168,85,247,.6);
 
 }
-
-
 
 /* JUDUL SOAL */
 
@@ -184,8 +171,6 @@ hr{
     0 0 12px #22d3ee;
 
 }
-
-
 
 .section h2::after{
 
@@ -210,8 +195,6 @@ hr{
 
 }
 
-
-
 /* TEKS */
 
 .section p,
@@ -226,7 +209,6 @@ hr{
 }
 
 
-
 /* CODE BOX */
 
 .code-box{
@@ -237,7 +219,6 @@ hr{
 
     border-radius:12px;
 
-
     border:
 
     1px solid #22d3ee;
@@ -247,12 +228,9 @@ hr{
 
     inset 0 0 20px rgba(34,211,238,.2);
 
-
     overflow:auto;
 
 }
-
-
 
 /* WARNA CODE */
 
@@ -262,13 +240,11 @@ hr{
 
 }
 
-
 .type{
 
     color:#22d3ee;
 
 }
-
 
 .string{
 
@@ -276,14 +252,11 @@ hr{
 
 }
 
-
 .comment{
 
     color:#94a3b8;
 
 }
-
-
 
 /* BUTTON */
 
@@ -293,7 +266,6 @@ hr{
 
     padding:9px 18px;
 
-
     background:
 
     linear-gradient(
@@ -302,19 +274,15 @@ hr{
     #a855f7
     );
 
-
     border:none;
 
     cursor:pointer;
 
     color:white;
 
-
     border-radius:10px;
 
-
     font-weight:bold;
-
 
     box-shadow:
 
@@ -325,8 +293,6 @@ hr{
 
 }
 
-
-
 .button:hover{
 
     transform:scale(1.05);
@@ -336,8 +302,6 @@ hr{
     0 0 30px #22d3ee;
 
 }
-
-
 
 /* IMAGE */
 
@@ -354,8 +318,6 @@ img{
     border-radius:10px;
 
 }
-
-
 
 </style>
 <script>
@@ -469,7 +431,6 @@ Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegaga
 
 </ul>
 
-
 <h3>Input:</h3>
 
 <ul>
@@ -477,7 +438,6 @@ Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegaga
 <li>Password pengguna</li>
 <li>Level akses pengguna</li>
 </ul>
-
 
 <h3>Proses:</h3>
 
@@ -488,7 +448,6 @@ Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegaga
 <li>Melakukan pengecekan kesesuaian data pengguna.</li>
 </ul>
 
-
 <h3>Output:</h3>
 
 <ul>
@@ -496,7 +455,6 @@ Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegaga
 <li>Informasi login gagal.</li>
 <li>Menampilkan data pengguna yang berhasil masuk.</li>
 </ul>
-
 
 <h3>Kode Dart:</h3>
 
@@ -514,7 +472,6 @@ Hasil proses autentikasi menampilkan informasi mengenai keberhasilan atau kegaga
 // Sistem Informasi Pendataan Barang Gudang
 // ==========================================
 
-
 class User {
 
   String username;
@@ -528,7 +485,6 @@ class User {
     this.password,
     this.levelUser
   );
-
 
   // Method Login
   void login(){
@@ -549,7 +505,6 @@ class User {
 
 }
 
-
 void main(){
 
   // Input data user
@@ -559,7 +514,6 @@ void main(){
     "Admin Gudang"
   );
 
-
   // Proses login
   user1.login();
 
@@ -568,15 +522,10 @@ void main(){
 
 </div>
 
-
 <button class="button"
 onclick="runDart('dart1','https://dartpad.dev/embed-inline.html?id=00afd86673c22e4df79467b1f4be113a&split=60&run=true')">
-
 Tampilkan DartPad 1
-
 </button>
-
-
 <iframe id="dart1"
 style="display:none; width:100%; height:300px;">
 </iframe>
@@ -619,7 +568,6 @@ Hasil proses pengelolaan barang menampilkan informasi data barang dan perubahan 
 
 </ul>
 
-
 <h3>Input:</h3>
 
 <ul>
@@ -632,7 +580,6 @@ Hasil proses pengelolaan barang menampilkan informasi data barang dan perubahan 
 <li>Kondisi</li>
 </ul>
 
-
 <h3>Proses:</h3>
 
 <ul>
@@ -643,7 +590,6 @@ Hasil proses pengelolaan barang menampilkan informasi data barang dan perubahan 
 <li>Mengurangi stok barang menggunakan method kurangiStok().</li>
 </ul>
 
-
 <h3>Output:</h3>
 
 <ul>
@@ -652,7 +598,6 @@ Hasil proses pengelolaan barang menampilkan informasi data barang dan perubahan 
 <li>Jumlah stok berkurang.</li>
 <li>Informasi kondisi barang.</li>
 </ul>
-
 
 <h3>Kode Dart:</h3>
 
@@ -670,7 +615,6 @@ Hasil proses pengelolaan barang menampilkan informasi data barang dan perubahan 
 // Sistem Informasi Pendataan Barang Gudang
 // ==========================================
 
-
 class Barang {
 
   String kodeBarang;
@@ -680,7 +624,6 @@ class Barang {
   int jumlahStok;
   String satuan;
   String kondisi;
-
 
   // Constructor
   Barang(
@@ -692,7 +635,6 @@ class Barang {
     this.satuan,
     this.kondisi
   );
-
 
   // Method tampilkan barang
   void tampilkanBarang(){
@@ -706,7 +648,6 @@ class Barang {
     print("Kondisi : $kondisi");
 
   }
-
 
   // Method tambah stok
   void tambahStok(int jumlah){
@@ -728,7 +669,6 @@ class Barang {
   }
 
 }
-
 
 void main(){
 
@@ -757,15 +697,10 @@ void main(){
 
 </div>
 
-
 <button class="button"
 onclick="runDart('dart2','https://dartpad.dev/embed-inline.html?id=715ed6aadf60f9d87ba5a111f199b260&split=60&run=true')">
-
 Tampilkan DartPad 2
-
 </button>
-
-
 <iframe id="dart2"
 style="display:none; width:100%; height:300px;">
 </iframe>
