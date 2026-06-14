@@ -706,3 +706,122 @@ style="display:none; width:100%; height:300px;">
 </iframe>
 </div>
 
+<!-- 3 -->
+<div class="section">
+
+<h2>3. Class Kategori (Data Kategori Barang)</h2>
+
+<ul>
+
+<li>
+<b>Class Kategori</b> digunakan untuk mengelompokkan data barang berdasarkan jenis atau kategori tertentu dalam sistem informasi pendataan barang di gudang.
+</li>
+
+<li>
+Class Kategori memiliki atribut berupa <b>idKategori</b> dan <b>namaKategori</b> yang digunakan sebagai informasi pengelompokan barang.
+</li>
+
+<li>
+Constructor <b>Kategori()</b> digunakan untuk melakukan inisialisasi data kategori ketika objek Kategori dibuat.
+</li>
+
+<li>
+Method <b>tampilkanKategori()</b> digunakan untuk menampilkan daftar kategori barang yang telah tersimpan.
+</li>
+
+<li>
+Pengelompokan kategori membantu proses pencarian dan pengelolaan data barang agar lebih terstruktur.
+</li>
+
+</ul>
+
+<h3>Input:</h3>
+
+<ul>
+<li>ID Kategori</li>
+<li>Nama Kategori</li>
+</ul>
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek dari class Kategori menggunakan constructor.</li>
+<li>Menyimpan data kategori ke dalam atribut class.</li>
+<li>Menjalankan method tampilkanKategori().</li>
+<li>Menampilkan informasi kategori barang.</li>
+</ul>
+
+<h3>Output:</h3>
+
+<ul>
+<li>Daftar kategori barang.</li>
+<li>Informasi kategori yang tersimpan.</li>
+</ul>
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+class Kategori {
+
+  String idKategori;
+  String namaKategori;
+
+
+  // Constructor
+  Kategori(
+    this.idKategori,
+    this.namaKategori
+  );
+
+  // Method tampilkan kategori
+  void tampilkanKategori(){
+
+    print("ID Kategori : $idKategori");
+    print("Nama Kategori : $namaKategori");
+
+  }
+
+}
+
+void main(){
+
+  // Input data kategori
+  var kategori1 = Kategori(
+    "K001",
+    "Elektronik"
+  );
+
+
+  // Output data kategori
+  kategori1.tampilkanKategori();
+
+}
+</code></pre>
+
+</div>
+
+<button class="button"
+onclick="runDart('dart3','https://dartpad.dev/embed-inline.html?id=ID_DARTPAD_3&split=60&run=true')">
+
+Tampilkan DartPad 3
+
+</button>
+<iframe id="dart3"
+style="display:none; width:100%; height:300px;">
+</iframe>
+</div>
+
+    
