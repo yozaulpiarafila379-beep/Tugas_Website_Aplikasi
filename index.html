@@ -1246,5 +1246,143 @@ style="display:none; width:100%; height:300px;">
 
 </div>
 
+<!-- 7 -->
+<div class="section">
+
+<h2>7. Class Stok Barang</h2>
+
+<ul>
+
+<li>
+<b>Class StokBarang</b> digunakan untuk mengelola dan menghitung total stok barang dalam sistem informasi gudang.
+</li>
+
+<li>
+Class ini menggabungkan data dari barang masuk dan barang keluar untuk menghasilkan stok akhir.
+</li>
+
+<li>
+Constructor <b>StokBarang()</b> digunakan untuk menginisialisasi nilai stok awal, barang masuk, dan barang keluar.
+</li>
+
+<li>
+Method <b>hitungStok()</b> digunakan untuk melakukan perhitungan stok akhir berdasarkan transaksi yang terjadi.
+</li>
+
+<li>
+Hasil perhitungan digunakan untuk mengetahui kondisi stok barang saat ini.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+<li>Stok awal barang</li>
+<li>Jumlah barang masuk</li>
+<li>Jumlah barang keluar</li>
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek class StokBarang</li>
+<li>Menyimpan data stok awal</li>
+<li>Menambahkan barang masuk</li>
+<li>Mengurangi barang keluar</li>
+<li>Menghitung stok akhir</li>
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+<li>Total stok akhir barang</li>
+<li>Status ketersediaan stok</li>
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class StokBarang {
+
+  int stokAwal;
+  int barangMasuk;
+  int barangKeluar;
+
+
+  // Constructor
+  StokBarang(
+    this.stokAwal,
+    this.barangMasuk,
+    this.barangKeluar
+  );
+
+
+  // Method hitung stok
+  void hitungStok(){
+
+    int stokAkhir = stokAwal + barangMasuk - barangKeluar;
+
+    print("Stok Awal : $stokAwal");
+    print("Barang Masuk : $barangMasuk");
+    print("Barang Keluar : $barangKeluar");
+    print("Stok Akhir : $stokAkhir");
+
+    if(stokAkhir <= 0){
+      print("Status : Stok Habis");
+    } else if(stokAkhir < 10){
+      print("Status : Stok Menipis");
+    } else {
+      print("Status : Stok Aman");
+    }
+  }
+
+}
+
+
+void main(){
+
+  // Input data stok
+  var stok1 = StokBarang(50, 20, 10);
+
+  // Proses hitung stok
+  stok1.hitungStok();
+
+}
+</code></pre>
+
+</div>
+
+<button class="button"
+onclick="runDart('dart7','https://dartpad.dev/embed-inline.html?id=00afd86673c22e4df79467b1f4be113a&split=60&run=true')">
+
+Tampilkan DartPad 7
+
+</button>
+
+<iframe id="dart7"
+style="display:none; width:100%; height:300px;">
+</iframe>
+
+</div>
+    
 
     
