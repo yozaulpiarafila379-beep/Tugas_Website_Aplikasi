@@ -1104,3 +1104,147 @@ style="display:none; width:100%; height:300px;">
 
 </div>
     
+<!-- 6 -->
+<div class="section">
+
+<h2>6. Class Barang Keluar (Transaksi Barang Keluar)</h2>
+
+<ul>
+
+<li>
+<b>Class BarangKeluar</b> digunakan untuk merepresentasikan proses pengeluaran barang dari gudang ke pihak tujuan tertentu.
+</li>
+
+<li>
+Class ini berfungsi mencatat data barang yang keluar serta mengurangi jumlah stok yang tersedia.
+</li>
+
+<li>
+Constructor <b>BarangKeluar()</b> digunakan untuk menginisialisasi data transaksi barang keluar.
+</li>
+
+<li>
+Method <b>kurangiStok()</b> digunakan untuk mengurangi jumlah stok berdasarkan jumlah barang yang dikeluarkan.
+</li>
+
+<li>
+Proses ini memastikan stok barang selalu diperbarui secara akurat setelah transaksi keluar dilakukan.
+</li>
+
+<li>
+Hasil akhir berupa informasi data barang keluar dan perubahan jumlah stok.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+<li>ID Barang Keluar</li>
+<li>Tanggal Keluar</li>
+<li>Kode Barang</li>
+<li>Jumlah Barang Keluar</li>
+<li>Tujuan Pengiriman</li>
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek dari class BarangKeluar.</li>
+<li>Menyimpan data transaksi barang keluar.</li>
+<li>Melakukan pengurangan stok barang.</li>
+<li>Memperbarui data persediaan barang.</li>
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+<li>Data barang keluar tersimpan</li>
+<li>Stok barang berkurang</li>
+<li>Informasi transaksi barang keluar</li>
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+class BarangKeluar {
+
+  String kodeBarang;
+  int jumlahKeluar;
+  String tujuan;
+
+
+  // Constructor
+  BarangKeluar(
+    this.kodeBarang,
+    this.jumlahKeluar,
+    this.tujuan
+  );
+
+  // Method kurangi stok
+  void kurangiStok(){
+
+    int stokAwal = 100;
+
+    int stokAkhir = stokAwal - jumlahKeluar;
+
+    print("Barang keluar berhasil dicatat");
+    print("Kode Barang : $kodeBarang");
+    print("Jumlah Keluar : $jumlahKeluar");
+    print("Tujuan : $tujuan");
+    print("Sisa Stok : $stokAkhir");
+
+  }
+
+}
+
+void main(){
+
+  // Input data barang keluar
+  var bk1 = BarangKeluar(
+    "BRG001",
+    10,
+    "Toko A"
+  );
+
+
+  // Proses transaksi
+  bk1.kurangiStok();
+
+}
+</code></pre>
+
+</div>
+
+<button class="button"
+onclick="runDart('dart6','https://dartpad.dev/embed-inline.html?id=00afd86673c22e4df79467b1f4be113a&split=60&run=true')">
+
+Tampilkan DartPad 6
+
+</button>
+
+<iframe id="dart6"
+style="display:none; width:100%; height:300px;">
+</iframe>
+
+</div>
+
+
+    
