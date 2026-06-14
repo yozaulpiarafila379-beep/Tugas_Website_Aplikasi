@@ -823,4 +823,144 @@ style="display:none; width:100%; height:300px;">
 
 </div>
 
-    
+ <!-- 4 -->
+<div class="section">
+
+<h2>4. Class Supplier (Data Supplier)</h2>
+
+<ul>
+
+<li>
+<b>Class Supplier</b> digunakan untuk merepresentasikan data pemasok barang yang bekerja sama dengan sistem informasi pendataan barang di gudang.
+</li>
+
+<li>
+Class Supplier memiliki atribut berupa <b>kodeSupplier</b>, <b>namaSupplier</b>, <b>alamat</b>, <b>telepon</b>, dan <b>email</b> sebagai informasi data pemasok.
+</li>
+
+<li>
+Constructor <b>Supplier()</b> digunakan untuk melakukan inisialisasi data supplier ketika objek dibuat.
+</li>
+
+<li>
+Method <b>tampilkanSupplier()</b> digunakan untuk menampilkan informasi data supplier yang telah tersimpan.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek Supplier dan menjalankan proses menampilkan data supplier.
+</li>
+
+<li>
+Hasil proses menampilkan informasi supplier yang digunakan sebagai sumber data barang masuk ke gudang.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+<li>Kode Supplier</li>
+<li>Nama Supplier</li>
+<li>Alamat Supplier</li>
+<li>Nomor Telepon</li>
+<li>Email Supplier</li>
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek dari class Supplier menggunakan constructor.</li>
+<li>Menyimpan data supplier ke dalam atribut class.</li>
+<li>Menjalankan method tampilkanSupplier().</li>
+<li>Menampilkan informasi supplier.</li>
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+<li>Data supplier tampil.</li>
+<li>Informasi pemasok barang.</li>
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+class Supplier {
+
+  String kodeSupplier;
+  String namaSupplier;
+  String alamat;
+  String telepon;
+  String email;
+
+  // Constructor
+  Supplier(
+    this.kodeSupplier,
+    this.namaSupplier,
+    this.alamat,
+    this.telepon,
+    this.email
+  );
+
+  // Method tampilkan supplier
+  void tampilkanSupplier(){
+
+    print("Data Supplier");
+    print("Kode Supplier : $kodeSupplier");
+    print("Nama Supplier : $namaSupplier");
+    print("Alamat : $alamat");
+    print("Telepon : $telepon");
+    print("Email : $email");
+
+  }
+
+}
+
+void main(){
+
+  // Input data supplier
+  var supplier1 = Supplier(
+    "SUP001",
+    "PT Maju Jaya",
+    "Jakarta",
+    "08123456789",
+    "majujaya@gmail.com"
+  );
+
+
+  // Proses tampilkan data
+  supplier1.tampilkanSupplier();
+
+}
+</code></pre>
+
+</div>
+
+<button class="button"
+onclick="runDart('dart4','https://dartpad.dev/embed-inline.html?id=ID_DARTPAD_4&split=60&run=true')">
+
+Tampilkan DartPad 4
+
+</button>
+<iframe id="dart4"
+style="display:none; width:100%; height:300px;">
+</iframe>
+
+</div>   
