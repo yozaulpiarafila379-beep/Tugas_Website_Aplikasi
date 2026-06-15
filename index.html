@@ -1512,11 +1512,161 @@ style="display:none; width:100%; height:300px;">
 </iframe>
     
 </div>
-    
+
 <!-- 9 -->
 <div class="section">
 
-<h2>9. Kesimpulan</h2>
+<h2>9. Class Riwayat Barang</h2>
+
+<ul>
+
+<li>
+<b>Class RiwayatBarang</b> digunakan untuk mencatat seluruh aktivitas perubahan data barang pada sistem informasi gudang.
+</li>
+
+<li>
+Class ini berfungsi menyimpan informasi transaksi seperti barang masuk, barang keluar, perubahan stok, dan waktu kejadian.
+</li>
+
+<li>
+Constructor <b>RiwayatBarang()</b> digunakan untuk menginisialisasi data riwayat barang.
+</li>
+
+<li>
+Method <b>tampilkanRiwayat()</b> digunakan untuk menampilkan seluruh aktivitas barang yang telah dilakukan.
+</li>
+
+<li>
+Riwayat barang membantu admin mengetahui perubahan data barang secara terstruktur dan memudahkan proses pengecekan.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+<li>ID Riwayat</li>
+<li>Tanggal Transaksi</li>
+<li>Kode Barang</li>
+<li>Nama Barang</li>
+<li>Jenis Aktivitas</li>
+<li>Jumlah Perubahan</li>
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+<li>Membuat objek dari class RiwayatBarang menggunakan constructor.</li>
+<li>Menyimpan data aktivitas barang.</li>
+<li>Mencatat perubahan jumlah barang.</li>
+<li>Menampilkan riwayat transaksi barang.</li>
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+<li>Data riwayat barang.</li>
+<li>Informasi barang masuk dan keluar.</li>
+<li>Catatan perubahan stok.</li>
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+<div class="code-box">
+
+<pre><code>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class RiwayatBarang {
+
+  String idRiwayat;
+  String tanggal;
+  String kodeBarang;
+  String namaBarang;
+  String jenisAktivitas;
+  int jumlah;
+
+
+  // Constructor
+  RiwayatBarang(
+    this.idRiwayat,
+    this.tanggal,
+    this.kodeBarang,
+    this.namaBarang,
+    this.jenisAktivitas,
+    this.jumlah
+  );
+
+
+  // Method tampilkan riwayat
+  void tampilkanRiwayat(){
+
+    print("===== RIWAYAT BARANG =====");
+    print("ID Riwayat : $idRiwayat");
+    print("Tanggal : $tanggal");
+    print("Kode Barang : $kodeBarang");
+    print("Nama Barang : $namaBarang");
+    print("Aktivitas : $jenisAktivitas");
+    print("Jumlah : $jumlah");
+
+  }
+
+}
+
+
+void main(){
+
+  // Input data riwayat
+  var riwayat1 = RiwayatBarang(
+    "R001",
+    "15-06-2026",
+    "BRG001",
+    "Laptop",
+    "Barang Masuk",
+    10
+  );
+
+
+  // Output riwayat
+  riwayat1.tampilkanRiwayat();
+
+}
+</code></pre>
+
+</div>
+
+<button class="button"
+onclick="runDart('dart9','https://dartpad.dev/embed-inline.html?id=71eeb354596b8a19af23ecaf87dae3db&split=60&run=true')">
+
+Tampilkan DartPad 9
+
+</button>
+
+<iframe id="dart9"
+style="display:none; width:100%; height:300px;">
+</iframe>
+    
+</div>
+
+    
+<!-- 10 -->
+<div class="section">
+
+<h2>10. Kesimpulan</h2>
 
 <div class="code-box">
 
@@ -1561,10 +1711,10 @@ Secara keseluruhan, sistem ini membantu dalam proses pendataan barang di gudang 
 </div>
 
 
-<!-- 10 -->
+<!-- 11 -->
 <div class="section">
 
-<h2>10. Penutup</h2>
+<h2>11. Penutup</h2>
 
 <div class="code-box">
 
