@@ -1593,6 +1593,7 @@ Riwayat barang membantu admin mengetahui perubahan data barang secara terstruktu
 
 class RiwayatBarang {
 
+  // Atribut
   String idRiwayat;
   String tanggal;
   String kodeBarang;
@@ -1612,16 +1613,21 @@ class RiwayatBarang {
   );
 
 
-  // Method tampilkan riwayat
+  // Method tampilkan riwayat barang
   void tampilkanRiwayat(){
 
-    print("===== RIWAYAT BARANG =====");
-    print("ID Riwayat : $idRiwayat");
-    print("Tanggal : $tanggal");
-    print("Kode Barang : $kodeBarang");
-    print("Nama Barang : $namaBarang");
-    print("Aktivitas : $jenisAktivitas");
-    print("Jumlah : $jumlah");
+    print("============================");
+    print("      RIWAYAT BARANG        ");
+    print("============================");
+
+    print("ID Riwayat       : $idRiwayat");
+    print("Tanggal          : $tanggal");
+    print("Kode Barang      : $kodeBarang");
+    print("Nama Barang      : $namaBarang");
+    print("Jenis Aktivitas  : $jenisAktivitas");
+    print("Jumlah Perubahan : $jumlah");
+
+    print("============================");
 
   }
 
@@ -1630,18 +1636,20 @@ class RiwayatBarang {
 
 void main(){
 
-  // Input data riwayat
+  // Membuat objek riwayat barang
   var riwayat1 = RiwayatBarang(
+
     "R001",
     "15-06-2026",
     "BRG001",
-    "Laptop",
+    "Laptop Asus",
     "Barang Masuk",
     10
+
   );
 
 
-  // Output riwayat
+  // Menampilkan data riwayat
   riwayat1.tampilkanRiwayat();
 
 }
@@ -1650,7 +1658,7 @@ void main(){
 </div>
 
 <button class="button"
-onclick="runDart('dart9','https://dartpad.dev/embed-inline.html?id=b408e4f1cca1446b365254b8e7aa3ae6')">
+onclick="runDart('dart9','https://dartpad.dev/embed-inline.html?id=b408e4f1cca1446b365254b8e7aa3ae6&split=60&run=true')">
 
 Tampilkan DartPad 9
 
