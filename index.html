@@ -1670,97 +1670,1436 @@ style="display:none; width:100%; height:300px;">
     
 </div>
 
-    
 <!-- 10 -->
 <div class="section">
 
-<h2>10. Kesimpulan</h2>
-
-<div class="code-box">
-
-<p>
-Berdasarkan hasil perancangan Sistem Informasi Pendataan Barang di Gudang berbasis pemrograman Dart dengan konsep Object-Oriented Programming (OOP), dapat disimpulkan bahwa:
-</p>
+<h2>10. Class Gudang (Manajemen Gudang)</h2>
 
 <ul>
 
 <li>
-Sistem dibangun menggunakan konsep class untuk memisahkan setiap komponen seperti User, Barang, Supplier, dan transaksi barang.
+<b>Class Gudang</b> digunakan untuk merepresentasikan data gudang pada Sistem Informasi Pendataan Barang di Gudang.
 </li>
 
 <li>
-Penerapan constructor memudahkan proses inisialisasi data pada setiap objek yang dibuat.
+Class Gudang berfungsi untuk menyimpan informasi tempat penyimpanan barang seperti identitas gudang, lokasi, dan kapasitas penyimpanan.
 </li>
 
 <li>
-Method pada setiap class digunakan untuk menjalankan fungsi utama seperti login, pengelolaan barang, dan transaksi stok.
+Class ini membantu admin dalam melakukan pengelolaan data gudang agar informasi penyimpanan barang lebih terstruktur.
 </li>
 
 <li>
-Struktur input, proses, dan output membantu dalam merancang sistem yang lebih terarah dan mudah dipahami.
+Class Gudang memiliki atribut berupa <b>idGudang</b>, <b>namaGudang</b>, <b>lokasi</b>, dan <b>kapasitas</b>.
 </li>
 
 <li>
-Sistem ini mampu mengelola data barang masuk dan keluar sehingga stok dapat terkontrol dengan baik.
+Constructor <b>Gudang()</b> digunakan untuk memberikan nilai awal ketika objek Gudang dibuat.
 </li>
 
 <li>
-Penggunaan OOP membuat program lebih terstruktur, mudah dikembangkan, dan mudah dipelihara.
+Method <b>tampilkanGudang()</b> digunakan untuk menampilkan seluruh informasi data gudang.
 </li>
 
 <li>
-Secara keseluruhan, sistem ini membantu dalam proses pendataan barang di gudang agar lebih efektif dan efisien.
+Method <b>cekKapasitas()</b> digunakan untuk mengetahui kondisi kapasitas gudang apakah masih tersedia atau penuh.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek Gudang dan menjalankan proses pengelolaan data gudang.
 </li>
 
 </ul>
 
-</div>
+
+<h3>Input:</h3>
+
+<ul>
+
+<li>ID Gudang</li>
+
+<li>Nama Gudang</li>
+
+<li>Lokasi Gudang</li>
+
+<li>Kapasitas Maksimal Gudang</li>
+
+<li>Jumlah Barang Saat Ini</li>
+
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+
+<li>Membuat objek dari class Gudang menggunakan constructor.</li>
+
+<li>Menyimpan data gudang ke dalam atribut class.</li>
+
+<li>Menampilkan informasi gudang menggunakan method tampilkanGudang().</li>
+
+<li>Melakukan pengecekan kapasitas penyimpanan menggunakan method cekKapasitas().</li>
+
+<li>Menampilkan status kapasitas gudang.</li>
+
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+
+<li>Informasi data gudang.</li>
+
+<li>Lokasi penyimpanan barang.</li>
+
+<li>Kapasitas maksimal gudang.</li>
+
+<li>Jumlah barang yang tersimpan.</li>
+
+<li>Status kapasitas gudang.</li>
+
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+
+<div class="code-box">
+
+<pre><code>
+
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class Gudang {
+
+
+  String idGudang;
+
+  String namaGudang;
+
+  String lokasi;
+
+  int kapasitas;
+
+  int jumlahBarang;
+
+
+
+  // Constructor
+
+  Gudang(
+
+    this.idGudang,
+
+    this.namaGudang,
+
+    this.lokasi,
+
+    this.kapasitas,
+
+    this.jumlahBarang
+
+  );
+
+
+
+  // Method tampilkan data gudang
+
+  void tampilkanGudang(){
+
+
+    print("===== DATA GUDANG =====");
+
+
+    print("ID Gudang       : $idGudang");
+
+    print("Nama Gudang     : $namaGudang");
+
+    print("Lokasi          : $lokasi");
+
+    print("Kapasitas       : $kapasitas Barang");
+
+    print("Jumlah Barang   : $jumlahBarang Barang");
+
+
+  }
+
+
+
+
+  // Method cek kapasitas gudang
+
+  void cekKapasitas(){
+
+
+    print("");
+
+    print("===== CEK KAPASITAS =====");
+
+
+
+    int sisa = kapasitas - jumlahBarang;
+
+
+
+    print("Sisa Kapasitas : $sisa Barang");
+
+
+
+    if(sisa <= 0){
+
+
+      print("Status : Gudang Penuh");
+
+
+    }else if(sisa < 50){
+
+
+      print("Status : Kapasitas Hampir Penuh");
+
+
+    }else{
+
+
+      print("Status : Kapasitas Aman");
+
+
+    }
+
+
+  }
+
+
+}
+
+
+
+void main(){
+
+
+
+  // Input data gudang
+
+  var gudang1 = Gudang(
+
+
+    "G001",
+
+    "Gudang Utama",
+
+    "Palembang",
+
+    500,
+
+    250
+
+
+  );
+
+
+
+  // Proses tampil data
+
+  gudang1.tampilkanGudang();
+
+
+
+  // Proses cek kapasitas
+
+  gudang1.cekKapasitas();
+
+
+
+}
+
+</code></pre>
 
 </div>
 
+
+
+<button class="button"
+onclick="runDart('dart10','https://dartpad.dev/embed-inline.html?id=example&split=60&run=true')">
+
+Tampilkan DartPad 10
+
+</button>
+
+
+<iframe id="dart10"
+style="display:none; width:100%; height:300px;">
+</iframe>
+</div>
 
 <!-- 11 -->
 <div class="section">
 
-<h2>11. Penutup</h2>
+<h2>11. Class Peminjaman (Peminjaman Barang)</h2>
+
+<ul>
+
+<li>
+<b>Class Peminjaman</b> digunakan untuk merepresentasikan proses peminjaman barang pada Sistem Informasi Pendataan Barang di Gudang.
+</li>
+
+<li>
+Class ini berfungsi untuk mencatat data barang yang dipinjam oleh pengguna atau pihak tertentu serta mengelola status peminjaman barang.
+</li>
+
+<li>
+Class Peminjaman memiliki atribut berupa <b>idPeminjaman</b>, <b>tanggalPinjam</b>, <b>kodeBarang</b>, <b>namaBarang</b>, <b>jumlahPinjam</b>, dan <b>peminjam</b>.
+</li>
+
+<li>
+Constructor <b>Peminjaman()</b> digunakan untuk memberikan nilai awal pada objek peminjaman ketika data dibuat.
+</li>
+
+<li>
+Method <b>tampilkanPeminjaman()</b> digunakan untuk menampilkan informasi peminjaman barang.
+</li>
+
+<li>
+Method <b>cekStatus()</b> digunakan untuk mengetahui status barang yang sedang dipinjam.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek Peminjaman dan menjalankan proses pencatatan peminjaman barang.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+
+<li>ID Peminjaman</li>
+
+<li>Tanggal Peminjaman</li>
+
+<li>Kode Barang</li>
+
+<li>Nama Barang</li>
+
+<li>Jumlah Barang Dipinjam</li>
+
+<li>Nama Peminjam</li>
+
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+
+<li>Membuat objek dari class Peminjaman menggunakan constructor.</li>
+
+<li>Menyimpan data transaksi peminjaman barang.</li>
+
+<li>Menampilkan data peminjaman menggunakan method tampilkanPeminjaman().</li>
+
+<li>Melakukan pengecekan status peminjaman barang.</li>
+
+<li>Menampilkan informasi barang yang sedang dipinjam.</li>
+
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+
+<li>Data peminjaman barang.</li>
+
+<li>Informasi peminjam.</li>
+
+<li>Jumlah barang yang dipinjam.</li>
+
+<li>Status peminjaman barang.</li>
+
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
 
 <div class="code-box">
 
-<p>
-Demikian laporan mengenai Sistem Informasi Pendataan Barang di Gudang berbasis Dart dan konsep Object-Oriented Programming (OOP).
-</p>
+<pre><code>
 
-<p>
-Penyusunan sistem ini diharapkan dapat memberikan pemahaman mengenai penerapan class, constructor, dan method dalam pengembangan aplikasi sederhana.
-</p>
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
 
-<p>
-Penulis menyadari bahwa dalam penyusunan tugas ini masih terdapat kekurangan, baik dari segi penulisan maupun implementasi program.
-</p>
 
-<p>
-Oleh karena itu, kritik dan saran yang membangun sangat diharapkan untuk perbaikan di masa mendatang.
-</p>
+class Peminjaman {
 
-<p>
-Semoga laporan ini dapat bermanfaat sebagai bahan pembelajaran dalam memahami pemrograman Dart dan konsep OOP.
-</p>
+
+  String idPeminjaman;
+
+  String tanggalPinjam;
+
+  String kodeBarang;
+
+  String namaBarang;
+
+  int jumlahPinjam;
+
+  String peminjam;
+
+
+
+  // Constructor
+
+  Peminjaman(
+
+    this.idPeminjaman,
+
+    this.tanggalPinjam,
+
+    this.kodeBarang,
+
+    this.namaBarang,
+
+    this.jumlahPinjam,
+
+    this.peminjam
+
+  );
+
+
+
+
+  // Method tampilkan peminjaman
+
+  void tampilkanPeminjaman(){
+
+
+    print("===== DATA PEMINJAMAN =====");
+
+
+    print("ID Peminjaman : $idPeminjaman");
+
+    print("Tanggal Pinjam : $tanggalPinjam");
+
+    print("Kode Barang : $kodeBarang");
+
+    print("Nama Barang : $namaBarang");
+
+    print("Jumlah Pinjam : $jumlahPinjam");
+
+    print("Peminjam : $peminjam");
+
+
+  }
+
+
+
+
+  // Method cek status
+
+  void cekStatus(){
+
+
+    print("");
+
+    print("===== STATUS PEMINJAMAN =====");
+
+
+
+    if(jumlahPinjam > 0){
+
+
+      print("Status : Barang Sedang Dipinjam");
+
+
+    }else{
+
+
+      print("Status : Tidak Ada Peminjaman");
+
+
+    }
+
+
+  }
+
+
+}
+
+
+
+void main(){
+
+
+
+  // Input data peminjaman
+
+  var pinjam1 = Peminjaman(
+
+
+    "P001",
+
+    "18-06-2026",
+
+    "BRG001",
+
+    "Laptop",
+
+    2,
+
+    "Rifqi"
+
+
+  );
+
+
+
+  // Proses tampil data
+
+  pinjam1.tampilkanPeminjaman();
+
+
+
+  // Proses cek status
+
+  pinjam1.cekStatus();
+
+
+
+}
+
+</code></pre>
 
 </div>
 
+
+<button class="button"
+onclick="runDart('dart11','https://dartpad.dev/embed-inline.html?id=example&split=60&run=true')">
+
+Tampilkan DartPad 11
+
+</button>
+
+
+<iframe id="dart11"
+style="display:none; width:100%; height:300px;">
+</iframe>
+</div>, 
+
+<!-- 12 -->
+<div class="section">
+
+<h2>12. Class Notifikasi (Peringatan Stok)</h2>
+
+<ul>
+
+<li>
+<b>Class Notifikasi</b> digunakan untuk memberikan informasi atau peringatan kepada pengguna mengenai kondisi stok barang pada sistem informasi pendataan barang di gudang.
+</li>
+
+<li>
+Class ini berfungsi untuk memberikan pemberitahuan apabila stok barang menipis atau habis sehingga admin dapat melakukan tindakan pengadaan barang.
+</li>
+
+<li>
+Class Notifikasi memiliki atribut berupa <b>idNotifikasi</b>, <b>tanggal</b>, <b>pesan</b>, <b>kodeBarang</b>, dan <b>stokSaatIni</b>.
+</li>
+
+<li>
+Constructor <b>Notifikasi()</b> digunakan untuk melakukan inisialisasi data notifikasi ketika objek dibuat.
+</li>
+
+<li>
+Method <b>tampilkanNotifikasi()</b> digunakan untuk menampilkan informasi peringatan stok barang.
+</li>
+
+<li>
+Method <b>cekStok()</b> digunakan untuk memeriksa kondisi jumlah stok barang.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek Notifikasi dan menjalankan proses pengecekan stok.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+
+<li>ID Notifikasi</li>
+
+<li>Tanggal Notifikasi</li>
+
+<li>Kode Barang</li>
+
+<li>Pesan Notifikasi</li>
+
+<li>Jumlah Stok Saat Ini</li>
+
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+
+<li>Membuat objek dari class Notifikasi menggunakan constructor.</li>
+
+<li>Menyimpan data informasi peringatan stok.</li>
+
+<li>Melakukan pengecekan jumlah stok barang.</li>
+
+<li>Menampilkan pesan sesuai kondisi stok.</li>
+
+<li>Memberikan informasi kepada admin gudang.</li>
+
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+
+<li>Informasi notifikasi stok.</li>
+
+<li>Status kondisi barang.</li>
+
+<li>Peringatan stok menipis atau aman.</li>
+
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+
+<div class="code-box">
+
+<pre><code>
+
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class Notifikasi {
+
+
+  String idNotifikasi;
+
+  String tanggal;
+
+  String kodeBarang;
+
+  String pesan;
+
+  int stokSaatIni;
+
+
+
+  // Constructor
+
+  Notifikasi(
+
+    this.idNotifikasi,
+
+    this.tanggal,
+
+    this.kodeBarang,
+
+    this.pesan,
+
+    this.stokSaatIni
+
+  );
+
+
+
+
+  // Method tampilkan notifikasi
+
+  void tampilkanNotifikasi(){
+
+
+    print("===== NOTIFIKASI STOK =====");
+
+
+    print("ID Notifikasi : $idNotifikasi");
+
+    print("Tanggal : $tanggal");
+
+    print("Kode Barang : $kodeBarang");
+
+    print("Pesan : $pesan");
+
+    print("Stok Saat Ini : $stokSaatIni");
+
+
+  }
+
+
+
+
+
+  // Method cek stok
+
+  void cekStok(){
+
+
+    print("");
+
+    print("===== CEK KONDISI STOK =====");
+
+
+
+    if(stokSaatIni <= 0){
+
+
+      print("Status : Stok Habis");
+
+      print("Peringatan : Segera lakukan pengadaan barang");
+
+
+
+    }else if(stokSaatIni < 10){
+
+
+      print("Status : Stok Menipis");
+
+      print("Peringatan : Stok perlu ditambah");
+
+
+
+    }else{
+
+
+      print("Status : Stok Aman");
+
+
+    }
+
+
+  }
+
+
+}
+
+
+
+void main(){
+
+
+
+  // Input data notifikasi
+
+  var notifikasi1 = Notifikasi(
+
+
+    "N001",
+
+    "18-06-2026",
+
+    "BRG001",
+
+    "Peringatan stok barang",
+
+    5
+
+
+  );
+
+
+
+  // Proses tampil notifikasi
+
+  notifikasi1.tampilkanNotifikasi();
+
+
+
+  // Proses cek stok
+
+  notifikasi1.cekStok();
+
+
+
+}
+
+</code></pre>
+
 </div>
 
-<footer style="
-text-align:center;
-padding:20px;
-color:#38bdf8;
-font-size:14px;
-text-shadow:0 0 10px #38bdf8;
-border-top:1px solid rgba(56,189,248,0.3);
-margin-top:20px;
-">
-Sistem Informasi Pendataan Barang di Gudang<br>
-Universitas Bina Darma
-</footer>
-</body>
-</html>
+
+<button class="button"
+onclick="runDart('dart12','https://dartpad.dev/embed-inline.html?id=example&split=60&run=true')">
+
+Tampilkan DartPad 12
+
+</button>
+
+
+<iframe id="dart12"
+style="display:none; width:100%; height:300px;">
+</iframe>
+</div>
+
+<!-- 13 -->
+<div class="section">
+
+<h2>13. Class Dashboard (Ringkasan Sistem)</h2>
+
+<ul>
+
+<li>
+<b>Class Dashboard</b> digunakan untuk menampilkan ringkasan informasi utama pada Sistem Informasi Pendataan Barang di Gudang.
+</li>
+
+<li>
+Class ini berfungsi memberikan gambaran umum mengenai jumlah barang, jumlah transaksi, stok tersedia, dan kondisi gudang.
+</li>
+
+<li>
+Class Dashboard memiliki atribut berupa <b>idDashboard</b>, <b>jumlahBarang</b>, <b>barangMasuk</b>, <b>barangKeluar</b>, dan <b>stokTersedia</b>.
+</li>
+
+<li>
+Constructor <b>Dashboard()</b> digunakan untuk melakukan inisialisasi data ringkasan sistem.
+</li>
+
+<li>
+Method <b>tampilkanDashboard()</b> digunakan untuk menampilkan informasi keseluruhan sistem gudang.
+</li>
+
+<li>
+Method <b>statusGudang()</b> digunakan untuk mengetahui kondisi jumlah stok barang pada gudang.
+</li>
+
+<li>
+Fungsi <b>main()</b> digunakan untuk membuat objek Dashboard dan menjalankan proses tampilan ringkasan sistem.
+</li>
+
+</ul>
+
+
+<h3>Input:</h3>
+
+<ul>
+
+<li>ID Dashboard</li>
+
+<li>Jumlah Data Barang</li>
+
+<li>Jumlah Barang Masuk</li>
+
+<li>Jumlah Barang Keluar</li>
+
+<li>Total Stok Tersedia</li>
+
+</ul>
+
+
+<h3>Proses:</h3>
+
+<ul>
+
+<li>Membuat objek dari class Dashboard menggunakan constructor.</li>
+
+<li>Menyimpan data ringkasan sistem gudang.</li>
+
+<li>Menampilkan informasi dashboard.</li>
+
+<li>Melakukan pengecekan kondisi stok barang.</li>
+
+<li>Menampilkan status sistem gudang.</li>
+
+</ul>
+
+
+<h3>Output:</h3>
+
+<ul>
+
+<li>Ringkasan jumlah barang.</li>
+
+<li>Informasi barang masuk.</li>
+
+<li>Informasi barang keluar.</li>
+
+<li>Total stok tersedia.</li>
+
+<li>Status kondisi gudang.</li>
+
+</ul>
+
+
+<h3>Kode Dart:</h3>
+
+
+<div class="code-box">
+
+<pre><code>
+
+// ==========================================
+// Nama 1 : Yoza Ulpia Rafila
+// NIM    : 251410004
+//
+// Nama 2 : Rifqi Prayoga
+// NIM    : 251410005
+//
+// Kelas  : SI2A
+// Sistem Informasi Pendataan Barang Gudang
+// ==========================================
+
+
+class Dashboard {
+
+
+  String idDashboard;
+
+  int jumlahBarang;
+
+  int barangMasuk;
+
+  int barangKeluar;
+
+  int stokTersedia;
+
+
+
+  // Constructor
+
+  Dashboard(
+
+    this.idDashboard,
+
+    this.jumlahBarang,
+
+    this.barangMasuk,
+
+    this.barangKeluar,
+
+    this.stokTersedia
+
+  );
+
+
+
+
+  // Method tampilkan dashboard
+
+  void tampilkanDashboard(){
+
+
+    print("===== DASHBOARD SISTEM GUDANG =====");
+
+
+    print("ID Dashboard : $idDashboard");
+
+    print("Jumlah Barang : $jumlahBarang");
+
+    print("Barang Masuk : $barangMasuk");
+
+    print("Barang Keluar : $barangKeluar");
+
+    print("Stok Tersedia : $stokTersedia");
+
+
+  }
+
+
+
+
+
+  // Method status gudang
+
+  void statusGudang(){
+
+
+    print("");
+
+    print("===== STATUS GUDANG =====");
+
+
+
+    if(stokTersedia <= 0){
+
+
+      print("Status : Gudang Kosong");
+
+
+    }else if(stokTersedia < 20){
+
+
+      print("Status : Stok Menipis");
+
+
+    }else{
+
+
+      print("Status : Gudang Aman");
+
+
+    }
+
+
+  }
+
+
+}
+
+
+
+void main(){
+
+
+
+  // Input data dashboard
+
+  var dashboard1 = Dashboard(
+
+
+    "D001",
+
+    100,
+
+    50,
+
+    30,
+
+    120
+
+
+  );
+
+
+
+  // Proses tampil dashboard
+
+  dashboard1.tampilkanDashboard();
+
+
+
+  // Proses cek status
+
+  dashboard1.statusGudang();
+
+
+
+}
+
+</code></pre>
+
+</div>
+
+
+<button class="button"
+onclick="runDart('dart13','https://dartpad.dev/embed-inline.html?id=example&split=60&run=true')">
+
+Tampilkan DartPad 13
+
+</button>
+
+
+<iframe id="dart13"
+style="display:none; width:100%; height:300px;">
+</iframe>
+</div>
+
+<!-- 14 -->
+<div class="section">
+
+<h2>14. 📊 Diagram Class — Sistem Pendataan Barang di Gudang</h2>
+
+
+<p>
+Diagram class digunakan untuk menggambarkan hubungan antar class pada Sistem Informasi Pendataan Barang di Gudang berbasis konsep Object-Oriented Programming (OOP).
+</p>
+
+
+<p>
+Setiap class memiliki atribut dan method yang saling berhubungan untuk menjalankan proses pengelolaan data gudang.
+</p>
+
+
+
+<h3>Diagram Class:</h3>
+
+
+<div class="code-box">
+
+<pre>
+
+                 +----------------+
+                 |      User      |
+                 +----------------+
+                 | - username     |
+                 | - password     |
+                 | - levelUser    |
+                 +----------------+
+                 | + login()      |
+                 +----------------+
+                         |
+                         |
+                         v
+
++----------------+       +----------------+
+|    Supplier    |       |    Kategori    |
++----------------+       +----------------+
+| - kodeSupplier |       | - idKategori   |
+| - namaSupplier |       | - namaKategori |
+| - alamat       |       +----------------+
+| - telepon      |       |+ tampilkan()   |
+| - email        |       +----------------+
++----------------+
+|+ tampilkan()   |
++----------------+
+
+
+                         |
+                         v
+
+
+                 +----------------+
+                 |    Barang      |
+                 +----------------+
+                 | - kodeBarang   |
+                 | - namaBarang   |
+                 | - jumlahStok   |
+                 | - kondisi      |
+                 +----------------+
+                 |+ tambahStok()  |
+                 |+ kurangiStok() |
+                 +----------------+
+
+                         |
+        ---------------------------------
+        |               |               |
+        v               v               v
+
+
++---------------+  +---------------+  +---------------+
+| BarangMasuk   |  | BarangKeluar  |  | StokBarang    |
++---------------+  +---------------+  +---------------+
+| - idMasuk     |  | - idKeluar    |  | - stokAwal    |
+| - tanggal     |  | - tanggal     |  | - masuk       |
+| - jumlah      |  | - jumlah      |  | - keluar      |
++---------------+  +---------------+  +---------------+
+|+ tambahStok() |  |+ kurangiStok()|  |+ hitungStok() |
++---------------+  +---------------+  +---------------+
+
+
+                         |
+                         v
+
+
++----------------+      +----------------+
+| RiwayatBarang  |      |     Gudang     |
++----------------+      +----------------+
+| - idRiwayat    |      | - idGudang     |
+| - tanggal      |      | - lokasi       |
+| - aktivitas    |      | - kapasitas    |
++----------------+      +----------------+
+|+ tampilkan()   |      |+ tampilkan()   |
++----------------+      +----------------+
+
+
+                         |
+                         v
+
+
++----------------+      +----------------+
+|  Peminjaman    |      |   Notifikasi   |
++----------------+      +----------------+
+| - idPinjam     |      | - idNotif      |
+| - kodeBarang   |      | - pesan        |
+| - jumlah       |      | - stok         |
++----------------+      +----------------+
+|+ tampilkan()   |      |+ cekStok()     |
++----------------+      +----------------+
+
+
+                         |
+                         v
+
+
+                 +----------------+
+                 |   Dashboard    |
+                 +----------------+
+                 | - jumlahBarang |
+                 | - barangMasuk  |
+                 | - barangKeluar |
+                 | - stokTersedia |
+                 +----------------+
+                 |+ tampilkan()   |
+                 |+ status()      |
+                 +----------------+
+
+
+</pre>
+
+</div>
+
+
+
+<h3>Hubungan Antar Class:</h3>
+
+
+<ul>
+
+<li>
+<b>User</b> berhubungan dengan sistem untuk melakukan proses login dan autentikasi pengguna.
+</li>
+
+<li>
+<b>Supplier</b> menyediakan data pemasok barang yang masuk ke gudang.
+</li>
+
+<li>
+<b>Kategori</b> digunakan untuk mengelompokkan jenis barang.
+</li>
+
+<li>
+<b>Barang</b> menjadi data utama yang dikelola oleh sistem.
+</li>
+
+<li>
+<b>BarangMasuk</b> dan <b>BarangKeluar</b> mengubah jumlah stok barang.
+</li>
+
+<li>
+<b>StokBarang</b> menghitung jumlah stok akhir berdasarkan transaksi.
+</li>
+
+<li>
+<b>RiwayatBarang</b> menyimpan histori perubahan data barang.
+</li>
+
+<li>
+<b>Gudang</b> menyimpan informasi lokasi dan kapasitas penyimpanan.
+</li>
+
+<li>
+<b>Peminjaman</b> mencatat barang yang dipinjam oleh pengguna.
+</li>
+
+<li>
+<b>Notifikasi</b> memberikan peringatan ketika stok barang menipis.
+</li>
+
+<li>
+<b>Dashboard</b> menampilkan ringkasan seluruh informasi sistem.
+</li>
+
+</ul>
+
+
+<h3>Kesimpulan Diagram Class:</h3>
+
+<p>
+Diagram class menunjukkan penerapan konsep OOP dengan penggunaan class, atribut, constructor, dan method. Setiap class memiliki fungsi masing-masing sehingga sistem pendataan barang di gudang menjadi lebih terstruktur, mudah dikembangkan, dan mudah dipelihara.
+</p>
+</div>
+
+<!-- 15 -->
+<div class="section">
+
+<h2>15. Penjelasan Aplikasi</h2>
+
+
+<p>
+<b>Sistem Informasi Pendataan Barang di Gudang</b> merupakan aplikasi berbasis pemrograman Dart yang dirancang untuk membantu proses pengelolaan data barang pada suatu gudang.
+</p>
+
+
+<p>
+Aplikasi ini menerapkan konsep <b>Object-Oriented Programming (OOP)</b> dengan menggunakan class, object, constructor, dan method untuk mengatur setiap bagian sistem.
+</p>
+
+
+<h3>Fungsi Utama Aplikasi:</h3>
+
+
+<ul>
+
+<li>
+<b>Pengelolaan Data User</b><br>
+Class User digunakan untuk mengatur proses login pengguna berdasarkan username, password, dan level akses.
+</li>
+
+
+<li>
+<b>Pengelolaan Data Barang</b><br>
+Class Barang digunakan untuk menyimpan informasi barang seperti kode barang, nama barang, kategori, merk, stok, satuan, dan kondisi barang.
+</li>
+
+
+<li>
+<b>Pengelolaan Kategori Barang</b><br>
+Class Kategori digunakan untuk mengelompokkan barang berdasarkan jenis tertentu agar pencarian data lebih mudah.
+</li>
+
+
+<li>
+<b>Pengelolaan Supplier</b><br>
+Class Supplier digunakan untuk menyimpan informasi pemasok barang yang bekerja sama dengan gudang.
+</li>
+
+
+<li>
+<b>Transaksi Barang Masuk</b><br>
+Class BarangMasuk digunakan untuk mencatat barang yang diterima dari supplier dan menambahkan jumlah stok.
+</li>
+
+
+<li>
+<b>Transaksi Barang Keluar</b><br>
+Class BarangKeluar digunakan untuk mencatat barang yang keluar dari gudang serta mengurangi jumlah stok.
+</li>
+
+
+<li>
+<b>Perhitungan Stok Barang</b><br>
+Class StokBarang digunakan untuk menghitung jumlah stok akhir berdasarkan barang masuk dan barang keluar.
+</li>
+
+
+<li>
+<b>Pembuatan Laporan</b><br>
+Class Laporan digunakan untuk menampilkan informasi transaksi dan data persediaan barang.
+</li>
+
+
+<li>
+<b>Riwayat Aktivitas</b><br>
+Class RiwayatBarang digunakan untuk menyimpan histori perubahan data barang pada sistem.
+</li>
+
+
+<li>
+<b>Manajemen Gudang</b><br>
+Class Gudang digunakan untuk menyimpan informasi lokasi dan kapasitas penyimpanan barang.
+</li>
+
+
+<li>
+<b>Peminjaman Barang</b><br>
+Class Peminjaman digunakan untuk mencatat aktivitas peminjaman barang oleh pengguna.
+</li>
+
+
+<li>
+<b>Notifikasi Stok</b><br>
+Class Notifikasi memberikan peringatan apabila jumlah stok barang menipis atau habis.
+</li>
+
+
+<li>
+<b>Dashboard Sistem</b><br>
+Class Dashboard menampilkan ringkasan informasi seperti jumlah barang, transaksi, dan kondisi stok gudang.
+</li>
+
+</ul>
+
+
+
+<h3>Alur Kerja Aplikasi:</h3>
+
+
+<ul>
+
+<li>
+User melakukan login ke dalam sistem.
+</li>
+
+<li>
+Admin memasukkan data barang, kategori, dan supplier.
+</li>
+
+<li>
+Barang masuk dicatat dan stok barang diperbarui.
+</li>
+
+<li>
+Barang keluar atau peminjaman barang dicatat oleh sistem.
+</li>
+
+<li>
+Sistem melakukan perhitungan stok secara otomatis.
+</li>
+
+<li>
+Riwayat aktivitas barang tersimpan sebagai laporan transaksi.
+</li>
+
+<li>
+Dashboard menampilkan informasi keseluruhan kondisi gudang.
+</li>
+
+<li>
+Notifikasi memberikan peringatan jika stok barang membutuhkan pengadaan.
+</li>
+
+</ul>
+
+
+
+<h3>Teknologi yang Digunakan:</h3>
+
+
+<ul>
+
+<li>
+<b>Bahasa Pemrograman:</b> Dart
+</li>
+
+<li>
+<b>Konsep Pemrograman:</b> Object-Oriented Programming (OOP)
+</li>
+
+<li>
+<b>Platform Pengujian:</b> DartPad
+</li>
+
+<li>
+<b>Jenis Aplikasi:</b> Sistem Informasi Pendataan Barang Gudang
+</li>
+
+</ul>
+
+
+
+<h3>Tujuan Aplikasi:</h3>
+
+
+<p>
+Aplikasi ini bertujuan untuk membantu proses pendataan barang agar lebih cepat, akurat, dan terorganisir. Dengan penerapan konsep OOP, setiap bagian sistem memiliki tanggung jawab masing-masing sehingga aplikasi lebih mudah dipahami, dikembangkan, dan dipelihara.
+</p
+</div>
+
