@@ -839,31 +839,32 @@ graph TD
 'background':'#020617'
 }}}%%
 graph TD
-    A["🚀 MULAI"] --> B["📂 Inisialisasi Data"]
-    B --> C["🏭 Buat Objek Barang x5"]
-    C --> D["📋 Tampilkan Daftar Barang"]
-    D --> E["📥 Transaksi Barang Masuk"]
+graph TD
+    A["MULAI"] --> B["Inisialisasi Data"]
+    B --> C["Buat Objek Barang x5"]
+    C --> D["Tampilkan Daftar Barang"]
+    D --> E["Transaksi Barang Masuk"]
 
-    E --> F{"❓ Barang ditemukan?"}
+    E --> F{"Barang ditemukan?"}
 
-    F -->|✅ Ya| G["➕ tambahStok()"]
-    F -->|❌ Tidak| H["⚠️ Error: Tidak ditemukan"]
+    F -->|Ya| G["tambahStok()"]
+    F -->|Tidak| H["Error: Tidak ditemukan"]
 
-    G --> I["📝 Catat Riwayat"]
-    I --> J["📤 Transaksi Barang Keluar"]
+    G --> I["Catat Riwayat"]
+    I --> J["Transaksi Barang Keluar"]
     H --> J
 
-    J --> K{"❓ Stok mencukupi?"}
+    J --> K{"Stok mencukupi?"}
 
-    K -->|✅ Ya| L["➖ kurangiStok()"]
-    K -->|❌ Tidak| M["⚠️ Error: Stok tidak cukup"]
+    K -->|Ya| L["kurangiStok()"]
+    K -->|Tidak| M["Error: Stok tidak cukup"]
 
-    L --> N["📝 Catat Riwayat"]
-    N --> O["📊 Hitung Stok Akhir"]
+    L --> N["Catat Riwayat"]
+    N --> O["Hitung Stok Akhir"]
     M --> O
 
-    O --> P["🖥️ Tampilkan Output"]
-    P --> Q["🏁 SELESAI"]
+    O --> P["Tampilkan Output"]
+    P --> Q["SELESAI"]
 </code>
                 </div>
             </div>
