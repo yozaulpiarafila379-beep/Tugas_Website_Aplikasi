@@ -733,48 +733,71 @@
                     </div>
                 </div>
                 <div class="copy-section">
-                    <button class="copy-btn" onclick="toggleCode('flowchart-code')">📋 Tampilkan Kode Mermaid</button>
-                    <button class="copy-btn" onclick="copyMermaid('flowchart-code')">📋 Salin Kode</button>
-                </div>
-                <div id="flowchart-code" class="code-block">
-                    <span class="label">📌 Kode Mermaid — Flowchart Sistem</span>
-                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
-                    graph TD
-                        A( MULAI) --> B[ Inisialisasi Sistem]
-                        B --> C[ Tampilkan Dashboard]
-                        C --> D{ Pilih Aksi}
+    <button class="copy-btn" onclick="toggleCode('flowchart-code')">
+        📋 Tampilkan Kode Mermaid
+    </button>
 
-                        D -->|Tambah Barang| E[ Input Data]
-                        E --> F{ Kode unik?}
-                        F -->| Ya| G[ Simpan &amp; Tampilkan]
-                        F -->| Tidak| H[ Error: Duplikat]
-                        G --> I[↻ Kembali ke Dashboard]
-                        H --> I
+    <button class="copy-btn" onclick="copyMermaid('flowchart-code')">
+        📋 Salin Kode
+    </button>
+</div>
 
-                        D -->|Pilih Barang| J[ Pilih Barang]
-                        J --> K[ Detail Barang]
-                        K --> L{ Aksi}
+<div id="flowchart-code" class="code-block">
 
-                        L -->| Tambah Stok| M[ Input Jumlah]
-                        M --> N[ Update Stok]
-                        N --> I
+    <span class="label">📌 Kode Mermaid — Flowchart Sistem</span>
 
-                        L -->| Kurangi Stok| O[ Input Jumlah]
-                        O --> P{ Stok cukup?}
-                        P -->| Ya| Q[ Update Stok]
-                        P -->| Tidak| R[ Stok habis]
-                        Q --> I
-                        R --> I
+    <code>
+%%{init: {
+'theme': 'dark',
+'themeVariables': {
+'primaryColor': '#22d3ee',
+'primaryTextColor': '#ffffff',
+'primaryBorderColor': '#a855f7',
+'lineColor': '#94a3b8',
+'secondaryColor': '#1e293b',
+'tertiaryColor': '#0f172a',
+'background': '#020617'
+}
+}}%%
 
-                        L -->| Hapus| S{ Konfirmasi?}
-                        S -->| Ya| T[ Hapus]
-                        S -->| Batal| I
-                        T --> I
+graph TD
 
-                        I --> C
-                        C -.->|loop| D
-                        C --> U( SELESAI)</code>
-                </div>
+A(MULAI) --> B[Inisialisasi Sistem]
+B --> C[Tampilkan Dashboard]
+C --> D{Pilih Aksi}
+
+D -->|Tambah Barang| E[Input Data Barang]
+E --> F{Kode unik?}
+F -->|Ya| G[Simpan Data]
+F -->|Tidak| H[Error: Data Duplikat]
+G --> I[Kembali ke Dashboard]
+H --> I
+
+D -->|Pilih Barang| J[Pilih Barang]
+J --> K[Detail Barang]
+K --> L{Pilih Aksi}
+
+L -->|Tambah Stok| M[Input Jumlah Stok]
+M --> N[Update Stok]
+N --> I
+
+L -->|Kurangi Stok| O[Input Jumlah Stok]
+O --> P{Stok cukup?}
+P -->|Ya| Q[Update Stok]
+P -->|Tidak| R[Stok Tidak Cukup]
+Q --> I
+R --> I
+
+L -->|Hapus| S{Konfirmasi Hapus?}
+S -->|Ya| T[Hapus Barang]
+S -->|Batal| I
+T --> I
+
+I --> C
+C --> U(SELESAI)
+
+    </code>
+</div>
             </div>
 
             <!-- ─── PSEUDOCODE ─── -->
