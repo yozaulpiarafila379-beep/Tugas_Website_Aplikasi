@@ -879,93 +879,85 @@ graph TD
                         classDiagram
 
 class EntitasGudang {
-    <<abstract>>
-    #String kode
-    #String nama
-    +tampilkanInfo() void*
-    +cetakIdentitas() void
+    <<Abstract>>
+    #kode : String
+    #nama : String
+    +tampilkanInfo()
+    +cetakIdentitas()
 }
 
 class Barang {
-    +String kodeBarang
-    +String namaBarang
-    +String kategori
-    +String merk
-    +int jumlahStok
-    +String satuan
-    +String kondisi
-    +tampilkanInfo() void
-    +tambahStok(int jml) void
-    +kurangiStok(int jml) void
+    +kodeBarang : String
+    +namaBarang : String
+    +kategori : String
+    +merk : String
+    +jumlahStok : int
+    +satuan : String
+    +kondisi : String
+    +tampilkanInfo()
+    +tambahStok(jml:int)
+    +kurangiStok(jml:int)
 }
 
 EntitasGudang <|-- Barang
 
 class Transaksi {
-    <<abstract>>
-    #String idTransaksi
-    #String tanggal
-    #String kodeBarang
-    #int jumlah
-    +prosesTransaksi() void*
-    +cetakHeader() void
+    <<Abstract>>
+    #idTransaksi : String
+    #tanggal : String
+    #kodeBarang : String
+    #jumlah : int
+    +prosesTransaksi()
+    +cetakHeader()
 }
 
 class BarangMasuk {
-    +String idMasuk
-    +String tanggalMasuk
-    +String kodeBarang
-    +String namaBarang
-    +String namaSupplier
-    +int jumlah
-    +prosesTransaksi() void
-    +tambahStok() void
+    +idMasuk : String
+    +tanggalMasuk : String
+    +namaSupplier : String
+    +prosesTransaksi()
+    +tambahStok()
 }
 
 class BarangKeluar {
-    +String idKeluar
-    +String tanggalKeluar
-    +String kodeBarang
-    +String namaBarang
-    +String tujuan
-    +int jumlah
-    +prosesTransaksi() void
-    +kurangiStok() void
+    +idKeluar : String
+    +tanggalKeluar : String
+    +tujuan : String
+    +prosesTransaksi()
+    +kurangiStok()
 }
 
 Transaksi <|-- BarangMasuk
 Transaksi <|-- BarangKeluar
 
 class Pengguna {
-    <<abstract>>
-    #String username
-    #String password
-    +login() void*
-    +tampilkanIdentitas() void
+    <<Abstract>>
+    #username : String
+    #password : String
+    +login()
+    +tampilkanIdentitas()
 }
 
 class User {
-    +String username
-    +String password
-    +String level
-    +login() void
+    +level : String
+    +login()
 }
 
 Pengguna <|-- User
 
 class StokBarang {
-    +int stokAwal
-    +int barangMasuk
-    +int barangKeluar
-    +int stokAkhir
-    +String status
-    +hitungStok() void
+    +stokAwal : int
+    +barangMasuk : int
+    +barangKeluar : int
+    +stokAkhir : int
+    +status : String
+    +hitungStok()
 }
 
-BarangMasuk --> Barang : tambah stok
-BarangKeluar --> Barang : kurangi stok
-StokBarang --> Barang : hitung stok
-User --> Barang : kelola data
+BarangMasuk --> Barang
+BarangKeluar --> Barang
+StokBarang --> Barang
+User --> Barang
                            
                     </div>
                 </div>
@@ -1041,31 +1033,88 @@ class Pengguna {
     #String username
     #String password
     +login() void*
-    +tampilkanIdentitas() void
+classDiagram
+
+class EntitasGudang {
+    <<Abstract>>
+    #kode : String
+    #nama : String
+    +tampilkanInfo()
+    +cetakIdentitas()
+}
+
+class Barang {
+    +kodeBarang : String
+    +namaBarang : String
+    +kategori : String
+    +merk : String
+    +jumlahStok : int
+    +satuan : String
+    +kondisi : String
+    +tampilkanInfo()
+    +tambahStok(jml:int)
+    +kurangiStok(jml:int)
+}
+
+EntitasGudang <|-- Barang
+
+class Transaksi {
+    <<Abstract>>
+    #idTransaksi : String
+    #tanggal : String
+    #kodeBarang : String
+    #jumlah : int
+    +prosesTransaksi()
+    +cetakHeader()
+}
+
+class BarangMasuk {
+    +idMasuk : String
+    +tanggalMasuk : String
+    +namaSupplier : String
+    +prosesTransaksi()
+    +tambahStok()
+}
+
+class BarangKeluar {
+    +idKeluar : String
+    +tanggalKeluar : String
+    +tujuan : String
+    +prosesTransaksi()
+    +kurangiStok()
+}
+
+Transaksi <|-- BarangMasuk
+Transaksi <|-- BarangKeluar
+
+class Pengguna {
+    <<Abstract>>
+    #username : String
+    #password : String
+    +login()
+    +tampilkanIdentitas()
 }
 
 class User {
-    +String username
-    +String password
-    +String level
-    +login() void
+    +level : String
+    +login()
 }
 
 Pengguna <|-- User
 
 class StokBarang {
-    +int stokAwal
-    +int barangMasuk
-    +int barangKeluar
-    +int stokAkhir
-    +String status
-    +hitungStok() void
+    +stokAwal : int
+    +barangMasuk : int
+    +barangKeluar : int
+    +stokAkhir : int
+    +status : String
+    +hitungStok()
 }
 
-BarangMasuk --> Barang : tambah stok
-BarangKeluar --> Barang : kurangi stok
-StokBarang --> Barang : hitung stok
-User --> Barang : kelola data
+BarangMasuk --> Barang
+BarangKeluar --> Barang
+StokBarang --> Barang
+User --> Barang
    
                         }</code>
                 </div>
