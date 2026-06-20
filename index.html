@@ -783,26 +783,44 @@
                 <p style="color:#94a3b8; font-size:0.85em;">Alur logika program: inisialisasi, transaksi masuk/keluar, perhitungan stok akhir.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
-                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#f472b6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
-                        graph TD
-                            A(🚀 MULAI) --> B[📂 Inisialisasi Data]
-                            B --> C[🏭 Buat Objek Barang x5]
-                            C --> D[📋 Tampilkan Daftar Barang]
-                            D --> E[📥 Transaksi Barang Masuk]
-                            E --> F{❓ Barang ditemukan?}
-                            F -->|✅ Ya| G[➕ tambahStok()]
-                            F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
-                            G --> I[📝 Catat Riwayat]
-                            I --> J[📤 Transaksi Barang Keluar]
-                            H --> J
-                            J --> K{❓ Stok mencukupi?}
-                            K -->|✅ Ya| L[➖ kurangiStok()]
-                            K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
-                            L --> N[📝 Catat Riwayat]
-                            N --> O[📊 Hitung Stok Akhir]
-                            M --> O
-                            O --> P[🖥️ Tampilkan Output]
-                            P --> Q(🏁 SELESAI)
+%%{init: {'theme':'dark','themeVariables':{
+'primaryColor':'#f472b6',
+'primaryTextColor':'#fff',
+'primaryBorderColor':'#a855f7',
+'lineColor':'#94a3b8',
+'secondaryColor':'#1e293b',
+'tertiaryColor':'#0f172a',
+'background':'#020617'
+}}}%%
+
+graph TD
+    A["🚀 MULAI"] --> B["📂 Inisialisasi Data"]
+    B --> C["🏭 Buat Objek Barang x5"]
+    C --> D["📋 Tampilkan Daftar Barang"]
+    D --> E["📥 Transaksi Barang Masuk"]
+
+    E --> F{"❓ Barang ditemukan?"}
+
+    F -->|✅ Ya| G["➕ tambahStok()"]
+    F -->|❌ Tidak| H["⚠️ Error: Tidak ditemukan"]
+
+    G --> I["📝 Catat Riwayat"]
+    H --> J["📤 Transaksi Barang Keluar"]
+
+    I --> J
+
+    J --> K{"❓ Stok mencukupi?"}
+
+    K -->|✅ Ya| L["➖ kurangiStok()"]
+    K -->|❌ Tidak| M["⚠️ Error: Stok tidak cukup"]
+
+    L --> N["📝 Catat Riwayat"]
+    M --> O["📊 Hitung Stok Akhir"]
+
+    N --> O
+
+    O --> P["🖥️ Tampilkan Output"]
+    P --> Q["🏁 SELESAI"]
                     </div>
                 </div>
                 <div class="copy-section">
@@ -811,26 +829,42 @@
                 </div>
                 <div id="pseudocode-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Diagram Pseudocode</span>
-                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#f472b6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%
-                    graph TD
-                        A(🚀 MULAI) --> B[📂 Inisialisasi Data]
-                        B --> C[🏭 Buat Objek Barang x5]
-                        C --> D[📋 Tampilkan Daftar Barang]
-                        D --> E[📥 Transaksi Barang Masuk]
-                        E --> F{❓ Barang ditemukan?}
-                        F -->|✅ Ya| G[➕ tambahStok()]
-                        F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
-                        G --> I[📝 Catat Riwayat]
-                        I --> J[📤 Transaksi Barang Keluar]
-                        H --> J
-                        J --> K{❓ Stok mencukupi?}
-                        K -->|✅ Ya| L[➖ kurangiStok()]
-                        K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
-                        L --> N[📝 Catat Riwayat]
-                        N --> O[📊 Hitung Stok Akhir]
-                        M --> O
-                        O --> P[🖥️ Tampilkan Output]
-                        P --> Q(🏁 SELESAI)</code>
+<code>%%{init: {'theme':'dark','themeVariables':{
+'primaryColor':'#f472b6',
+'primaryTextColor':'#fff',
+'primaryBorderColor':'#a855f7',
+'lineColor':'#94a3b8',
+'secondaryColor':'#1e293b',
+'tertiaryColor':'#0f172a',
+'background':'#020617'
+}}}%%
+graph TD
+    A["🚀 MULAI"] --> B["📂 Inisialisasi Data"]
+    B --> C["🏭 Buat Objek Barang x5"]
+    C --> D["📋 Tampilkan Daftar Barang"]
+    D --> E["📥 Transaksi Barang Masuk"]
+
+    E --> F{"❓ Barang ditemukan?"}
+
+    F -->|✅ Ya| G["➕ tambahStok()"]
+    F -->|❌ Tidak| H["⚠️ Error: Tidak ditemukan"]
+
+    G --> I["📝 Catat Riwayat"]
+    I --> J["📤 Transaksi Barang Keluar"]
+    H --> J
+
+    J --> K{"❓ Stok mencukupi?"}
+
+    K -->|✅ Ya| L["➖ kurangiStok()"]
+    K -->|❌ Tidak| M["⚠️ Error: Stok tidak cukup"]
+
+    L --> N["📝 Catat Riwayat"]
+    N --> O["📊 Hitung Stok Akhir"]
+    M --> O
+
+    O --> P["🖥️ Tampilkan Output"]
+    P --> Q["🏁 SELESAI"]
+</code>
                 </div>
             </div>
 
