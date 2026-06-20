@@ -877,76 +877,95 @@ graph TD
                     <div class="mermaid">
                         %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
                         classDiagram
-                            class EntitasGudang {
-                                <<abstract>>
-                                #String kode
-                                #String nama
-                                +tampilkanInfo() void*
-                                +cetakIdentitas() void
-                            }
-                            class Barang {
-                                +String kodeBarang
-                                +String namaBarang
-                                +String kategori
-                                +String merk
-                                +int jumlahStok
-                                +String satuan
-                                +String kondisi
-                                +tampilkanInfo() void
-                                +tambahStok(int jml) void
-                                +kurangiStok(int jml) void
-                            }
-                            EntitasGudang <|-- Barang
 
-                            class Transaksi {
-                                <<abstract>>
-                                #String idTransaksi
-                                #String tanggal
-                                #String kodeBarang
-                                #int jumlah
-                                +prosesTransaksi() void*
-                                +cetakHeader() void
-                            }
-                            class BarangMasuk {
-                                +String idMasuk
-                                +String tanggal
-                                +String kodeBarang
-                                +int jumlah
-                                +String namaBarang
-                                +prosesTransaksi() void
-                                +tambahStok() void
-                            }
-                            class BarangKeluar {
-                                +String idKeluar
-                                +String tanggal
-                                +String kodeBarang
-                                +int jumlah
-                                +String tujuan
-                                +prosesTransaksi() void
-                            }
-                            Transaksi <|-- BarangMasuk
-                            Transaksi <|-- BarangKeluar
+class EntitasGudang {
+    <<abstract>>
+    #String kode
+    #String nama
+    +tampilkanInfo() void*
+    +cetakIdentitas() void
+}
 
-                            class Pengguna {
-                                <<abstract>>
-                                #String username
-                                #String password
-                                +login() void*
-                                +tampilkanIdentitas() void
-                            }
-                            class User {
-                                +String username
-                                +String password
-                                +String level
-                                +login() void
-                            }
-                            Pengguna <|-- User
+class Barang {
+    +String kodeBarang
+    +String namaBarang
+    +String kategori
+    +String merk
+    +int jumlahStok
+    +String satuan
+    +String kondisi
+    +tampilkanInfo() void
+    +tambahStok(int jml) void
+    +kurangiStok(int jml) void
+}
 
-                            class StokBarang {
-                                +int stokAwal
-                                +int barangMasuk
-                                +int barangKeluar
-                                +hitungStok() void
+EntitasGudang <|-- Barang
+
+class Transaksi {
+    <<abstract>>
+    #String idTransaksi
+    #String tanggal
+    #String kodeBarang
+    #int jumlah
+    +prosesTransaksi() void*
+    +cetakHeader() void
+}
+
+class BarangMasuk {
+    +String idMasuk
+    +String tanggalMasuk
+    +String kodeBarang
+    +String namaBarang
+    +String namaSupplier
+    +int jumlah
+    +prosesTransaksi() void
+    +tambahStok() void
+}
+
+class BarangKeluar {
+    +String idKeluar
+    +String tanggalKeluar
+    +String kodeBarang
+    +String namaBarang
+    +String tujuan
+    +int jumlah
+    +prosesTransaksi() void
+    +kurangiStok() void
+}
+
+Transaksi <|-- BarangMasuk
+Transaksi <|-- BarangKeluar
+
+class Pengguna {
+    <<abstract>>
+    #String username
+    #String password
+    +login() void*
+    +tampilkanIdentitas() void
+}
+
+class User {
+    +String username
+    +String password
+    +String level
+    +login() void
+}
+
+Pengguna <|-- User
+
+class StokBarang {
+    +int stokAwal
+    +int barangMasuk
+    +int barangKeluar
+    +int stokAkhir
+    +String status
+    +hitungStok() void
+}
+
+BarangMasuk --> Barang : tambah stok
+BarangKeluar --> Barang : kurangi stok
+StokBarang --> Barang : hitung stok
+User --> Barang : kelola data
                             }
                     </div>
                 </div>
@@ -958,76 +977,95 @@ graph TD
                     <span class="label">📌 Kode Mermaid — Class Diagram</span>
                     <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%
                     classDiagram
-                        class EntitasGudang {
-                            <<abstract>>
-                            #String kode
-                            #String nama
-                            +tampilkanInfo() void*
-                            +cetakIdentitas() void
-                        }
-                        class Barang {
-                            +String kodeBarang
-                            +String namaBarang
-                            +String kategori
-                            +String merk
-                            +int jumlahStok
-                            +String satuan
-                            +String kondisi
-                            +tampilkanInfo() void
-                            +tambahStok(int jml) void
-                            +kurangiStok(int jml) void
-                        }
-                        EntitasGudang <|-- Barang
 
-                        class Transaksi {
-                            <<abstract>>
-                            #String idTransaksi
-                            #String tanggal
-                            #String kodeBarang
-                            #int jumlah
-                            +prosesTransaksi() void*
-                            +cetakHeader() void
-                        }
-                        class BarangMasuk {
-                            +String idMasuk
-                            +String tanggal
-                            +String kodeBarang
-                            +int jumlah
-                            +String namaBarang
-                            +prosesTransaksi() void
-                            +tambahStok() void
-                        }
-                        class BarangKeluar {
-                            +String idKeluar
-                            +String tanggal
-                            +String kodeBarang
-                            +int jumlah
-                            +String tujuan
-                            +prosesTransaksi() void
-                        }
-                        Transaksi <|-- BarangMasuk
-                        Transaksi <|-- BarangKeluar
+class EntitasGudang {
+    <<abstract>>
+    #String kode
+    #String nama
+    +tampilkanInfo() void*
+    +cetakIdentitas() void
+}
 
-                        class Pengguna {
-                            <<abstract>>
-                            #String username
-                            #String password
-                            +login() void*
-                            +tampilkanIdentitas() void
-                        }
-                        class User {
-                            +String username
-                            +String password
-                            +String level
-                            +login() void
-                        }
-                        Pengguna <|-- User
+class Barang {
+    +String kodeBarang
+    +String namaBarang
+    +String kategori
+    +String merk
+    +int jumlahStok
+    +String satuan
+    +String kondisi
+    +tampilkanInfo() void
+    +tambahStok(int jml) void
+    +kurangiStok(int jml) void
+}
 
-                        class StokBarang {
-                            +int stokAwal
-                            +int barangMasuk
-                            +int barangKeluar
-                            +hitungStok() void
+EntitasGudang <|-- Barang
+
+class Transaksi {
+    <<abstract>>
+    #String idTransaksi
+    #String tanggal
+    #String kodeBarang
+    #int jumlah
+    +prosesTransaksi() void*
+    +cetakHeader() void
+}
+
+class BarangMasuk {
+    +String idMasuk
+    +String tanggalMasuk
+    +String kodeBarang
+    +String namaBarang
+    +String namaSupplier
+    +int jumlah
+    +prosesTransaksi() void
+    +tambahStok() void
+}
+
+class BarangKeluar {
+    +String idKeluar
+    +String tanggalKeluar
+    +String kodeBarang
+    +String namaBarang
+    +String tujuan
+    +int jumlah
+    +prosesTransaksi() void
+    +kurangiStok() void
+}
+
+Transaksi <|-- BarangMasuk
+Transaksi <|-- BarangKeluar
+
+class Pengguna {
+    <<abstract>>
+    #String username
+    #String password
+    +login() void*
+    +tampilkanIdentitas() void
+}
+
+class User {
+    +String username
+    +String password
+    +String level
+    +login() void
+}
+
+Pengguna <|-- User
+
+class StokBarang {
+    +int stokAwal
+    +int barangMasuk
+    +int barangKeluar
+    +int stokAkhir
+    +String status
+    +hitungStok() void
+}
+
+BarangMasuk --> Barang : tambah stok
+BarangKeluar --> Barang : kurangi stok
+StokBarang --> Barang : hitung stok
+User --> Barang : kelola data
                         }</code>
                 </div>
             </div>
