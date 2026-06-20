@@ -777,128 +777,63 @@
                 </div>
             </div>
 
-<!-- ─── PSEUDOCODE ─── -->
-<div class="diagram-wrapper">
+            <!-- ─── PSEUDOCODE ─── -->
+            <div class="diagram-wrapper">
+                <h3 style="color:#f472b6 !important; text-shadow:0 0 12px #f472b6;">📊 Diagram Alur Pseudocode — Jalur Eksekusi</h3>
+                <p style="color:#94a3b8; font-size:0.85em;">Alur logika program: inisialisasi, transaksi masuk/keluar, perhitungan stok akhir.</p>
+                <div class="mermaid-wrapper">
+                    <div class="mermaid">
+                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#f472b6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
+                        graph TD
+                            A(🚀 MULAI) --> B[📂 Inisialisasi Data]
+                            B --> C[🏭 Buat Objek Barang x5]
+                            C --> D[📋 Tampilkan Daftar Barang]
+                            D --> E[📥 Transaksi Barang Masuk]
+                            E --> F{❓ Barang ditemukan?}
+                            F -->|✅ Ya| G[➕ tambahStok()]
+                            F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
+                            G --> I[📝 Catat Riwayat]
+                            I --> J[📤 Transaksi Barang Keluar]
+                            H --> J
+                            J --> K{❓ Stok mencukupi?}
+                            K -->|✅ Ya| L[➖ kurangiStok()]
+                            K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
+                            L --> N[📝 Catat Riwayat]
+                            N --> O[📊 Hitung Stok Akhir]
+                            M --> O
+                            O --> P[🖥️ Tampilkan Output]
+                            P --> Q(🏁 SELESAI)
+                    </div>
+                </div>
+                <div class="copy-section">
+                    <button class="copy-btn" onclick="toggleCode('pseudocode-code')">📋 Tampilkan Kode Mermaid</button>
+                    <button class="copy-btn" onclick="copyMermaid('pseudocode-code')">📋 Salin Kode</button>
+                </div>
+                <div id="pseudocode-code" class="code-block">
+                    <span class="label">📌 Kode Mermaid — Diagram Pseudocode</span>
+                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#f472b6', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%
+                    graph TD
+                        A(🚀 MULAI) --> B[📂 Inisialisasi Data]
+                        B --> C[🏭 Buat Objek Barang x5]
+                        C --> D[📋 Tampilkan Daftar Barang]
+                        D --> E[📥 Transaksi Barang Masuk]
+                        E --> F{❓ Barang ditemukan?}
+                        F -->|✅ Ya| G[➕ tambahStok()]
+                        F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
+                        G --> I[📝 Catat Riwayat]
+                        I --> J[📤 Transaksi Barang Keluar]
+                        H --> J
+                        J --> K{❓ Stok mencukupi?}
+                        K -->|✅ Ya| L[➖ kurangiStok()]
+                        K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
+                        L --> N[📝 Catat Riwayat]
+                        N --> O[📊 Hitung Stok Akhir]
+                        M --> O
+                        O --> P[🖥️ Tampilkan Output]
+                        P --> Q(🏁 SELESAI)</code>
+                </div>
+            </div>
 
-    <h3 style="color:#f472b6 !important; text-shadow:0 0 12px #f472b6;">
-        📊 Diagram Alur Pseudocode — Jalur Eksekusi
-    </h3>
-
-    <p style="color:#94a3b8; font-size:0.85em;">
-        Alur logika program: inisialisasi, transaksi masuk/keluar, perhitungan stok akhir.
-    </p>
-
-    <div class="mermaid-wrapper">
-
-        <div class="mermaid">
-
-%%{init: {"theme":"dark"}}%%
-
-graph TD
-
-A(🚀 MULAI) --> B[📂 Inisialisasi Data]
-
-B --> C[🏭 Buat Objek Barang x5]
-
-C --> D[📋 Tampilkan Daftar Barang]
-
-D --> E[📥 Transaksi Barang Masuk]
-
-E --> F{❓ Barang ditemukan?}
-
-F -->|✅ Ya| G[➕ tambahStok()]
-
-F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
-
-G --> I[📝 Catat Riwayat]
-
-I --> J[📤 Transaksi Barang Keluar]
-
-H --> J
-
-J --> K{❓ Stok mencukupi?}
-
-K -->|✅ Ya| L[➖ kurangiStok()]
-
-K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
-
-L --> N[📝 Catat Riwayat]
-
-N --> O[📊 Hitung Stok Akhir]
-
-M --> O
-
-O --> P[🖥️ Tampilkan Output]
-
-P --> Q(🏁 SELESAI)
-
-        </div>
-
-    </div>
-
-    <div class="copy-section">
-
-<div class="copy-section">
-    <button class="btn"
-    onclick="runDart('dpseudo','https://dartpad.dev/embed-inline.html?id=8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a&split=60&run=true')">
-        ▶ Tampilkan DartPad
-    </button>
-</div>
-<iframe id="dpseudo"></iframe>
-
-    <div id="pseudocode-code" class="code-block">
-
-        <span class="label">
-            📌 Kode Mermaid — Diagram Pseudocode
-        </span>
-
-
-<code>
-%%{init: {"theme":"dark"}}%%
-
-graph TD
-
-A(🚀 MULAI) --> B[📂 Inisialisasi Data]
-
-B --> C[🏭 Buat Objek Barang x5]
-
-C --> D[📋 Tampilkan Daftar Barang]
-
-D --> E[📥 Transaksi Barang Masuk]
-
-E --> F{❓ Barang ditemukan?}
-
-F -->|✅ Ya| G[➕ tambahStok()]
-
-F -->|❌ Tidak| H[⚠️ Error: Tidak ditemukan]
-
-G --> I[📝 Catat Riwayat]
-
-I --> J[📤 Transaksi Barang Keluar]
-
-H --> J
-
-J --> K{❓ Stok mencukupi?}
-
-K -->|✅ Ya| L[➖ kurangiStok()]
-
-K -->|❌ Tidak| M[⚠️ Error: Stok tidak cukup]
-
-L --> N[📝 Catat Riwayat]
-
-N --> O[📊 Hitung Stok Akhir]
-
-M --> O
-
-O --> P[🖥️ Tampilkan Output]
-
-P --> Q(🏁 SELESAI)
-
-</code>
-
-    </div>
-
-</div>
             <!-- ─── CLASS DIAGRAM ─── -->
             <div class="diagram-wrapper">
                 <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">📦 Class Diagram — UML (Vertical)</h3>
@@ -1522,4 +1457,4 @@ P --> Q(🏁 SELESAI)
     </script>
 
 </body>
-    </html>
+                        </html>
