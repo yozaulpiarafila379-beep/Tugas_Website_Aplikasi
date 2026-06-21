@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Pendataan Barang — OOP + Diagram</title>
-    <!-- Mermaid Library -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- Menjadi -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js"></script>
+```
     <style>
         /* ─── RESET & GLOBAL ─── */
         * {
@@ -869,7 +870,6 @@ graph TD
             </div>
 
 
-
 <!-- ─── CLASS DIAGRAM ─── -->
 <div class="diagram-wrapper">
     <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
@@ -883,18 +883,7 @@ graph TD
 
     <div class="mermaid-wrapper">
         <div class="mermaid">
-%%{init: {'theme': 'dark', 'themeVariables': { 
-    'primaryColor': '#22d3ee', 
-    'primaryTextColor': '#ffffff', 
-    'primaryBorderColor': '#a855f7', 
-    'lineColor': '#94a3b8', 
-    'secondaryColor': '#1e293b', 
-    'tertiaryColor': '#0f172a', 
-    'background': '#020617' 
-}}}%%
 classDiagram
-    direction TB
-
     class EntitasGudang {
         <<abstract>>
         +String kode
@@ -902,7 +891,6 @@ classDiagram
         +tampilkanInfo() void
         +cetakIdentitas() void
     }
-
     class Barang {
         +String kode
         +String nama
@@ -912,12 +900,9 @@ classDiagram
         +String satuan
         +String kondisi
         +tampilkanInfo() void
-        +tambahStok(int jumlah) void
-        +kurangiStok(int jumlah) void
+        +tambahStok(int) void
+        +kurangiStok(int) void
     }
-
-    EntitasGudang <|-- Barang
-
     class Transaksi {
         <<abstract>>
         +String idTransaksi
@@ -927,20 +912,14 @@ classDiagram
         +prosesTransaksi() void
         +cetakHeader() void
     }
-
     class BarangMasuk {
         +String namaSupplier
         +prosesTransaksi() void
     }
-
     class BarangKeluar {
         +String tujuan
         +prosesTransaksi() void
     }
-
-    Transaksi <|-- BarangMasuk
-    Transaksi <|-- BarangKeluar
-
     class Pengguna {
         <<abstract>>
         #String username
@@ -948,14 +927,10 @@ classDiagram
         +login() void
         +tampilkanIdentitas() void
     }
-
     class User {
         +String level
         +login() void
     }
-
-    Pengguna <|-- User
-
     class StokBarang {
         +int stokAwal
         +int barangMasuk
@@ -965,10 +940,14 @@ classDiagram
         +hitungStok() void
     }
 
-    BarangMasuk --> Barang : menambah stok
-    BarangKeluar --> Barang : mengurangi stok
-    StokBarang --> Barang : menghitung stok
-    User --> Barang : mengelola
+    EntitasGudang <|-- Barang
+    Transaksi <|-- BarangMasuk
+    Transaksi <|-- BarangKeluar
+    Pengguna <|-- User
+    BarangMasuk --> Barang
+    BarangKeluar --> Barang
+    StokBarang --> Barang
+    User --> Barang
         </div>
     </div>
 
@@ -983,18 +962,7 @@ classDiagram
 
     <div id="classdiagram-code" class="code-block">
         <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
-        <code>%%{init: {'theme': 'dark', 'themeVariables': { 
-    'primaryColor': '#22d3ee', 
-    'primaryTextColor': '#ffffff', 
-    'primaryBorderColor': '#a855f7', 
-    'lineColor': '#94a3b8', 
-    'secondaryColor': '#1e293b', 
-    'tertiaryColor': '#0f172a', 
-    'background': '#020617' 
-}}}%%
-classDiagram
-    direction TB
-
+        <code>classDiagram
     class EntitasGudang {
         <<abstract>>
         +String kode
@@ -1002,7 +970,6 @@ classDiagram
         +tampilkanInfo() void
         +cetakIdentitas() void
     }
-
     class Barang {
         +String kode
         +String nama
@@ -1012,12 +979,9 @@ classDiagram
         +String satuan
         +String kondisi
         +tampilkanInfo() void
-        +tambahStok(int jumlah) void
-        +kurangiStok(int jumlah) void
+        +tambahStok(int) void
+        +kurangiStok(int) void
     }
-
-    EntitasGudang <|-- Barang
-
     class Transaksi {
         <<abstract>>
         +String idTransaksi
@@ -1027,20 +991,14 @@ classDiagram
         +prosesTransaksi() void
         +cetakHeader() void
     }
-
     class BarangMasuk {
         +String namaSupplier
         +prosesTransaksi() void
     }
-
     class BarangKeluar {
         +String tujuan
         +prosesTransaksi() void
     }
-
-    Transaksi <|-- BarangMasuk
-    Transaksi <|-- BarangKeluar
-
     class Pengguna {
         <<abstract>>
         #String username
@@ -1048,14 +1006,10 @@ classDiagram
         +login() void
         +tampilkanIdentitas() void
     }
-
     class User {
         +String level
         +login() void
     }
-
-    Pengguna <|-- User
-
     class StokBarang {
         +int stokAwal
         +int barangMasuk
@@ -1065,11 +1019,14 @@ classDiagram
         +hitungStok() void
     }
 
-    BarangMasuk --> Barang : menambah stok
-    BarangKeluar --> Barang : mengurangi stok
-    StokBarang --> Barang : menghitung stok
-    User --> Barang : mengelola
-        </code>
+    EntitasGudang <|-- Barang
+    Transaksi <|-- BarangMasuk
+    Transaksi <|-- BarangKeluar
+    Pengguna <|-- User
+    BarangMasuk --> Barang
+    BarangKeluar --> Barang
+    StokBarang --> Barang
+    User --> Barang</code>
     </div>
     </div>
             
@@ -1487,50 +1444,57 @@ classDiagram
             if (b) log(`ℹ️ ${b.tampilkanInfo()}`, 'cyan');
         }
 
-        // ─── MERMAID INIT ───
-        mermaid.initialize({
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#22d3ee',
-                primaryTextColor: '#fff',
-                primaryBorderColor: '#a855f7',
-                lineColor: '#94a3b8',
-                secondaryColor: '#1e293b',
-                tertiaryColor: '#0f172a',
-                background: '#020617',
-                fontFamily: 'Courier New, monospace',
-                fontSize: '14px'
-            },
-            flowchart: {
-                htmlLabels: true,
-                curve: 'basis',
-                useMaxWidth: true
-            },
-            classDiagram: {
-                useMaxWidth: true
-            },
-            startOnLoad: false
-        });
+// ─── MERMAID INIT ───
+mermaid.initialize({
+    theme: 'dark',
+    themeVariables: {
+        primaryColor: '#22d3ee',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#a855f7',
+        lineColor: '#94a3b8',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#0f172a',
+        background: '#020617',
+        fontFamily: 'Courier New, monospace',
+        fontSize: '14px'
+    },
+    flowchart: {
+        htmlLabels: true,
+        curve: 'basis',
+        useMaxWidth: true
+    },
+    classDiagram: {
+        useMaxWidth: true
+    },
+    startOnLoad: false,
+    logLevel: 'error'  // Tambahkan ini untuk debugging
+});
 
-        // ─── INIT ───
-        function init() {
-            initialData.forEach(d =>
-                barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
-            );
-            log(`📦 ${barangList.length} barang siap.`, 'green');
-            refreshSelect();
-            renderInventory();
-            const sel = document.getElementById('selectBarang');
-            if (sel) sel.addEventListener('change', onSelectChange);
-            log('🟢 Sistem siap.', 'cyan');
+// ─── INIT ───
+function init() {
+    initialData.forEach(d =>
+        barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
+    );
+    log(`📦 ${barangList.length} barang siap.`, 'green');
+    refreshSelect();
+    renderInventory();
+    const sel = document.getElementById('selectBarang');
+    if (sel) sel.addEventListener('change', onSelectChange);
+    log('🟢 Sistem siap.', 'cyan');
 
-            // Render ulang diagram
+    // Render ulang diagram dengan timeout
+    setTimeout(function() {
+        try {
             mermaid.run({
                 querySelector: '.mermaid'
             });
+        } catch(e) {
+            console.log('Mermaid error:', e);
         }
+    }, 500);
+}
 
-        document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', init);
     </script>
 
 </body>
