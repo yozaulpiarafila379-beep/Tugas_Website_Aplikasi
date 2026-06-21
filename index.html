@@ -870,16 +870,17 @@ graph TD
             </div>
 
 
-<!-- ─── CLASS DIAGRAM ─── -->
+
+    <!-- ─── CLASS DIAGRAM ─── -->
 <div class="diagram-wrapper">
     <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
         📦 Class Diagram — UML
     </h3>
 
     <p style="color:#94a3b8; font-size:0.85em;">
-        Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
-        panah <span style="color:#22d3ee;">▷</span> = pewarisan,
-        panah <span style="color:#facc15;">→</span> = menggunakan.
+        Keterangan: <span style="color:#f472b6;">⟨abstract⟩</span> = Kelas Abstrak,
+        <span style="color:#22d3ee;">◁──</span> = Pewarisan,
+        <span style="color:#facc15;">──→</span> = Menggunakan.
     </p>
 
     <div class="mermaid-wrapper">
@@ -896,13 +897,14 @@ graph TD
         'background': '#020617'
     },
     'classDiagram': {
-        'useMaxWidth': true
+        'useMaxWidth': true,
+        'padding': 12
     }
 }}%%
 classDiagram
     direction TB
 
-    %% Kelas Induk Abstrak
+    -- Kelas Induk --
     class EntitasGudang {
         <<abstract>>
         +String kode
@@ -929,7 +931,7 @@ classDiagram
         +tampilkanIdentitas() void
     }
 
-    %% Kelas Turunan
+    -- Kelas Turunan --
     class Barang {
         +String kode
         +String nama
@@ -967,13 +969,13 @@ classDiagram
         +hitungStok() void
     }
 
-    %% Relasi Pewarisan
-    EntitasGudang <|-- Barang : extends
-    Transaksi <|-- BarangMasuk : extends
-    Transaksi <|-- BarangKeluar : extends
-    Pengguna <|-- User : extends
+    -- Relasi Pewarisan --
+    EntitasGudang <|-- Barang
+    Transaksi <|-- BarangMasuk
+    Transaksi <|-- BarangKeluar
+    Pengguna <|-- User
 
-    %% Relasi Penggunaan
+    -- Relasi Penggunaan --
     BarangMasuk --> Barang : menambah stok
     BarangKeluar --> Barang : mengurangi stok
     StokBarang --> Barang : menghitung stok
@@ -1004,7 +1006,8 @@ classDiagram
         'background': '#020617'
     },
     'classDiagram': {
-        'useMaxWidth': true
+        'useMaxWidth': true,
+        'padding': 12
     }
 }}%%
 classDiagram
@@ -1073,10 +1076,10 @@ classDiagram
         +hitungStok() void
     }
 
-    EntitasGudang <|-- Barang : extends
-    Transaksi <|-- BarangMasuk : extends
-    Transaksi <|-- BarangKeluar : extends
-    Pengguna <|-- User : extends
+    EntitasGudang <|-- Barang
+    Transaksi <|-- BarangMasuk
+    Transaksi <|-- BarangKeluar
+    Pengguna <|-- User
 
     BarangMasuk --> Barang : menambah stok
     BarangKeluar --> Barang : mengurangi stok
@@ -1085,6 +1088,7 @@ classDiagram
         </code>
     </div>
 </div>
+
            
  
                 
