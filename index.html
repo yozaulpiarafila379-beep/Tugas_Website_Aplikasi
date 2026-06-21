@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Pendataan Barang — OOP + Diagram</title>
-    <!-- Menjadi -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js"></script>
-```
+    <!-- Mermaid Library v9 (lebih stabil) -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js"></script>
     <style>
         /* ─── RESET & GLOBAL ─── */
         * {
@@ -540,6 +539,20 @@
             border-top: 1px solid rgba(56, 189, 248, 0.2);
             margin-top: 30px;
         }
+
+        /* ─── DEBUG ─── */
+        .mermaid-error {
+            color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+            border: 1px solid #f87171;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+        .mermaid-error.show {
+            display: block;
+        }
     </style>
 
     <script>
@@ -607,6 +620,15 @@
                 window.getSelection().addRange(range);
                 document.execCommand('copy');
             });
+        }
+
+        // ─── SHOW ERROR ───
+        function showMermaidError(msg) {
+            const el = document.getElementById('mermaid-error');
+            if (el) {
+                el.textContent = '❌ Mermaid Error: ' + msg;
+                el.classList.add('show');
+            }
         }
     </script>
 </head>
@@ -688,13 +710,15 @@
                 Diagram interaktif yang dapat dilihat kode sumbernya dan disalin.
             </p>
 
+            <!-- Error Display -->
+            <div id="mermaid-error" class="mermaid-error"></div>
+
             <!-- ─── FLOWCHART ─── -->
             <div class="diagram-wrapper">
                 <h3 style="color:#34d399 !important; text-shadow:0 0 12px #34d399;">🔄 Flowchart Sistem — Interaksi Pengguna</h3>
                 <p style="color:#94a3b8; font-size:0.85em;">Alur interaksi pengguna: mulai, inisialisasi, tambah/pilih barang, validasi, selesai.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
-                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
                         graph TD
                             A(🚀 MULAI) --> B[⚙️ Inisialisasi Sistem]
                             B --> C[🖥️ Tampilkan Dashboard]
@@ -738,8 +762,7 @@
                 </div>
                 <div id="flowchart-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Flowchart Sistem</span>
-                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
-                    graph TD
+                    <code>graph TD
                         A( MULAI) --> B[ Inisialisasi Sistem]
                         B --> C[ Tampilkan Dashboard]
                         C --> D{ Pilih Aksi}
@@ -783,16 +806,6 @@
                 <p style="color:#94a3b8; font-size:0.85em;">Alur logika program: inisialisasi, transaksi masuk/keluar, perhitungan stok akhir.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
-%%{init: {'theme':'dark','themeVariables':{
-'primaryColor':'#f472b6',
-'primaryTextColor':'#fff',
-'primaryBorderColor':'#a855f7',
-'lineColor':'#94a3b8',
-'secondaryColor':'#1e293b',
-'tertiaryColor':'#0f172a',
-'background':'#020617'
-}}}%%
-
 graph TD
     A["🚀 MULAI"] --> B["📂 Inisialisasi Data"]
     B --> C["🏭 Buat Objek Barang x5"]
@@ -829,17 +842,7 @@ graph TD
                 </div>
                 <div id="pseudocode-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Diagram Pseudocode</span>
-<code>%%{init: {'theme':'dark','themeVariables':{
-'primaryColor':'#f472b6',
-'primaryTextColor':'#fff',
-'primaryBorderColor':'#a855f7',
-'lineColor':'#94a3b8',
-'secondaryColor':'#1e293b',
-'tertiaryColor':'#0f172a',
-'background':'#020617'
-}}}%%
-    
-graph TD
+<code>graph TD
     A["MULAI"] --> B["Inisialisasi Data"]
     B --> C["Buat Objek Barang x5"]
     C --> D["Tampilkan Daftar Barang"]
@@ -864,25 +867,23 @@ graph TD
     M --> O
 
     O --> P["Tampilkan Output"]
-    P --> Q["SELESAI"]
-</code>
+    P --> Q["SELESAI"]</code>
                 </div>
             </div>
 
+            <!-- ─── CLASS DIAGRAM ─── -->
+            <div class="diagram-wrapper">
+                <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
+                    📦 Class Diagram — UML
+                </h3>
 
-<!-- ─── CLASS DIAGRAM ─── -->
-<div class="diagram-wrapper">
-    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
-        📦 Class Diagram — UML
-    </h3>
+                <p style="color:#94a3b8; font-size:0.85em;">
+                    Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
+                    panah <span style="color:#22d3ee;">▷</span> = pewarisan.
+                </p>
 
-    <p style="color:#94a3b8; font-size:0.85em;">
-        Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
-        panah <span style="color:#22d3ee;">▷</span> = pewarisan.
-    </p>
-
-    <div class="mermaid-wrapper">
-        <div class="mermaid">
+                <div class="mermaid-wrapper">
+                    <div class="mermaid">
 classDiagram
     class EntitasGudang {
         <<abstract>>
@@ -948,21 +949,21 @@ classDiagram
     BarangKeluar --> Barang
     StokBarang --> Barang
     User --> Barang
-        </div>
-    </div>
+                    </div>
+                </div>
 
-    <div class="copy-section">
-        <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
-            📋 Tampilkan Kode Mermaid
-        </button>
-        <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
-            📋 Salin Kode
-        </button>
-    </div>
+                <div class="copy-section">
+                    <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
+                        📋 Tampilkan Kode Mermaid
+                    </button>
+                    <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
+                        📋 Salin Kode
+                    </button>
+                </div>
 
-    <div id="classdiagram-code" class="code-block">
-        <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
-        <code>classDiagram
+                <div id="classdiagram-code" class="code-block">
+                    <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
+                    <code>classDiagram
     class EntitasGudang {
         <<abstract>>
         +String kode
@@ -1027,9 +1028,9 @@ classDiagram
     BarangKeluar --> Barang
     StokBarang --> Barang
     User --> Barang</code>
-    </div>
-    </div>
-            
+                </div>
+            </div>
+        </div>
 
         <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
@@ -1186,35 +1187,35 @@ classDiagram
             <h2>📄 Source Code — Class Barang (Dart)</h2>
             <div class="code-box">
                 <pre><span class="cmt">// ==========================================</span>
-                    <span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
-                    <span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
-                    <span class="cmt">// Kelas : SI2A</span>
-                    <span class="cmt">// Topik : Sistem Pendataan Barang di Gudang (OOP)</span>
-                    <span class="cmt">// ==========================================</span>
+<span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
+<span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
+<span class="cmt">// Kelas : SI2A</span>
+<span class="cmt">// Topik : Sistem Pendataan Barang di Gudang (OOP)</span>
+<span class="cmt">// ==========================================</span>
 
-                    <span class="kw">abstract</span> <span class="kw">class</span> <span class="cls">EntitasGudang</span> {
-                    <span class="type">String</span> kode, nama;
-                    <span class="cls">EntitasGudang</span>(<span class="kw">this</span>.kode, <span class="kw">this</span>.nama);
-                    <span class="kw">void</span> <span class="fn">tampilkanInfo</span>();
-                    <span class="kw">void</span> <span class="fn">cetakIdentitas</span>() {
-                    <span class="fn">print</span>(<span class="str">"🔹 $kode — $nama"</span>);
-                    }
-                    }
+<span class="kw">abstract</span> <span class="kw">class</span> <span class="cls">EntitasGudang</span> {
+    <span class="type">String</span> kode, nama;
+    <span class="cls">EntitasGudang</span>(<span class="kw">this</span>.kode, <span class="kw">this</span>.nama);
+    <span class="kw">void</span> <span class="fn">tampilkanInfo</span>();
+    <span class="kw">void</span> <span class="fn">cetakIdentitas</span>() {
+        <span class="fn">print</span>(<span class="str">"🔹 $kode — $nama"</span>);
+    }
+}
 
-                    <span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
-                    <span class="type">String</span> kategori, merk, satuan, kondisi;
-                    <span class="type">int</span> jumlahStok;
-                    <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
-                    <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
-                    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
-                    <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
-                    }
-                    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
-                    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
-                    <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
-                    <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
-                    }
-                    }</span></pre>
+<span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
+    <span class="type">String</span> kategori, merk, satuan, kondisi;
+    <span class="type">int</span> jumlahStok;
+    <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
+        <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
+    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
+        <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
+    }
+    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
+    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
+        <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
+        <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
+    }
+}</pre>
             </div>
         </div>
 
@@ -1444,58 +1445,60 @@ classDiagram
             if (b) log(`ℹ️ ${b.tampilkanInfo()}`, 'cyan');
         }
 
-// ─── MERMAID INIT ───
-mermaid.initialize({
-    theme: 'dark',
-    themeVariables: {
-        primaryColor: '#22d3ee',
-        primaryTextColor: '#fff',
-        primaryBorderColor: '#a855f7',
-        lineColor: '#94a3b8',
-        secondaryColor: '#1e293b',
-        tertiaryColor: '#0f172a',
-        background: '#020617',
-        fontFamily: 'Courier New, monospace',
-        fontSize: '14px'
-    },
-    flowchart: {
-        htmlLabels: true,
-        curve: 'basis',
-        useMaxWidth: true
-    },
-    classDiagram: {
-        useMaxWidth: true
-    },
-    startOnLoad: false,
-    logLevel: 'error'  // Tambahkan ini untuk debugging
-});
+        // ─── MERMAID INIT ───
+        mermaid.initialize({
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#22d3ee',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#a855f7',
+                lineColor: '#94a3b8',
+                secondaryColor: '#1e293b',
+                tertiaryColor: '#0f172a',
+                background: '#020617',
+                fontFamily: 'Courier New, monospace',
+                fontSize: '14px'
+            },
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis',
+                useMaxWidth: true
+            },
+            classDiagram: {
+                useMaxWidth: true
+            },
+            startOnLoad: false,
+            logLevel: 'error'
+        });
 
-// ─── INIT ───
-function init() {
-    initialData.forEach(d =>
-        barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
-    );
-    log(`📦 ${barangList.length} barang siap.`, 'green');
-    refreshSelect();
-    renderInventory();
-    const sel = document.getElementById('selectBarang');
-    if (sel) sel.addEventListener('change', onSelectChange);
-    log('🟢 Sistem siap.', 'cyan');
+        // ─── INIT ───
+        function init() {
+            initialData.forEach(d =>
+                barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
+            );
+            log(`📦 ${barangList.length} barang siap.`, 'green');
+            refreshSelect();
+            renderInventory();
+            const sel = document.getElementById('selectBarang');
+            if (sel) sel.addEventListener('change', onSelectChange);
+            log('🟢 Sistem siap.', 'cyan');
 
-    // Render ulang diagram dengan timeout
-    setTimeout(function() {
-        try {
-            mermaid.run({
-                querySelector: '.mermaid'
-            });
-        } catch(e) {
-            console.log('Mermaid error:', e);
+            // Render diagram Mermaid
+            setTimeout(function() {
+                try {
+                    mermaid.run({
+                        querySelector: '.mermaid'
+                    });
+                } catch (e) {
+                    console.log('Mermaid error:', e);
+                    showMermaidError(e.message);
+                }
+            }, 500);
         }
-    }, 500);
-}
 
-document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 
-</body>
+    </body>
     </html>
+        
