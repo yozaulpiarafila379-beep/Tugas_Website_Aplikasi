@@ -1436,11 +1436,11 @@ Rifqi Prayoga (251410005)
             </div>
         </div>
 
-        <!-- ════════════════════ SOURCE CODE ════════════════════ -->
-        <div class="section">
-            <h2>📄 Source Code — Class Barang (Dart)</h2>
-            <div class="code-box">
-                        <pre><span class="cmt">// ==========================================</span>
+<!-- ════════════════════ SOURCE CODE ════════════════════ -->
+<div class="section">
+    <h2>📄 Source Code — Sistem Pendataan Barang (Dart)</h2>
+    <div class="code-box">
+        <pre><span class="cmt">// ==========================================</span>
                     <span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
                     <span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
                     <span class="cmt">// Kelas : SI2A</span>
@@ -1458,20 +1458,121 @@ Rifqi Prayoga (251410005)
 
                     <span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
                     <span class="type">String</span> kategori, merk, satuan, kondisi;
-                    <span class="type">int</span> jumlahStok;
+                    <span class="type">int</span> stok;
                     <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
-                    <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
+                    <span class="kw">this</span>.stok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
                     <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
-                    <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
+                    <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | Stok: $stok $satuan"</span>);
                     }
-                    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
-                    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
-                    <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
-                    <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
+                    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> j) { stok += j; <span class="fn">print</span>(<span class="str">"✅ +$j $satuan. Total: $stok"</span>); }
+                    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> j) {
+                    <span class="kw">if</span> (stok >= j) { stok -= j; <span class="fn">print</span>(<span class="str">"✅ -$j $satuan. Total: $stok"</span>); }
+                    <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi! Tersisa: $stok $satuan"</span>);
                     }
+                    }
+
+                    <span class="kw">class</span> <span class="cls">Pelanggan</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
+                    <span class="type">String</span> alamat, telepon, email;
+                    <span class="cls">Pelanggan</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.alamat, <span class="kw">this</span>.telepon, <span class="kw">this</span>.email) : <span class="kw">super</span>(kode, nama);
+                    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
+                    <span class="fn">print</span>(<span class="str">"👤 $kode | $nama | $alamat | $telepon | $email"</span>);
+                    }
+                    }
+
+                    <span class="kw">class</span> <span class="cls">Gudang</span> {
+                    <span class="type">List</span>&lt;<span class="cls">Barang</span>&gt; barang = [];
+                    <span class="type">List</span>&lt;<span class="cls">Pelanggan</span>&gt; pelanggan = [];
+
+                    <span class="kw">void</span> <span class="fn">tambahBarang</span>(<span class="cls">Barang</span> b) { barang.<span class="fn">add</span>(b); }
+                    <span class="kw">void</span> <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span> p) { pelanggan.<span class="fn">add</span>(p); }
+                    
+                    <span class="cls">Barang</span>? <span class="fn">cariBarang</span>(<span class="type">String</span> k) {
+                    <span class="kw">for</span> (<span class="kw">var</span> b <span class="kw">in</span> barang) <span class="kw">if</span> (b.kode == k) <span class="kw">return</span> b;
+                    <span class="kw">return</span> <span class="kw">null</span>;
+                    }
+                    
+                    <span class="cls">Pelanggan</span>? <span class="fn">cariPelanggan</span>(<span class="type">String</span> id) {
+                    <span class="kw">for</span> (<span class="kw">var</span> p <span class="kw">in</span> pelanggan) <span class="kw">if</span> (p.kode == id) <span class="kw">return</span> p;
+                    <span class="kw">return</span> <span class="kw">null</span>;
+                    }
+
+                    <span class="kw">void</span> <span class="fn">transaksiMasuk</span>(<span class="type">String</span> k, <span class="type">int</span> j) {
+                    <span class="kw">var</span> b = <span class="fn">cariBarang</span>(k);
+                    <span class="kw">if</span> (b == <span class="kw">null</span>) { <span class="fn">print</span>(<span class="str">"❌ Barang tidak ditemukan!"</span>); <span class="kw">return</span>; }
+                    b.<span class="fn">tambahStok</span>(j);
+                    }
+
+                    <span class="kw">void</span> <span class="fn">transaksiKeluar</span>(<span class="type">String</span> k, <span class="type">int</span> j) {
+                    <span class="kw">var</span> b = <span class="fn">cariBarang</span>(k);
+                    <span class="kw">if</span> (b == <span class="kw">null</span>) { <span class="fn">print</span>(<span class="str">"❌ Barang tidak ditemukan!"</span>); <span class="kw">return</span>; }
+                    b.<span class="fn">kurangiStok</span>(j);
+                    }
+
+                    <span class="kw">void</span> <span class="fn">transaksiPembelian</span>(<span class="type">String</span> idPelanggan, <span class="type">String</span> kodeBarang, <span class="type">int</span> j) {
+                    <span class="kw">var</span> b = <span class="fn">cariBarang</span>(kodeBarang);
+                    <span class="kw">var</span> p = <span class="fn">cariPelanggan</span>(idPelanggan);
+                    <span class="kw">if</span> (b == <span class="kw">null</span> || p == <span class="kw">null</span>) { <span class="fn">print</span>(<span class="str">"❌ Data tidak ditemukan!"</span>); <span class="kw">return</span>; }
+                    <span class="kw">if</span> (b.stok &lt; j) { <span class="fn">print</span>(<span class="str">"❌ Stok tidak cukup!"</span>); <span class="kw">return</span>; }
+                    b.stok -= j;
+                    <span class="fn">print</span>(<span class="str">"✅ ${p.nama} membeli ${b.nama} $j ${b.satuan}"</span>);
+                    }
+
+                    <span class="kw">void</span> <span class="fn">tampilkanBarang</span>() {
+                    <span class="fn">print</span>(<span class="str">"\n📦 DAFTAR BARANG"</span>);
+                    <span class="kw">for</span> (<span class="kw">var</span> b <span class="kw">in</span> barang) b.<span class="fn">tampilkanInfo</span>();
+                    <span class="fn">print</span>(<span class="str">"Total: ${barang.length} barang\n"</span>);
+                    }
+
+                    <span class="kw">void</span> <span class="fn">tampilkanPelanggan</span>() {
+                    <span class="fn">print</span>(<span class="str">"👤 DAFTAR PELANGGAN"</span>);
+                    <span class="kw">for</span> (<span class="kw">var</span> p <span class="kw">in</span> pelanggan) p.<span class="fn">tampilkanInfo</span>();
+                    <span class="fn">print</span>(<span class="str">"Total: ${pelanggan.length} pelanggan\n"</span>);
+                    }
+
+                    <span class="kw">void</span> <span class="fn">init</span>() {
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG001"</span>,<span class="str">"Beras Premium"</span>,<span class="str">"Makanan"</span>,<span class="str">"A"</span>,<span class="num">50</span>,<span class="str">"Karung"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG002"</span>,<span class="str">"Gula Pasir"</span>,<span class="str">"Pokok"</span>,<span class="str">"B"</span>,<span class="num">40</span>,<span class="str">"Kg"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG003"</span>,<span class="str">"Minyak Goreng"</span>,<span class="str">"Pokok"</span>,<span class="str">"C"</span>,<span class="num">35</span>,<span class="str">"Liter"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG004"</span>,<span class="str">"Telur Ayam"</span>,<span class="str">"Makanan"</span>,<span class="str">"D"</span>,<span class="num">30</span>,<span class="str">"Kg"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG005"</span>,<span class="str">"Tepung Terigu"</span>,<span class="str">"Pokok"</span>,<span class="str">"E"</span>,<span class="num">45</span>,<span class="str">"Kg"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG006"</span>,<span class="str">"Susu Bubuk"</span>,<span class="str">"Minuman"</span>,<span class="str">"F"</span>,<span class="num">25</span>,<span class="str">"Pcs"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG007"</span>,<span class="str">"Kopi Bubuk"</span>,<span class="str">"Minuman"</span>,<span class="str">"G"</span>,<span class="num">20</span>,<span class="str">"Pcs"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG008"</span>,<span class="str">"Teh Celup"</span>,<span class="str">"Minuman"</span>,<span class="str">"H"</span>,<span class="num">28</span>,<span class="str">"Box"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG009"</span>,<span class="str">"Air Mineral"</span>,<span class="str">"Minuman"</span>,<span class="str">"I"</span>,<span class="num">60</span>,<span class="str">"Botol"</span>,<span class="str">"Baik"</span>));
+                    <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(<span class="str">"BRG010"</span>,<span class="str">"Mie Instan"</span>,<span class="str">"Instan"</span>,<span class="str">"J"</span>,<span class="num">55</span>,<span class="str">"Kg"</span>,<span class="str">"Baik"</span>));
+
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG001"</span>,<span class="str">"Ahmad Fauzi"</span>,<span class="str">"Jl. Merdeka 10"</span>,<span class="str">"081234567890"</span>,<span class="str">"ahmad@gmail.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG002"</span>,<span class="str">"Siti Nurhaliza"</span>,<span class="str">"Jl. Sudirman 5"</span>,<span class="str">"081234567891"</span>,<span class="str">"siti@yahoo.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG003"</span>,<span class="str">"Budi Santoso"</span>,<span class="str">"Jl. Thamrin 8"</span>,<span class="str">"081234567892"</span>,<span class="str">"budi@outlook.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG004"</span>,<span class="str">"Dewi Anggraeni"</span>,<span class="str">"Jl. Gatot 12"</span>,<span class="str">"081234567893"</span>,<span class="str">"dewi@gmail.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG005"</span>,<span class="str">"Eko Prasetyo"</span>,<span class="str">"Jl. Siliwangi 3"</span>,<span class="str">"081234567894"</span>,<span class="str">"eko@yahoo.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG006"</span>,<span class="str">"Fitriani Putri"</span>,<span class="str">"Jl. Diponegoro 7"</span>,<span class="str">"081234567895"</span>,<span class="str">"fitriani@gmail.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG007"</span>,<span class="str">"Gilang Ramadhan"</span>,<span class="str">"Jl. Ahmad Yani 15"</span>,<span class="str">"081234567896"</span>,<span class="str">"gilang@outlook.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG008"</span>,<span class="str">"Hani Fauziah"</span>,<span class="str">"Jl. Pahlawan 2"</span>,<span class="str">"081234567897"</span>,<span class="str">"hani@gmail.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG009"</span>,<span class="str">"Irfan Maulana"</span>,<span class="str">"Jl. Veteran 9"</span>,<span class="str">"081234567898"</span>,<span class="str">"irfan@yahoo.com"</span>));
+                    <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(<span class="str">"PLG010"</span>,<span class="str">"Juwita Sari"</span>,<span class="str">"Jl. Kartini 4"</span>,<span class="str">"081234567899"</span>,<span class="str">"juwita@gmail.com"</span>));
+                    
+                    <span class="fn">print</span>(<span class="str">"✅ Data siap! ${barang.length} barang, ${pelanggan.length} pelanggan\n"</span>);
+                    }
+                    }
+
+                    <span class="kw">void</span> <span class="fn">main</span>() {
+                    <span class="kw">var</span> g = <span class="cls">Gudang</span>();
+                    g.<span class="fn">init</span>();
+                    
+                    g.<span class="fn">tampilkanBarang</span>();
+                    g.<span class="fn">tampilkanPelanggan</span>();
+                    
+                    <span class="fn">print</span>(<span class="str">"🔄 SIMULASI TRANSAKSI"</span>);
+                    g.<span class="fn">transaksiMasuk</span>(<span class="str">"BRG001"</span>, <span class="num">10</span>);
+                    g.<span class="fn">transaksiKeluar</span>(<span class="str">"BRG003"</span>, <span class="num">5</span>);
+                    g.<span class="fn">transaksiPembelian</span>(<span class="str">"PLG002"</span>, <span class="str">"BRG002"</span>, <span class="num">3</span>);
+                    
+                    <span class="fn">print</span>(<span class="str">"\n📊 HASIL AKHIR"</span>);
+                    g.<span class="fn">tampilkanBarang</span>();
                     }</span></pre>
-            </div>
-        </div>
+    </div>
+</div>
 
         <!-- ════════════════════ FOOTER ════════════════════ -->
         <footer>
