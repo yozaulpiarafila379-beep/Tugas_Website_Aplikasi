@@ -1489,49 +1489,49 @@ classDiagram
             if (b) log(`ℹ️ ${b.tampilkanInfo()}`, 'cyan');
         }
 
-        // ─── MERMAID INIT ───
-        mermaid.initialize({
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#22d3ee',
-                primaryTextColor: '#fff',
-                primaryBorderColor: '#a855f7',
-                lineColor: '#94a3b8',
-                secondaryColor: '#1e293b',
-                tertiaryColor: '#0f172a',
-                background: '#020617',
-                fontFamily: 'Courier New, monospace',
-                fontSize: '14px',
-            },
-            flowchart: {
-                htmlLabels: true,
-                curve: 'basis',
-                useMaxWidth: true,
-            },
-            classDiagram: {
-                useMaxWidth: true,
-            }
-        });
+// ─── MERMAID INIT ───
+mermaid.initialize({
+    theme: 'dark',
+    themeVariables: {
+        primaryColor: '#22d3ee',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#a855f7',
+        lineColor: '#94a3b8',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#0f172a',
+        background: '#020617',
+        fontFamily: 'Courier New, monospace',
+        fontSize: '14px'
+    },
+    flowchart: {
+        htmlLabels: true,
+        curve: 'basis',
+        useMaxWidth: true
+    },
+    classDiagram: {
+        useMaxWidth: true
+    },
+    startOnLoad: true
+});
 
-        // ─── INIT ───
-        function init() {
-            initialData.forEach(d =>
-                barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
-            );
-            log(`📦 ${barangList.length} barang siap.`, 'green');
-            refreshSelect();
-            renderInventory();
-            const sel = document.getElementById('selectBarang');
-            if (sel) sel.addEventListener('change', onSelectChange);
-            log('🟢 Sistem siap.', 'cyan');
+// ─── INIT ───
+function init() {
+    initialData.forEach(d =>
+        barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
+    );
+    log(`📦 ${barangList.length} barang siap.`, 'green');
+    refreshSelect();
+    renderInventory();
+    const sel = document.getElementById('selectBarang');
+    if (sel) sel.addEventListener('change', onSelectChange);
+    log('🟢 Sistem siap.', 'cyan');
 
-            // Render Mermaid
-            mermaid.run({
-                querySelector: '.mermaid',
-            });
-        }
+    // Render ulang diagram
+    mermaid.init(undefined, '.mermaid');
+}
 
-        document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', init);
+
     </script>
 
 </body>
