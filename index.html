@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Pendataan Barang — OOP + Diagram</title>
     <!-- Mermaid.js -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <style>
         /* ─── RESET & GLOBAL ─── */
         * {
@@ -871,84 +870,66 @@ graph TD
 
 
 <!-- ─── CLASS DIAGRAM ─── -->
-<div class="diagram-wrapper">
-    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
-        📦 Class Diagram — UML
-    </h3>
-
-    <p style="color:#94a3b8; font-size:0.85em;">
-        Keterangan:
-        <span style="color:#f472b6;">⟨abstract⟩</span> = Kelas Abstrak,
-        <span style="color:#22d3ee;">◁──</span> = Pewarisan,
-        <span style="color:#facc15;">──→</span> = Menggunakan.
-    </p>
-
-    <div class="mermaid-wrapper">
-        <div class="mermaid">
+<div class="mermaid-wrapper">
+<pre class="mermaid">
 classDiagram
     direction TB
 
     class EntitasGudang {
-        <<abstract>>
-        +String kode
-        +String nama
-        +tampilkanInfo()
-        +cetakIdentitas()
+        kode : String
+        nama : String
+        tampilkanInfo()
+        cetakIdentitas()
     }
 
     class Transaksi {
-        <<abstract>>
-        +String idTransaksi
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +prosesTransaksi()
-        +cetakHeader()
+        idTransaksi : String
+        tanggal : String
+        kodeBarang : String
+        jumlah : int
+        prosesTransaksi()
+        cetakHeader()
     }
 
     class Pengguna {
-        <<abstract>>
-        #String username
-        #String password
-        +login()
-        +tampilkanIdentitas()
+        username : String
+        password : String
+        login()
+        tampilkanIdentitas()
     }
 
     class Barang {
-        +String kode
-        +String nama
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo()
-        +tambahStok(int jumlah)
-        +kurangiStok(int jumlah)
+        kategori : String
+        merk : String
+        jumlahStok : int
+        satuan : String
+        kondisi : String
+        tambahStok()
+        kurangiStok()
     }
 
     class BarangMasuk {
-        +String namaSupplier
-        +prosesTransaksi()
+        namaSupplier : String
+        prosesTransaksi()
     }
 
     class BarangKeluar {
-        +String tujuan
-        +prosesTransaksi()
+        tujuan : String
+        prosesTransaksi()
     }
 
     class User {
-        +String level
-        +login()
+        level : String
+        login()
     }
 
     class StokBarang {
-        +int stokAwal
-        +int barangMasuk
-        +int barangKeluar
-        +int stokAkhir
-        +String status
-        +hitungStok()
+        stokAwal : int
+        barangMasuk : int
+        barangKeluar : int
+        stokAkhir : int
+        status : String
+        hitungStok()
     }
 
     EntitasGudang <|-- Barang
@@ -956,11 +937,12 @@ classDiagram
     Transaksi <|-- BarangKeluar
     Pengguna <|-- User
 
-    BarangMasuk --> Barang : tambah stok
-    BarangKeluar --> Barang : kurangi stok
-    StokBarang --> Barang : hitung stok
-    User --> Barang : kelola
-        </div>
+    BarangMasuk --> Barang
+    BarangKeluar --> Barang
+    StokBarang --> Barang
+    User --> Barang
+</pre>
+    </div>
     </div>
 
     <div class="copy-section">
@@ -981,66 +963,60 @@ classDiagram
     direction TB
 
     class EntitasGudang {
-        <<abstract>>
-        +String kode
-        +String nama
-        +tampilkanInfo()
-        +cetakIdentitas()
+        kode : String
+        nama : String
+        tampilkanInfo()
+        cetakIdentitas()
     }
 
     class Transaksi {
-        <<abstract>>
-        +String idTransaksi
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +prosesTransaksi()
-        +cetakHeader()
+        idTransaksi : String
+        tanggal : String
+        kodeBarang : String
+        jumlah : int
+        prosesTransaksi()
+        cetakHeader()
     }
 
     class Pengguna {
-        <<abstract>>
-        #String username
-        #String password
-        +login()
-        +tampilkanIdentitas()
+        username : String
+        password : String
+        login()
+        tampilkanIdentitas()
     }
 
     class Barang {
-        +String kode
-        +String nama
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo()
-        +tambahStok(int jumlah)
-        +kurangiStok(int jumlah)
+        kategori : String
+        merk : String
+        jumlahStok : int
+        satuan : String
+        kondisi : String
+        tambahStok()
+        kurangiStok()
     }
 
     class BarangMasuk {
-        +String namaSupplier
-        +prosesTransaksi()
+        namaSupplier : String
+        prosesTransaksi()
     }
 
     class BarangKeluar {
-        +String tujuan
-        +prosesTransaksi()
+        tujuan : String
+        prosesTransaksi()
     }
 
     class User {
-        +String level
-        +login()
+        level : String
+        login()
     }
 
     class StokBarang {
-        +int stokAwal
-        +int barangMasuk
-        +int barangKeluar
-        +int stokAkhir
-        +String status
-        +hitungStok()
+        stokAwal : int
+        barangMasuk : int
+        barangKeluar : int
+        stokAkhir : int
+        status : String
+        hitungStok()
     }
 
     EntitasGudang <|-- Barang
@@ -1048,10 +1024,10 @@ classDiagram
     Transaksi <|-- BarangKeluar
     Pengguna <|-- User
 
-    BarangMasuk --> Barang : tambah stok
-    BarangKeluar --> Barang : kurangi stok
-    StokBarang --> Barang : hitung stok
-    User --> Barang : kelola
+    BarangMasuk --> Barang
+    BarangKeluar --> Barang
+    StokBarang --> Barang
+    User --> Barang
 </code>
 
     </div>
@@ -1472,9 +1448,10 @@ classDiagram
         }
 
 mermaid.initialize({
-    startOnLoad: false,
+    startOnLoad: true,
     theme: 'dark',
-    securityLevel: 'loose',
+    securityLevel: 'loose'
+});
     themeVariables: {
         primaryColor: '#22d3ee',
         primaryTextColor: '#fff',
@@ -1530,12 +1507,6 @@ function init() {
         theme: 'dark',
         securityLevel: 'loose'
     });
-
-    mermaid.init(
-        undefined,
-        document.querySelectorAll('.mermaid')
-    );
-}
 
 document.addEventListener('DOMContentLoaded', init);
     </script>
