@@ -1040,268 +1040,373 @@ classDiagram
                 
 
 <!-- ════════════════════ SISTEM PENDATAAN BARANG DI GUDANG ════════════════════ -->
-<div class="section" style="border:2px solid rgba(34,197,94,0.5);">
+<div class="section">
 
-<h2 style="color:#22c55e !important;">
-🏪 Sistem Pendataan Barang di Gudang
-</h2>
+<h2>🏪 Sistem Pendataan Barang di Gudang</h2>
 
-<p style="color:#94a3b8;">
+<p>
 Kelompok:
 <br>Yoza Ulpia Rafila (251410004)
 <br>Rifqi Prayoga (251410005)
 </p>
 
-<!-- 1 -->
-<h3 style="color:#22d3ee;">1. Class Barang</h3>
+<h3>1. Class Barang</h3>
 
 <div class="pseudo-block">
 
-class Barang {<br>
-&nbsp;&nbsp;String kode;<br>
-&nbsp;&nbsp;String nama;<br>
-&nbsp;&nbsp;int stok;<br>
-&nbsp;&nbsp;double hargaBeli;<br>
-&nbsp;&nbsp;double hargaJual;<br>
-&nbsp;&nbsp;String kategori;<br>
-&nbsp;&nbsp;String satuan;<br>
+class Barang {
+
+  kodeBarang
+
+  namaBarang
+
+  stok
+
+  hargaBeli
+
+  hargaJual
+
+  kategori
+
+  satuan
+
 }
 
 </div>
 
-<!-- 2 -->
-<h3 style="color:#a855f7;">2. Class Pelanggan</h3>
+<h3>2. Class Pelanggan</h3>
 
 <div class="pseudo-block">
 
-class Pelanggan {<br>
-&nbsp;&nbsp;String id;<br>
-&nbsp;&nbsp;String nama;<br>
-&nbsp;&nbsp;String alamat;<br>
-&nbsp;&nbsp;String noTelepon;<br>
-&nbsp;&nbsp;String email;<br>
-&nbsp;&nbsp;String jenisKelamin;<br>
+class Pelanggan {
+
+  idPelanggan
+
+  namaPelanggan
+
+  alamat
+
+  noTelepon
+
+  email
+
+  jenisKelamin
+
+  tanggalDaftar
+
 }
 
 </div>
 
-<!-- 3 -->
-<h3 style="color:#f472b6;">3. Class Transaksi</h3>
+<h3>3. Class Transaksi</h3>
 
 <div class="pseudo-block">
 
-class Transaksi {<br>
-&nbsp;&nbsp;String id;<br>
-&nbsp;&nbsp;String kodeBarang;<br>
-&nbsp;&nbsp;String namaBarang;<br>
-&nbsp;&nbsp;int jumlah;<br>
-&nbsp;&nbsp;String jenis;<br>
-&nbsp;&nbsp;double totalHarga;<br>
-&nbsp;&nbsp;String namaPelanggan;<br>
+class Transaksi {
+
+  idTransaksi
+
+  kodeBarang
+
+  namaBarang
+
+  jumlah
+
+  jenisTransaksi
+
+  tanggal
+
+  totalHarga
+
+  idPelanggan
+
+  namaPelanggan
+
+  keterangan
+
 }
 
 </div>
 
-<!-- 4 -->
-<h3 style="color:#fb923c;">4. Data Barang Gudang</h3>
+<h3>4. Data Barang Gudang</h3>
 
 <div class="pseudo-block">
 
-BRG001 = Beras Premium 5kg<br>
-BRG002 = Gula Pasir 1kg<br>
-BRG003 = Minyak Goreng 2L<br>
-BRG004 = Telur Ayam 1kg<br>
-BRG005 = Tepung Terigu 1kg<br>
-BRG006 = Susu Bubuk 400g<br>
-BRG007 = Kopi Bubuk 200g<br>
-BRG008 = Teh Celup 50pcs<br>
-BRG009 = Air Mineral 600ml<br>
-BRG010 = Mie Instan 1kg<br>
-BRG011 = Kecap Manis 600ml<br>
-BRG012 = Saus Tomat 500ml<br>
-BRG013 = Mayones 250ml<br>
-BRG014 = Mentega 200g<br>
+BRG001 = Beras Premium 5kg
+
+BRG002 = Gula Pasir 1kg
+
+BRG003 = Minyak Goreng 2L
+
+BRG004 = Telur Ayam 1kg
+
+BRG005 = Tepung Terigu 1kg
+
+BRG006 = Susu Bubuk 400g
+
+BRG007 = Kopi Bubuk 200g
+
+BRG008 = Teh Celup 50pcs
+
+BRG009 = Air Mineral 600ml
+
+BRG010 = Mie Instan 1kg
+
+BRG011 = Kecap Manis 600ml
+
+BRG012 = Saus Tomat 500ml
+
+BRG013 = Mayones 250ml
+
+BRG014 = Mentega 200g
+
 BRG015 = Keju Cheddar 150g
 
 </div>
 
-<!-- 5 -->
-<h3 style="color:#facc15;">5. Data Pelanggan</h3>
+<h3>5. Data Pelanggan</h3>
 
 <div class="pseudo-block">
 
-PLG001 = Ahmad Fauzi<br>
-PLG002 = Siti Nurhaliza<br>
-PLG003 = Budi Santoso<br>
-PLG004 = Dewi Anggraeni<br>
-PLG005 = Eko Prasetyo<br>
-PLG006 = Fitriani Putri<br>
-PLG007 = Gilang Ramadhan<br>
-PLG008 = Hani Fauziah<br>
-PLG009 = Irfan Maulana<br>
-PLG010 = Juwita Sari<br>
-PLG011 = Kurniawan Hadi<br>
-PLG012 = Lestari Dewi<br>
-PLG013 = Mulyono<br>
-PLG014 = Nurul Aini<br>
+PLG001 = Ahmad Fauzi
+
+PLG002 = Siti Nurhaliza
+
+PLG003 = Budi Santoso
+
+PLG004 = Dewi Anggraeni
+
+PLG005 = Eko Prasetyo
+
+PLG006 = Fitriani Putri
+
+PLG007 = Gilang Ramadhan
+
+PLG008 = Hani Fauziah
+
+PLG009 = Irfan Maulana
+
+PLG010 = Juwita Sari
+
+PLG011 = Kurniawan Hadi
+
+PLG012 = Lestari Dewi
+
+PLG013 = Mulyono
+
+PLG014 = Nurul Aini
+
 PLG015 = Oktavianus
 
 </div>
 
-<!-- 6 -->
-<h3 style="color:#38bdf8;">6. Tambah Barang</h3>
+<h3>6. Tambah Barang</h3>
 
 <div class="pseudo-block">
 
-tambahBarang(barang)<br>
+tambahBarang(barang)
 
-Simpan data barang ke daftarBarang
+simpan barang ke daftarBarang
 
 </div>
 
-<!-- 7 -->
-<h3 style="color:#22c55e;">7. Tambah Pelanggan</h3>
+<h3>7. Tambah Pelanggan</h3>
 
 <div class="pseudo-block">
 
-tambahPelanggan(pelanggan)<br>
+tambahPelanggan(pelanggan)
 
-Simpan data pelanggan ke daftarPelanggan
+simpan pelanggan ke daftarPelanggan
 
 </div>
 
-<!-- 8 -->
-<h3 style="color:#ef4444;">8. Cari Barang</h3>
+<h3>8. Cari Barang</h3>
 
 <div class="pseudo-block">
 
-cariBarang(kodeBarang)<br>
+cariBarang(kodeBarang)
 
-Jika ditemukan<br>
-→ tampilkan data barang<br>
+jika ditemukan
 
-Jika tidak ditemukan<br>
+→ tampilkan data barang
+
+jika tidak ditemukan
+
 → tampilkan pesan error
 
 </div>
 
-<!-- 9 -->
-<h3 style="color:#8b5cf6;">9. Cari Pelanggan</h3>
+<h3>9. Cari Pelanggan</h3>
 
 <div class="pseudo-block">
 
-cariPelanggan(idPelanggan)<br>
+cariPelanggan(idPelanggan)
 
-Jika ditemukan<br>
-→ tampilkan data pelanggan<br>
+jika ditemukan
 
-Jika tidak ditemukan<br>
+→ tampilkan data pelanggan
+
+jika tidak ditemukan
+
 → tampilkan pesan error
 
 </div>
 
-<!-- 10 -->
-<h3 style="color:#06b6d4;">10. Transaksi Barang Masuk</h3>
+<h3>10. Transaksi Barang Masuk</h3>
 
 <div class="pseudo-block">
 
-Input kode barang<br>
-Input jumlah barang<br>
+input kode barang
 
-stok = stok + jumlah<br>
+input jumlah barang
 
-totalHarga = hargaBeli × jumlah<br>
+input keterangan
 
-Simpan transaksi masuk
+stok = stok + jumlah
+
+totalHarga = hargaBeli × jumlah
+
+simpan transaksi masuk
 
 </div>
 
-<!-- 11 -->
-<h3 style="color:#f97316;">11. Transaksi Barang Keluar</h3>
+<h3>11. Transaksi Barang Keluar</h3>
 
 <div class="pseudo-block">
 
-Input kode barang<br>
-Input jumlah barang<br>
+input kode barang
 
-stok = stok - jumlah<br>
+input jumlah barang
 
-totalHarga = hargaJual × jumlah<br>
+input keterangan
 
-Simpan transaksi keluar
+jika stok mencukupi
+
+stok = stok - jumlah
+
+totalHarga = hargaJual × jumlah
+
+simpan transaksi keluar
+
+jika stok tidak cukup
+
+tampilkan pesan error
 
 </div>
 
-<!-- 12 -->
-<h3 style="color:#84cc16;">12. Transaksi Pembelian Pelanggan</h3>
+<h3>12. Transaksi Pembelian Pelanggan</h3>
 
 <div class="pseudo-block">
 
-Input ID Pelanggan<br>
-Input Kode Barang<br>
-Input Jumlah Barang<br>
+input ID pelanggan
 
-stok = stok - jumlah<br>
+input kode barang
 
-totalHarga = hargaJual × jumlah<br>
+input jumlah barang
 
-Simpan transaksi pembelian
+cek pelanggan
+
+cek barang
+
+cek stok
+
+stok = stok - jumlah
+
+totalHarga = hargaJual × jumlah
+
+simpan transaksi pembelian
 
 </div>
 
-<!-- 13 -->
-<h3 style="color:#ec4899;">13. Menampilkan Data</h3>
+<h3>13. Menampilkan Data</h3>
 
 <div class="pseudo-block">
 
-Tampilkan Daftar Barang<br>
-Tampilkan Daftar Pelanggan<br>
-Tampilkan Daftar Transaksi
+tampilkanDaftarBarang()
+
+tampilkanDaftarPelanggan()
+
+tampilkanDaftarTransaksi()
 
 </div>
 
-<!-- 14 -->
-<h3 style="color:#14b8a6;">14. Laporan Gudang dan Keuangan</h3>
+<h3>14. Laporan Stok Akhir</h3>
 
 <div class="pseudo-block">
 
-Laporan Stok Akhir<br>
+untuk setiap barang
 
-stok akhir =<br>
-stok awal + barang masuk - barang keluar<br><br>
+nilaiStok = stok × hargaBeli
 
-Laporan Keuangan<br>
+totalNilaiStok += nilaiStok
 
-Total Pemasukan<br>
-Total Pengeluaran<br>
-Laba Kotor<br>
-Persentase Laba
+totalUnit += stok
+
+tampilkan laporan stok
 
 </div>
 
-<!-- 15 -->
-<h3 style="color:#eab308;">15. Program Utama (Main)</h3>
+<h3>15. Laporan Keuangan</h3>
 
 <div class="pseudo-block">
 
-void main() {<br>
-&nbsp;&nbsp;GudangSystem system;<br><br>
+hitung total pemasukan
 
-&nbsp;&nbsp;system.inisialisasiData();<br><br>
+hitung total pengeluaran
 
-&nbsp;&nbsp;// Data Barang<br>
-&nbsp;&nbsp;15 Barang Gudang<br><br>
+labaKotor = pemasukan - pengeluaran
 
-&nbsp;&nbsp;// Data Pelanggan<br>
-&nbsp;&nbsp;15 Pelanggan<br><br>
+persentaseLaba =
+(labaKotor / pengeluaran) × 100
 
-&nbsp;&nbsp;system.menuUtama();<br>
+tampilkan laporan keuangan
+
+</div>
+
+<h3>16. Menu Utama</h3>
+
+<div class="pseudo-block">
+
+1. Lihat Daftar Barang
+
+2. Lihat Daftar Pelanggan
+
+3. Lihat Daftar Transaksi
+
+4. Transaksi Barang Masuk
+
+5. Transaksi Barang Keluar
+
+6. Transaksi Pembelian Pelanggan
+
+7. Laporan Keuangan
+
+8. Laporan Stok Akhir
+
+9. Laporan Lengkap
+
+0. Keluar
+
+</div>
+
+<h3>17. Program Utama (Main)</h3>
+
+<div class="pseudo-block">
+
+void main() {
+
+  buat objek GudangSystem
+
+  inisialisasiData()
+
+  tampilkan menuUtama()
+
 }
 
-<br><br>
+Pembuat Program:
 
-Pembuat Program:<br>
-Yoza Ulpia Rafila (251410004)<br>
+Yoza Ulpia Rafila (251410004)
+
 Rifqi Prayoga (251410005)
 
 </div>
