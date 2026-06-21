@@ -1437,42 +1437,746 @@ Rifqi Prayoga (251410005)
             </div>
         </div>
 
-        <!-- ════════════════════ SOURCE CODE ════════════════════ -->
-        <div class="section">
-            <h2>📄 Source Code — Class Barang (Dart)</h2>
-            <div class="code-box">
-                <pre><span class="cmt">// ==========================================</span>
-                    <span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
-                    <span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
-                    <span class="cmt">// Kelas : SI2A</span>
-                    <span class="cmt">// Topik : Sistem Pendataan Barang di Gudang (OOP)</span>
-                    <span class="cmt">// ==========================================</span>
+<!-- ════════════════════ SOURCE CODE ════════════════════ -->
+<div class="section">
+    <h2>📄 Source Code — Sistem Pendataan Barang di Gudang (Dart)</h2>
+    <div class="code-box">
+        <pre><span class="cmt">// ===========================================</span>
+            <span class="cmt">// SISTEM PENDATAAN BARANG DI GUDANG</span>
+            <span class="cmt">// Kelompok:</span>
+            <span class="cmt">// Yoza Ulpia Rafila (251410004)</span>
+            <span class="cmt">// Rifqi Prayoga (251410005)</span>
+            <span class="cmt">// ===========================================</span>
 
-                    <span class="kw">abstract</span> <span class="kw">class</span> <span class="cls">EntitasGudang</span> {
-                    <span class="type">String</span> kode, nama;
-                    <span class="cls">EntitasGudang</span>(<span class="kw">this</span>.kode, <span class="kw">this</span>.nama);
-                    <span class="kw">void</span> <span class="fn">tampilkanInfo</span>();
-                    <span class="kw">void</span> <span class="fn">cetakIdentitas</span>() {
-                    <span class="fn">print</span>(<span class="str">"🔹 $kode — $nama"</span>);
-                    }
-                    }
+            <span class="kw">import</span> <span class="str">'dart:convert'</span>;
 
-                    <span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
-                    <span class="type">String</span> kategori, merk, satuan, kondisi;
-                    <span class="type">int</span> jumlahStok;
-                    <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
-                    <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
-                    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
-                    <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
-                    }
-                    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
-                    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
-                    <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
-                    <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
-                    }
-                    }</span></pre>
-            </div>
-        </div>
+            <span class="kw">class</span> <span class="cls">Barang</span> {
+            <span class="type">String</span> kode;
+            <span class="type">String</span> nama;
+            <span class="type">int</span> stok;
+            <span class="type">double</span> hargaBeli;
+            <span class="type">double</span> hargaJual;
+            <span class="type">String</span> kategori;
+            <span class="type">String</span> satuan;
+            
+            <span class="cls">Barang</span>({
+            <span class="kw">required</span> <span class="kw">this</span>.kode,
+            <span class="kw">required</span> <span class="kw">this</span>.nama,
+            <span class="kw">required</span> <span class="kw">this</span>.stok,
+            <span class="kw">required</span> <span class="kw">this</span>.hargaBeli,
+            <span class="kw">required</span> <span class="kw">this</span>.hargaJual,
+            <span class="kw">this</span>.kategori = <span class="str">'Umum'</span>,
+            <span class="kw">this</span>.satuan = <span class="str">'Unit'</span>,
+            });
+            
+            <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="kw">dynamic</span>&gt; <span class="fn">toMap</span>() {
+            <span class="kw">return</span> {
+            <span class="str">'kode'</span>: kode,
+            <span class="str">'nama'</span>: nama,
+            <span class="str">'stok'</span>: stok,
+            <span class="str">'hargaBeli'</span>: hargaBeli,
+            <span class="str">'hargaJual'</span>: hargaJual,
+            <span class="str">'kategori'</span>: kategori,
+            <span class="str">'satuan'</span>: satuan,
+            };
+            }
+            
+            <span class="ovr">@override</span>
+            <span class="type">String</span> <span class="fn">toString</span>() {
+            <span class="kw">return</span> <span class="str">'Kode: $kode | Nama: $nama | Stok: $stok $satuan | Harga Beli: Rp${hargaBeli.toStringAsFixed(0)} | Harga Jual: Rp${hargaJual.toStringAsFixed(0)} | Kategori: $kategori'</span>;
+            }
+            }
+
+            <span class="kw">class</span> <span class="cls">Pelanggan</span> {
+            <span class="type">String</span> id;
+            <span class="type">String</span> nama;
+            <span class="type">String</span> alamat;
+            <span class="type">String</span> noTelepon;
+            <span class="type">String</span> email;
+            <span class="type">String</span> jenisKelamin;
+            <span class="type">DateTime</span> tanggalDaftar;
+            
+            <span class="cls">Pelanggan</span>({
+            <span class="kw">required</span> <span class="kw">this</span>.id,
+            <span class="kw">required</span> <span class="kw">this</span>.nama,
+            <span class="kw">required</span> <span class="kw">this</span>.alamat,
+            <span class="kw">required</span> <span class="kw">this</span>.noTelepon,
+            <span class="kw">this</span>.email = <span class="str">''</span>,
+            <span class="kw">this</span>.jenisKelamin = <span class="str">'-'</span>,
+            <span class="kw">required</span> <span class="kw">this</span>.tanggalDaftar,
+            });
+            
+            <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="kw">dynamic</span>&gt; <span class="fn">toMap</span>() {
+            <span class="kw">return</span> {
+            <span class="str">'id'</span>: id,
+            <span class="str">'nama'</span>: nama,
+            <span class="str">'alamat'</span>: alamat,
+            <span class="str">'noTelepon'</span>: noTelepon,
+            <span class="str">'email'</span>: email,
+            <span class="str">'jenisKelamin'</span>: jenisKelamin,
+            <span class="str">'tanggalDaftar'</span>: tanggalDaftar,
+            };
+            }
+            
+            <span class="ovr">@override</span>
+            <span class="type">String</span> <span class="fn">toString</span>() {
+            <span class="kw">return</span> <span class="str">'ID: $id | Nama: $nama | Alamat: $alamat | No. Telepon: $noTelepon | Email: $email'</span>;
+            }
+            }
+
+            <span class="kw">class</span> <span class="cls">Transaksi</span> {
+            <span class="type">String</span> id;
+            <span class="type">String</span> kodeBarang;
+            <span class="type">String</span> namaBarang;
+            <span class="type">int</span> jumlah;
+            <span class="type">String</span> jenis; <span class="cmt">// 'masuk', 'keluar', 'pembelian'</span>
+            <span class="type">DateTime</span> tanggal;
+            <span class="type">double</span> totalHarga;
+            <span class="type">String</span> idPelanggan;
+            <span class="type">String</span> namaPelanggan;
+            <span class="type">String</span> keterangan;
+            
+            <span class="cls">Transaksi</span>({
+            <span class="kw">required</span> <span class="kw">this</span>.id,
+            <span class="kw">required</span> <span class="kw">this</span>.kodeBarang,
+            <span class="kw">required</span> <span class="kw">this</span>.namaBarang,
+            <span class="kw">required</span> <span class="kw">this</span>.jumlah,
+            <span class="kw">required</span> <span class="kw">this</span>.jenis,
+            <span class="kw">required</span> <span class="kw">this</span>.tanggal,
+            <span class="kw">required</span> <span class="kw">this</span>.totalHarga,
+            <span class="kw">this</span>.idPelanggan = <span class="str">''</span>,
+            <span class="kw">this</span>.namaPelanggan = <span class="str">''</span>,
+            <span class="kw">this</span>.keterangan = <span class="str">''</span>,
+            });
+            
+            <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="kw">dynamic</span>&gt; <span class="fn">toMap</span>() {
+            <span class="kw">return</span> {
+            <span class="str">'id'</span>: id,
+            <span class="str">'kodeBarang'</span>: kodeBarang,
+            <span class="str">'namaBarang'</span>: namaBarang,
+            <span class="str">'jumlah'</span>: jumlah,
+            <span class="str">'jenis'</span>: jenis,
+            <span class="str">'tanggal'</span>: tanggal,
+            <span class="str">'totalHarga'</span>: totalHarga,
+            <span class="str">'idPelanggan'</span>: idPelanggan,
+            <span class="str">'namaPelanggan'</span>: namaPelanggan,
+            <span class="str">'keterangan'</span>: keterangan,
+            };
+            }
+            
+            <span class="ovr">@override</span>
+            <span class="type">String</span> <span class="fn">toString</span>() {
+            <span class="type">String</span> jenisTeks = <span class="str">''</span>;
+            <span class="kw">if</span> (jenis == <span class="str">'masuk'</span>) jenisTeks = <span class="str">'BARANG MASUK'</span>;
+            <span class="kw">else</span> <span class="kw">if</span> (jenis == <span class="str">'keluar'</span>) jenisTeks = <span class="str">'BARANG KELUAR'</span>;
+            <span class="kw">else</span> <span class="kw">if</span> (jenis == <span class="str">'pembelian'</span>) jenisTeks = <span class="str">'PEMBELIAN'</span>;
+            
+            <span class="type">String</span> pelangganInfo = <span class="str">''</span>;
+            <span class="kw">if</span> (namaPelanggan.<span class="fn">isNotEmpty</span>) {
+            pelangganInfo = <span class="str">' | Pelanggan: $namaPelanggan'</span>;
+            }
+            
+            <span class="kw">return</span> <span class="str">'$jenisTeks: $namaBarang ($kodeBarang) | Jumlah: $jumlah | Total: Rp${totalHarga.toStringAsFixed(0)} | Tanggal: ${tanggal.toString().split(' ')[0]}$pelangganInfo'</span>;
+            }
+            }
+
+            <span class="kw">class</span> <span class="cls">GudangSystem</span> {
+            <span class="type">List</span>&lt;<span class="cls">Barang</span>&gt; daftarBarang = [];
+            <span class="type">List</span>&lt;<span class="cls">Pelanggan</span>&gt; daftarPelanggan = [];
+            <span class="type">List</span>&lt;<span class="cls">Transaksi</span>&gt; daftarTransaksi = [];
+            <span class="type">int</span> counterTransaksi = <span class="num">1</span>;
+            <span class="type">String</span>? inputBuffer;
+            <span class="type">int</span> inputIndex = <span class="num">0</span>;
+            
+            <span class="cmt">// ========== METHOD UNTUK INPUT DI DARTPAD ==========</span>
+            <span class="kw">void</span> <span class="fn">setInput</span>(<span class="type">String</span> input) {
+            inputBuffer = input;
+            inputIndex = <span class="num">0</span>;
+            }
+            
+            <span class="type">String</span>? <span class="fn">readLine</span>() {
+            <span class="kw">if</span> (inputBuffer == <span class="kw">null</span>) <span class="kw">return</span> <span class="kw">null</span>;
+            <span class="kw">if</span> (inputIndex >= inputBuffer!.<span class="fn">length</span>) <span class="kw">return</span> <span class="kw">null</span>;
+            
+            <span class="type">int</span> start = inputIndex;
+            <span class="kw">while</span> (inputIndex &lt; inputBuffer!.<span class="fn">length</span> &amp;&amp; inputBuffer![inputIndex] != <span class="str">'\n'</span>) {
+            inputIndex++;
+            }
+            <span class="type">String</span> result = inputBuffer!.<span class="fn">substring</span>(start, inputIndex);
+            <span class="kw">if</span> (inputIndex &lt; inputBuffer!.<span class="fn">length</span> &amp;&amp; inputBuffer![inputIndex] == <span class="str">'\n'</span>) {
+            inputIndex++;
+            }
+            <span class="kw">return</span> result;
+            }
+            
+            <span class="cmt">// ========== FUNGSI UTAMA ==========</span>
+            
+            <span class="kw">void</span> <span class="fn">tambahBarang</span>(<span class="cls">Barang</span> barang) {
+            daftarBarang.<span class="fn">add</span>(barang);
+            }
+            
+            <span class="kw">void</span> <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span> pelanggan) {
+            daftarPelanggan.<span class="fn">add</span>(pelanggan);
+            }
+            
+            <span class="cls">Barang</span>? <span class="fn">cariBarang</span>(<span class="type">String</span> kode) {
+            <span class="kw">try</span> {
+            <span class="kw">return</span> daftarBarang.<span class="fn">firstWhere</span>((b) =&gt; b.kode == kode);
+            } <span class="kw">catch</span> (e) {
+            <span class="kw">return</span> <span class="kw">null</span>;
+            }
+            }
+            
+            <span class="cls">Pelanggan</span>? <span class="fn">cariPelanggan</span>(<span class="type">String</span> id) {
+            <span class="kw">try</span> {
+            <span class="kw">return</span> daftarPelanggan.<span class="fn">firstWhere</span>((p) =&gt; p.id == id);
+            } <span class="kw">catch</span> (e) {
+            <span class="kw">return</span> <span class="kw">null</span>;
+            }
+            }
+            
+            <span class="kw">bool</span> <span class="fn">transaksiMasuk</span>(<span class="type">String</span> kodeBarang, <span class="type">int</span> jumlah, <span class="type">String</span> keterangan) {
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kodeBarang);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang dengan kode $kodeBarang tidak ditemukan!'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="type">double</span> totalHarga = barang.hargaBeli * jumlah;
+            barang.stok += jumlah;
+            
+            <span class="cls">Transaksi</span> transaksi = <span class="cls">Transaksi</span>(
+            id: <span class="str">'TRX${counterTransaksi.toString().padLeft(4, '0')}'</span>,
+            kodeBarang: barang.kode,
+            namaBarang: barang.nama,
+            jumlah: jumlah,
+            jenis: <span class="str">'masuk'</span>,
+            tanggal: <span class="cls">DateTime</span>.<span class="fn">now</span>(),
+            totalHarga: totalHarga,
+            keterangan: keterangan,
+            );
+            daftarTransaksi.<span class="fn">add</span>(transaksi);
+            counterTransaksi++;
+            
+            <span class="fn">print</span>(<span class="str">'✅ Transaksi masuk berhasil: ${barang.nama} +$jumlah ${barang.satuan}'</span>);
+            <span class="fn">print</span>(<span class="str">'   Total harga: Rp${totalHarga.toStringAsFixed(0)}'</span>);
+            <span class="kw">return</span> <span class="kw">true</span>;
+            }
+            
+            <span class="kw">bool</span> <span class="fn">transaksiKeluar</span>(<span class="type">String</span> kodeBarang, <span class="type">int</span> jumlah, <span class="type">String</span> keterangan) {
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kodeBarang);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang dengan kode $kodeBarang tidak ditemukan!'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="kw">if</span> (barang.stok &lt; jumlah) {
+            <span class="fn">print</span>(<span class="str">'❌ Stok tidak mencukupi! Stok tersedia: ${barang.stok} ${barang.satuan}'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="type">double</span> totalHarga = barang.hargaJual * jumlah;
+            barang.stok -= jumlah;
+            
+            <span class="cls">Transaksi</span> transaksi = <span class="cls">Transaksi</span>(
+            id: <span class="str">'TRX${counterTransaksi.toString().padLeft(4, '0')}'</span>,
+            kodeBarang: barang.kode,
+            namaBarang: barang.nama,
+            jumlah: jumlah,
+            jenis: <span class="str">'keluar'</span>,
+            tanggal: <span class="cls">DateTime</span>.<span class="fn">now</span>(),
+            totalHarga: totalHarga,
+            keterangan: keterangan,
+            );
+            daftarTransaksi.<span class="fn">add</span>(transaksi);
+            counterTransaksi++;
+            
+            <span class="fn">print</span>(<span class="str">'✅ Transaksi keluar berhasil: ${barang.nama} -$jumlah ${barang.satuan}'</span>);
+            <span class="fn">print</span>(<span class="str">'   Total harga: Rp${totalHarga.toStringAsFixed(0)}'</span>);
+            <span class="kw">return</span> <span class="kw">true</span>;
+            }
+            
+            <span class="kw">bool</span> <span class="fn">transaksiPembelian</span>(<span class="type">String</span> kodeBarang, <span class="type">String</span> idPelanggan, <span class="type">int</span> jumlah) {
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kodeBarang);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang dengan kode $kodeBarang tidak ditemukan!'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="cls">Pelanggan</span>? pelanggan = <span class="fn">cariPelanggan</span>(idPelanggan);
+            <span class="kw">if</span> (pelanggan == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Pelanggan dengan ID $idPelanggan tidak ditemukan!'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="kw">if</span> (barang.stok &lt; jumlah) {
+            <span class="fn">print</span>(<span class="str">'❌ Stok tidak mencukupi! Stok tersedia: ${barang.stok} ${barang.satuan}'</span>);
+            <span class="kw">return</span> <span class="kw">false</span>;
+            }
+            
+            <span class="type">double</span> totalHarga = barang.hargaJual * jumlah;
+            barang.stok -= jumlah;
+            
+            <span class="cls">Transaksi</span> transaksi = <span class="cls">Transaksi</span>(
+            id: <span class="str">'TRX${counterTransaksi.toString().padLeft(4, '0')}'</span>,
+            kodeBarang: barang.kode,
+            namaBarang: barang.nama,
+            jumlah: jumlah,
+            jenis: <span class="str">'pembelian'</span>,
+            tanggal: <span class="cls">DateTime</span>.<span class="fn">now</span>(),
+            totalHarga: totalHarga,
+            idPelanggan: pelanggan.id,
+            namaPelanggan: pelanggan.nama,
+            keterangan: <span class="str">'Pembelian oleh ${pelanggan.nama}'</span>,
+            );
+            daftarTransaksi.<span class="fn">add</span>(transaksi);
+            counterTransaksi++;
+            
+            <span class="fn">print</span>(<span class="str">'✅ Pembelian oleh ${pelanggan.nama}: ${barang.nama} $jumlah ${barang.satuan}'</span>);
+            <span class="fn">print</span>(<span class="str">'   Total harga: Rp${totalHarga.toStringAsFixed(0)}'</span>);
+            <span class="kw">return</span> <span class="kw">true</span>;
+            }
+            
+            <span class="cmt">// ========== MENAMPILKAN DATA ==========</span>
+            
+            <span class="kw">void</span> <span class="fn">tampilkanBarang</span>() {
+            <span class="kw">if</span> (daftarBarang.<span class="fn">isEmpty</span>) {
+            <span class="fn">print</span>(<span class="str">'📭 Belum ada data barang.'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'\n📦 DAFTAR BARANG'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">120</span>);
+            <span class="fn">print</span>(<span class="str">'| Kode    | Nama Barang           | Stok   | Satuan | Harga Beli | Harga Jual | Kategori  |'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">120</span>);
+            <span class="kw">for</span> (<span class="kw">var</span> barang <span class="kw">in</span> daftarBarang) {
+            <span class="type">String</span> kode = barang.kode.<span class="fn">padRight</span>(<span class="num">8</span>);
+            <span class="type">String</span> nama = barang.nama.<span class="fn">length</span> &gt; <span class="num">20</span> ? barang.nama.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">18</span>) + <span class="str">'..'</span> : barang.nama.<span class="fn">padRight</span>(<span class="num">22</span>);
+            <span class="type">String</span> stok = barang.stok.<span class="fn">toString</span>().<span class="fn">padRight</span>(<span class="num">6</span>);
+            <span class="type">String</span> satuan = barang.satuan.<span class="fn">padRight</span>(<span class="num">6</span>);
+            <span class="type">String</span> hBeli = <span class="str">'Rp${barang.hargaBeli.toStringAsFixed(0)}'</span>.<span class="fn">padRight</span>(<span class="num">11</span>);
+            <span class="type">String</span> hJual = <span class="str">'Rp${barang.hargaJual.toStringAsFixed(0)}'</span>.<span class="fn">padRight</span>(<span class="num">11</span>);
+            <span class="type">String</span> kategori = barang.kategori.<span class="fn">padRight</span>(<span class="num">10</span>);
+            <span class="fn">print</span>(<span class="str">'| $kode | $nama | $stok | $satuan | $hBeli | $hJual | $kategori |'</span>);
+            }
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">120</span>);
+            <span class="fn">print</span>(<span class="str">'Total: ${daftarBarang.length} barang\n'</span>);
+            }
+            
+            <span class="kw">void</span> <span class="fn">tampilkanPelanggan</span>() {
+            <span class="kw">if</span> (daftarPelanggan.<span class="fn">isEmpty</span>) {
+            <span class="fn">print</span>(<span class="str">'📭 Belum ada data pelanggan.'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'\n👤 DAFTAR PELANGGAN'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">100</span>);
+            <span class="fn">print</span>(<span class="str">'| ID      | Nama Pelanggan      | Alamat              | No. Telepon   | Email          |'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">100</span>);
+            <span class="kw">for</span> (<span class="kw">var</span> pelanggan <span class="kw">in</span> daftarPelanggan) {
+            <span class="type">String</span> id = pelanggan.id.<span class="fn">padRight</span>(<span class="num">8</span>);
+            <span class="type">String</span> nama = pelanggan.nama.<span class="fn">length</span> &gt; <span class="num">18</span> ? pelanggan.nama.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">16</span>) + <span class="str">'..'</span> : pelanggan.nama.<span class="fn">padRight</span>(<span class="num">20</span>);
+            <span class="type">String</span> alamat = pelanggan.alamat.<span class="fn">length</span> &gt; <span class="num">18</span> ? pelanggan.alamat.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">16</span>) + <span class="str">'..'</span> : pelanggan.alamat.<span class="fn">padRight</span>(<span class="num">20</span>);
+            <span class="type">String</span> noTelp = pelanggan.noTelepon.<span class="fn">padRight</span>(<span class="num">13</span>);
+            <span class="type">String</span> email = pelanggan.email.<span class="fn">length</span> &gt; <span class="num">14</span> ? pelanggan.email.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">12</span>) + <span class="str">'..'</span> : pelanggan.email.<span class="fn">padRight</span>(<span class="num">15</span>);
+            <span class="fn">print</span>(<span class="str">'| $id | $nama | $alamat | $noTelp | $email |'</span>);
+            }
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">100</span>);
+            <span class="fn">print</span>(<span class="str">'Total: ${daftarPelanggan.length} pelanggan\n'</span>);
+            }
+            
+            <span class="kw">void</span> <span class="fn">tampilkanTransaksi</span>() {
+            <span class="kw">if</span> (daftarTransaksi.<span class="fn">isEmpty</span>) {
+            <span class="fn">print</span>(<span class="str">'📭 Belum ada transaksi.'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'\n📋 DAFTAR TRANSAKSI'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">130</span>);
+            <span class="fn">print</span>(<span class="str">'| ID       | Jenis          | Barang              | Jumlah | Total Harga | Tanggal    | Keterangan          |'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">130</span>);
+            <span class="kw">for</span> (<span class="kw">var</span> transaksi <span class="kw">in</span> daftarTransaksi) {
+            <span class="type">String</span> id = transaksi.id.<span class="fn">padRight</span>(<span class="num">8</span>);
+            <span class="type">String</span> jenis = transaksi.jenis.<span class="fn">padRight</span>(<span class="num">14</span>);
+            <span class="type">String</span> nama = transaksi.namaBarang.<span class="fn">length</span> &gt; <span class="num">18</span> ? transaksi.namaBarang.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">16</span>) + <span class="str">'..'</span> : transaksi.namaBarang.<span class="fn">padRight</span>(<span class="num">20</span>);
+            <span class="type">String</span> jumlah = transaksi.jumlah.<span class="fn">toString</span>().<span class="fn">padRight</span>(<span class="num">6</span>);
+            <span class="type">String</span> total = <span class="str">'Rp${transaksi.totalHarga.toStringAsFixed(0)}'</span>.<span class="fn">padRight</span>(<span class="num">11</span>);
+            <span class="type">String</span> tanggal = transaksi.tanggal.<span class="fn">toString</span>().<span class="fn">split</span>(<span class="str">' '</span>)[<span class="num">0</span>].<span class="fn">padRight</span>(<span class="num">10</span>);
+            <span class="type">String</span> keterangan = transaksi.keterangan.<span class="fn">length</span> &gt; <span class="num">18</span> ? transaksi.keterangan.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">16</span>) + <span class="str">'..'</span> : transaksi.keterangan.<span class="fn">padRight</span>(<span class="num">20</span>);
+            <span class="fn">print</span>(<span class="str">'| $id | $jenis | $nama | $jumlah | $total | $tanggal | $keterangan |'</span>);
+            }
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">130</span>);
+            <span class="fn">print</span>(<span class="str">'Total: ${daftarTransaksi.length} transaksi\n'</span>);
+            }
+            
+            <span class="cmt">// ========== LAPORAN ==========</span>
+            
+            <span class="kw">void</span> <span class="fn">laporanKeuangan</span>() {
+            <span class="kw">if</span> (daftarTransaksi.<span class="fn">isEmpty</span>) {
+            <span class="fn">print</span>(<span class="str">'📭 Belum ada transaksi untuk laporan keuangan.'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="type">double</span> totalPemasukan = <span class="num">0</span>;
+            <span class="type">double</span> totalPengeluaran = <span class="num">0</span>;
+            <span class="type">int</span> totalBarangMasuk = <span class="num">0</span>;
+            <span class="type">int</span> totalBarangKeluar = <span class="num">0</span>;
+            <span class="type">int</span> totalPembelian = <span class="num">0</span>;
+            
+            <span class="kw">for</span> (<span class="kw">var</span> transaksi <span class="kw">in</span> daftarTransaksi) {
+            <span class="kw">if</span> (transaksi.jenis == <span class="str">'masuk'</span>) {
+            totalPengeluaran += transaksi.totalHarga;
+            totalBarangMasuk += transaksi.jumlah;
+            } <span class="kw">else</span> <span class="kw">if</span> (transaksi.jenis == <span class="str">'keluar'</span> || transaksi.jenis == <span class="str">'pembelian'</span>) {
+            totalPemasukan += transaksi.totalHarga;
+            <span class="kw">if</span> (transaksi.jenis == <span class="str">'keluar'</span>) {
+            totalBarangKeluar += transaksi.jumlah;
+            } <span class="kw">else</span> {
+            totalPembelian += transaksi.jumlah;
+            }
+            }
+            }
+            
+            <span class="type">double</span> labaKotor = totalPemasukan - totalPengeluaran;
+            <span class="type">double</span> persentaseLaba = totalPengeluaran &gt; <span class="num">0</span> ? (labaKotor / totalPengeluaran) * <span class="num">100</span> : <span class="num">0</span>;
+            
+            <span class="fn">print</span>(<span class="str">'\n💰 LAPORAN KEUANGAN'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">'Periode: ${DateTime.now().toString().split(' ')[0]}'</span>);
+            <span class="fn">print</span>(<span class="str">'-'</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">'📊 RINGKASAN TRANSAKSI:'</span>);
+            <span class="fn">print</span>(<span class="str">'  Total Barang Masuk    : $totalBarangMasuk unit'</span>);
+            <span class="fn">print</span>(<span class="str">'  Total Barang Keluar   : $totalBarangKeluar unit'</span>);
+            <span class="fn">print</span>(<span class="str">'  Total Pembelian       : $totalPembelian unit'</span>);
+            <span class="fn">print</span>(<span class="str">'  Total Transaksi       : ${daftarTransaksi.length} transaksi'</span>);
+            <span class="fn">print</span>(<span class="str">'-'</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">'💵 PEMASUKAN:'</span>);
+            <span class="fn">print</span>(<span class="str">'  Dari Penjualan        : Rp${totalPemasukan.toStringAsFixed(0)}'</span>);
+            <span class="fn">print</span>(<span class="str">'-'</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">'💸 PENGELUARAN:'</span>);
+            <span class="fn">print</span>(<span class="str">'  Untuk Pembelian Stok  : Rp${totalPengeluaran.toStringAsFixed(0)}'</span>);
+            <span class="fn">print</span>(<span class="str">'-'</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">'📈 LABA/RUGI:'</span>);
+            <span class="fn">print</span>(<span class="str">'  Laba Kotor            : Rp${labaKotor.toStringAsFixed(0)}'</span>);
+            <span class="fn">print</span>(<span class="str">'  Persentase Laba       : ${persentaseLaba.toStringAsFixed(2)}%'</span>);
+            <span class="kw">if</span> (labaKotor &gt; <span class="num">0</span>) {
+            <span class="fn">print</span>(<span class="str">'  Status                : ✅ UNTUNG'</span>);
+            } <span class="kw">else</span> <span class="kw">if</span> (labaKotor &lt; <span class="num">0</span>) {
+            <span class="fn">print</span>(<span class="str">'  Status                : ❌ RUGI'</span>);
+            } <span class="kw">else</span> {
+            <span class="fn">print</span>(<span class="str">'  Status                : ⚖️ IMPAS'</span>);
+            }
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">50</span>);
+            <span class="fn">print</span>(<span class="str">''</span>);
+            }
+            
+            <span class="kw">void</span> <span class="fn">laporanStok</span>() {
+            <span class="kw">if</span> (daftarBarang.<span class="fn">isEmpty</span>) {
+            <span class="fn">print</span>(<span class="str">'📭 Belum ada data barang.'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'\n📦 LAPORAN STOK AKHIR'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">110</span>);
+            <span class="fn">print</span>(<span class="str">'| Kode    | Nama Barang           | Stok Akhir | Satuan | Nilai Stok (Rp) | Kategori  |'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">110</span>);
+            
+            <span class="type">double</span> totalNilaiStok = <span class="num">0</span>;
+            <span class="type">int</span> totalUnit = <span class="num">0</span>;
+            
+            <span class="kw">for</span> (<span class="kw">var</span> barang <span class="kw">in</span> daftarBarang) {
+            <span class="type">double</span> nilaiStok = barang.stok * barang.hargaBeli;
+            totalNilaiStok += nilaiStok;
+            totalUnit += barang.stok;
+            
+            <span class="type">String</span> kode = barang.kode.<span class="fn">padRight</span>(<span class="num">8</span>);
+            <span class="type">String</span> nama = barang.nama.<span class="fn">length</span> &gt; <span class="num">20</span> ? barang.nama.<span class="fn">substring</span>(<span class="num">0</span>, <span class="num">18</span>) + <span class="str">'..'</span> : barang.nama.<span class="fn">padRight</span>(<span class="num">22</span>);
+            <span class="type">String</span> stok = barang.stok.<span class="fn">toString</span>().<span class="fn">padRight</span>(<span class="num">10</span>);
+            <span class="type">String</span> satuan = barang.satuan.<span class="fn">padRight</span>(<span class="num">6</span>);
+            <span class="type">String</span> nilai = <span class="str">'Rp${nilaiStok.toStringAsFixed(0)}'</span>.<span class="fn">padRight</span>(<span class="num">15</span>);
+            <span class="type">String</span> kategori = barang.kategori.<span class="fn">padRight</span>(<span class="num">10</span>);
+            <span class="fn">print</span>(<span class="str">'| $kode | $nama | $stok | $satuan | $nilai | $kategori |'</span>);
+            }
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">110</span>);
+            <span class="fn">print</span>(<span class="str">'Total Unit Stok  : $totalUnit unit'</span>);
+            <span class="fn">print</span>(<span class="str">'Total Nilai Stok : Rp${totalNilaiStok.toStringAsFixed(0)}'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">110</span>);
+            <span class="fn">print</span>(<span class="str">''</span>);
+            }
+            
+            <span class="kw">void</span> <span class="fn">laporanLengkap</span>() {
+            <span class="fn">print</span>(<span class="str">'\n'</span> + <span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'📊 LAPORAN LENGKAP SISTEM GUDANG'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'Tanggal: ${DateTime.now().toString().split(' ')[0]}'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            
+            <span class="fn">tampilkanBarang</span>();
+            <span class="fn">tampilkanPelanggan</span>();
+            <span class="fn">tampilkanTransaksi</span>();
+            <span class="fn">laporanStok</span>();
+            <span class="fn">laporanKeuangan</span>();
+            }
+            
+            <span class="cmt">// ========== INISIALISASI DATA ==========</span>
+            
+            <span class="kw">void</span> <span class="fn">inisialisasiData</span>() {
+            <span class="type">List</span>&lt;<span class="type">Map</span>&lt;<span class="type">String</span>, <span class="kw">dynamic</span>&gt;&gt; dataBarang = [
+            {<span class="str">'kode'</span>: <span class="str">'BRG001'</span>, <span class="str">'nama'</span>: <span class="str">'Beras Premium 5kg'</span>, <span class="str">'stok'</span>: <span class="num">50</span>, <span class="str">'hargaBeli'</span>: <span class="num">55000</span>, <span class="str">'hargaJual'</span>: <span class="num">65000</span>, <span class="str">'kategori'</span>: <span class="str">'Makanan Pokok'</span>, <span class="str">'satuan'</span>: <span class="str">'Karung'</span>},
+            {<span class="str">'kode'</span>: <span class="str">'BRG002'</span>, <span class="str">'nama'</span>: <span class="str">'Gula Pasir 1kg'</span>, <span class="str">'stok'</span>: <span class="num">40</span>, <span class="str">'hargaBeli'</span>: <span class="num">12000</span>, <span class="str">'hargaJual'</span>: <span class="num">15000</span>, <span class="str">'kategori'</span>: <span class="str">'Bahan Pokok'</span>, <span class="str">'satuan'</span>: <span class="str">'Kg'</span>},
+            {<span class="str">'kode'</span>: <span class="str">'BRG003'</span>, <span class="str">'nama'</span>: <span class="str">'Minyak Goreng 2L'</span>, <span class="str">'stok'</span>: <span class="num">35</span>, <span class="str">'hargaBeli'</span>: <span class="num">22000</span>, <span class="str">'hargaJual'</span>: <span class="num">28000</span>, <span class="str">'kategori'</span>: <span class="str">'Bahan Pokok'</span>, <span class="str">'satuan'</span>: <span class="str">'Liter'</span>},
+            {<span class="str">'kode'</span>: <span class="str">'BRG004'</span>, <span class="str">'nama'</span>: <span class="str">'Telur Ayam 1kg'</span>, <span class="str">'stok'</span>: <span class="num">30</span>, <span class="str">'hargaBeli'</span>: <span class="num">25000</span>, <span class="str">'hargaJual'</span>: <span class="num">30000</span>, <span class="str">'kategori'</span>: <span class="str">'Makanan Pokok'</span>, <span class="str">'satuan'</span>: <span class="str">'Kg'</span>},
+            {<span class="str">'kode'</span>: <span class="str">'BRG005'</span>, <span class="str">'nama'</span>: <span class="str">'Tepung Terigu 1kg'</span>, <span class="str">'stok'</span>: <span class="num">45</span>, <span class="str">'hargaBeli'</span>: <span class="num">10000</span>, <span class="str">'hargaJual'</span>: <span class="num">13000</span>, <span class="str">'kategori'</span>: <span class="str">'Bahan Pokok'</span>, <span class="str">'satuan'</span>: <span class="str">'Kg'</span>},
+            ];
+            
+            <span class="kw">for</span> (<span class="kw">var</span> data <span class="kw">in</span> dataBarang) {
+            <span class="fn">tambahBarang</span>(<span class="cls">Barang</span>(
+            kode: data[<span class="str">'kode'</span>],
+            nama: data[<span class="str">'nama'</span>],
+            stok: data[<span class="str">'stok'</span>],
+            hargaBeli: data[<span class="str">'hargaBeli'</span>].<span class="fn">toDouble</span>(),
+            hargaJual: data[<span class="str">'hargaJual'</span>].<span class="fn">toDouble</span>(),
+            kategori: data[<span class="str">'kategori'</span>],
+            satuan: data[<span class="str">'satuan'</span>],
+            ));
+            }
+            
+            <span class="type">List</span>&lt;<span class="type">Map</span>&lt;<span class="type">String</span>, <span class="kw">dynamic</span>&gt;&gt; dataPelanggan = [
+            {<span class="str">'id'</span>: <span class="str">'PLG001'</span>, <span class="str">'nama'</span>: <span class="str">'Ahmad Fauzi'</span>, <span class="str">'alamat'</span>: <span class="str">'Jl. Merdeka No. 10 Jakarta'</span>, <span class="str">'noTelepon'</span>: <span class="str">'081234567890'</span>, <span class="str">'email'</span>: <span class="str">'ahmad.fauzi@gmail.com'</span>, <span class="str">'jenisKelamin'</span>: <span class="str">'Laki-laki'</span>},
+            {<span class="str">'id'</span>: <span class="str">'PLG002'</span>, <span class="str">'nama'</span>: <span class="str">'Siti Nurhaliza'</span>, <span class="str">'alamat'</span>: <span class="str">'Jl. Sudirman No. 5 Bandung'</span>, <span class="str">'noTelepon'</span>: <span class="str">'081234567891'</span>, <span class="str">'email'</span>: <span class="str">'siti.nur@yahoo.com'</span>, <span class="str">'jenisKelamin'</span>: <span class="str">'Perempuan'</span>},
+            {<span class="str">'id'</span>: <span class="str">'PLG003'</span>, <span class="str">'nama'</span>: <span class="str">'Budi Santoso'</span>, <span class="str">'alamat'</span>: <span class="str">'Jl. Thamrin No. 8 Surabaya'</span>, <span class="str">'noTelepon'</span>: <span class="str">'081234567892'</span>, <span class="str">'email'</span>: <span class="str">'budi.santoso@outlook.com'</span>, <span class="str">'jenisKelamin'</span>: <span class="str">'Laki-laki'</span>},
+            ];
+            
+            <span class="kw">for</span> (<span class="kw">var</span> data <span class="kw">in</span> dataPelanggan) {
+            <span class="fn">tambahPelanggan</span>(<span class="cls">Pelanggan</span>(
+            id: data[<span class="str">'id'</span>],
+            nama: data[<span class="str">'nama'</span>],
+            alamat: data[<span class="str">'alamat'</span>],
+            noTelepon: data[<span class="str">'noTelepon'</span>],
+            email: data[<span class="str">'email'</span>],
+            jenisKelamin: data[<span class="str">'jenisKelamin'</span>],
+            tanggalDaftar: <span class="cls">DateTime</span>(<span class="num">2026</span>, <span class="num">1</span>, <span class="num">1</span>),
+            ));
+            }
+            }
+            
+            <span class="cmt">// ========== MENU INTERAKTIF DENGAN SIMULASI INPUT ==========</span>
+            
+            <span class="kw">void</span> <span class="fn">jalankanDenganInput</span>(<span class="type">String</span> input) {
+            <span class="fn">setInput</span>(input);
+            <span class="fn">menuUtama</span>();
+            }
+            
+            <span class="kw">void</span> <span class="fn">menuUtama</span>() {
+            <span class="kw">bool</span> running = <span class="kw">true</span>;
+            
+            <span class="kw">while</span> (running) {
+            <span class="fn">print</span>(<span class="str">'\n'</span> + <span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'  🏪 SISTEM PENDATAAN BARANG DI GUDANG'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'  Kelompok:'</span>);
+            <span class="fn">print</span>(<span class="str">'  Yoza Ulpia Rafila (251410004)'</span>);
+            <span class="fn">print</span>(<span class="str">'  Rifqi Prayoga (251410005)'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'  1. 📦 Lihat Daftar Barang'</span>);
+            <span class="fn">print</span>(<span class="str">'  2. 👤 Lihat Daftar Pelanggan'</span>);
+            <span class="fn">print</span>(<span class="str">'  3. 📋 Lihat Daftar Transaksi'</span>);
+            <span class="fn">print</span>(<span class="str">'  4. ➕ Transaksi Barang Masuk'</span>);
+            <span class="fn">print</span>(<span class="str">'  5. ➖ Transaksi Barang Keluar'</span>);
+            <span class="fn">print</span>(<span class="str">'  6. 🛒 Transaksi Pembelian Pelanggan'</span>);
+            <span class="fn">print</span>(<span class="str">'  7. 💰 Laporan Keuangan'</span>);
+            <span class="fn">print</span>(<span class="str">'  8. 📦 Laporan Stok Akhir'</span>);
+            <span class="fn">print</span>(<span class="str">'  9. 📊 Laporan Lengkap'</span>);
+            <span class="fn">print</span>(<span class="str">'  0. 🚪 Keluar'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'Pilih menu (0-9): '</span>);
+            
+            <span class="type">String</span>? input = <span class="fn">readLine</span>();
+            
+            <span class="kw">if</span> (input == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Input tidak tersedia!'</span>);
+            running = <span class="kw">false</span>;
+            <span class="kw">break</span>;
+            }
+            
+            <span class="kw">switch</span> (input.<span class="fn">trim</span>()) {
+            <span class="kw">case</span> <span class="str">'1'</span>:
+            <span class="fn">tampilkanBarang</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'2'</span>:
+            <span class="fn">tampilkanPelanggan</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'3'</span>:
+            <span class="fn">tampilkanTransaksi</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'4'</span>:
+            <span class="fn">transaksiMasukInteraktif</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'5'</span>:
+            <span class="fn">transaksiKeluarInteraktif</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'6'</span>:
+            <span class="fn">transaksiPembelianInteraktif</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'7'</span>:
+            <span class="fn">laporanKeuangan</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'8'</span>:
+            <span class="fn">laporanStok</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'9'</span>:
+            <span class="fn">laporanLengkap</span>();
+            <span class="kw">break</span>;
+            <span class="kw">case</span> <span class="str">'0'</span>:
+            running = <span class="kw">false</span>;
+            <span class="fn">print</span>(<span class="str">'\n👋 Terima kasih telah menggunakan sistem ini!'</span>);
+            <span class="fn">print</span>(<span class="str">'Dibuat oleh:'</span>);
+            <span class="fn">print</span>(<span class="str">'Yoza Ulpia Rafila (251410004)'</span>);
+            <span class="fn">print</span>(<span class="str">'Rifqi Prayoga (251410005)'</span>);
+            <span class="kw">break</span>;
+            <span class="kw">default</span>:
+            <span class="fn">print</span>(<span class="str">'❌ Pilihan tidak valid! Silakan coba lagi.'</span>);
+            }
+            }
+            }
+            
+            <span class="kw">void</span> <span class="fn">transaksiMasukInteraktif</span>() {
+            <span class="fn">print</span>(<span class="str">'\n➕ TRANSAKSI BARANG MASUK'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">40</span>);
+            <span class="fn">tampilkanBarang</span>();
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan kode barang: '</span>);
+            <span class="type">String</span> kode = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kode);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang tidak ditemukan!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan jumlah ${barang.satuan}: '</span>);
+            <span class="type">String</span>? jumlahInput = <span class="fn">readLine</span>();
+            <span class="type">int</span>? jumlah = <span class="type">int</span>.<span class="fn">tryParse</span>(jumlahInput ?? <span class="str">''</span>);
+            <span class="kw">if</span> (jumlah == <span class="kw">null</span> || jumlah &lt;= <span class="num">0</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Jumlah tidak valid!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan keterangan (opsional): '</span>);
+            <span class="type">String</span> keterangan = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="fn">transaksiMasuk</span>(kode, jumlah, keterangan);
+            }
+            
+            <span class="kw">void</span> <span class="fn">transaksiKeluarInteraktif</span>() {
+            <span class="fn">print</span>(<span class="str">'\n➖ TRANSAKSI BARANG KELUAR'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">40</span>);
+            <span class="fn">tampilkanBarang</span>();
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan kode barang: '</span>);
+            <span class="type">String</span> kode = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kode);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang tidak ditemukan!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan jumlah ${barang.satuan}: '</span>);
+            <span class="type">String</span>? jumlahInput = <span class="fn">readLine</span>();
+            <span class="type">int</span>? jumlah = <span class="type">int</span>.<span class="fn">tryParse</span>(jumlahInput ?? <span class="str">''</span>);
+            <span class="kw">if</span> (jumlah == <span class="kw">null</span> || jumlah &lt;= <span class="num">0</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Jumlah tidak valid!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan keterangan (opsional): '</span>);
+            <span class="type">String</span> keterangan = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="fn">transaksiKeluar</span>(kode, jumlah, keterangan);
+            }
+            
+            <span class="kw">void</span> <span class="fn">transaksiPembelianInteraktif</span>() {
+            <span class="fn">print</span>(<span class="str">'\n🛒 TRANSAKSI PEMBELIAN PELANGGAN'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">40</span>);
+            <span class="fn">tampilkanPelanggan</span>();
+            <span class="fn">tampilkanBarang</span>();
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan ID pelanggan: '</span>);
+            <span class="type">String</span> idPelanggan = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="cls">Pelanggan</span>? pelanggan = <span class="fn">cariPelanggan</span>(idPelanggan);
+            <span class="kw">if</span> (pelanggan == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Pelanggan tidak ditemukan!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan kode barang: '</span>);
+            <span class="type">String</span> kode = <span class="fn">readLine</span>() ?? <span class="str">''</span>;
+            
+            <span class="cls">Barang</span>? barang = <span class="fn">cariBarang</span>(kode);
+            <span class="kw">if</span> (barang == <span class="kw">null</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Barang tidak ditemukan!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">print</span>(<span class="str">'Masukkan jumlah ${barang.satuan}: '</span>);
+            <span class="type">String</span>? jumlahInput = <span class="fn">readLine</span>();
+            <span class="type">int</span>? jumlah = <span class="type">int</span>.<span class="fn">tryParse</span>(jumlahInput ?? <span class="str">''</span>);
+            <span class="kw">if</span> (jumlah == <span class="kw">null</span> || jumlah &lt;= <span class="num">0</span>) {
+            <span class="fn">print</span>(<span class="str">'❌ Jumlah tidak valid!'</span>);
+            <span class="kw">return</span>;
+            }
+            
+            <span class="fn">transaksiPembelian</span>(kode, idPelanggan, jumlah);
+            }
+            }
+
+            <span class="cmt">// ========== MAIN FUNCTION UNTUK DARTPAD ==========</span>
+
+            <span class="kw">void</span> <span class="fn">main</span>() {
+            <span class="kw">var</span> system = <span class="cls">GudangSystem</span>();
+            
+            <span class="fn">print</span>(<span class="str">'🔄 Menginisialisasi data...'</span>);
+            system.<span class="fn">inisialisasiData</span>();
+            <span class="fn">print</span>(<span class="str">'✅ Data berhasil diinisialisasi!\n'</span>);
+            
+            <span class="cmt">// Simulasi interaksi di DartPad</span>
+            <span class="cmt">// Buat skenario input yang akan dijalankan secara otomatis</span>
+            <span class="type">String</span> simulatedInput = <span class="str">'''
+            1
+            2
+            3
+            4
+            BRG001
+            10
+            Restock 10 karung
+            5
+            BRG003
+            5
+            Penjualan 5 liter
+            6
+            PLG002
+            BRG002
+            3
+            7
+            8
+            9
+            0
+            '''</span>;
+            
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'🚀 MENJALANKAN SISTEM DENGAN SIMULASI INPUT'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            <span class="fn">print</span>(<span class="str">'Simulasi akan menjalankan menu secara otomatis'</span>);
+            <span class="fn">print</span>(<span class="str">'Tekan tombol "Run" lagi untuk melihat hasil'</span>);
+            <span class="fn">print</span>(<span class="str">'='</span> * <span class="num">60</span>);
+            
+            <span class="cmt">// Jalankan sistem dengan input simulasi</span>
+            system.<span class="fn">jalankanDenganInput</span>(simulatedInput);
+            }</span></pre>
+    </div>
+    </div>
 
         <!-- ════════════════════ FOOTER ════════════════════ -->
         <footer>
