@@ -1850,6 +1850,30 @@ function runDart(id, url) {
 
 }
 </script>
+<script>
+
+document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+});
+
+
+document.addEventListener('keydown', function(e){
+
+    if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+    }
+
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+    }
+
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+
+});
+
+</script>
                         
     </body>
     </html>
