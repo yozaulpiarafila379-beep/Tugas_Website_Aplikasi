@@ -870,18 +870,25 @@ graph TD
             </div>
 
             <!-- ─── CLASS DIAGRAM ─── -->
-            <div class="diagram-wrapper">
-                <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">📦 Class Diagram — UML (Vertical)</h3>
-                <p style="color:#94a3b8; font-size:0.85em;">Relasi inheritance antar class. <span style="color:#f472b6;">⟨abstract⟩</span> = abstract class, panah <span style="color:#f472b6;">▷</span> = extends.</p>
-                <div class="mermaid-wrapper">
-                    <div class="mermaid">
-                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
-                        classDiagram
+<div class="diagram-wrapper">
+    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
+        📦 Class Diagram — UML (Vertical)
+    </h3>
+
+    <p style="color:#94a3b8; font-size:0.85em;">
+        Relasi inheritance antar class.
+        <span style="color:#f472b6;">⟨abstract⟩</span> = abstract class,
+        panah <span style="color:#f472b6;">▷</span> = extends.
+    </p>
+
+    <div class="mermaid-wrapper">
+        <div class="mermaid">
+classDiagram
 
 class EntitasGudang {
-    <<Abstract>>
-    #kode : String
-    #nama : String
+    <<abstract>>
+    +kode : String
+    +nama : String
     +tampilkanInfo()
     +cetakIdentitas()
 }
@@ -902,13 +909,12 @@ class Barang {
 EntitasGudang <|-- Barang
 
 class Transaksi {
-    <<Abstract>>
-    #idTransaksi : String
-    #tanggal : String
-    #kodeBarang : String
-    #jumlah : int
+    <<abstract>>
+    +idTransaksi : String
+    +tanggal : String
+    +kodeBarang : String
+    +jumlah : int
     +prosesTransaksi()
-    +cetakHeader()
 }
 
 class BarangMasuk {
@@ -931,9 +937,9 @@ Transaksi <|-- BarangMasuk
 Transaksi <|-- BarangKeluar
 
 class Pengguna {
-    <<Abstract>>
-    #username : String
-    #password : String
+    <<abstract>>
+    +username : String
+    +password : String
     +login()
     +tampilkanIdentitas()
 }
@@ -954,13 +960,13 @@ class StokBarang {
     +hitungStok()
 }
 
-BarangMasuk --> Barang
-BarangKeluar --> Barang
-StokBarang --> Barang
-User --> Barang
-                           
-                    </div>
-                </div>
+BarangMasuk --> Barang : menambah
+BarangKeluar --> Barang : mengurangi
+StokBarang --> Barang : menghitung
+User --> Barang : mengelola
+        </div>
+    </div>
+</div>
                 <div class="copy-section">
                     <button class="copy-btn" onclick="toggleCode('classdiagram-code')">📋 Tampilkan Kode Mermaid</button>
                     <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">📋 Salin Kode</button>
@@ -1037,8 +1043,15 @@ classDiagram
 
 class EntitasGudang {
     <<Abstract>>
-    #kode : String
-    #nama : String
+<div id="classdiagram-code" class="code-block">
+<span class="label">📌 Kode Mermaid — Class Diagram</span>
+<code>
+classDiagram
+
+class EntitasGudang {
+    <<abstract>>
+    +kode : String
+    +nama : String
     +tampilkanInfo()
     +cetakIdentitas()
 }
@@ -1059,11 +1072,11 @@ class Barang {
 EntitasGudang <|-- Barang
 
 class Transaksi {
-    <<Abstract>>
-    #idTransaksi : String
-    #tanggal : String
-    #kodeBarang : String
-    #jumlah : int
+    <<abstract>>
+    +idTransaksi : String
+    +tanggal : String
+    +kodeBarang : String
+    +jumlah : int
     +prosesTransaksi()
     +cetakHeader()
 }
@@ -1088,9 +1101,9 @@ Transaksi <|-- BarangMasuk
 Transaksi <|-- BarangKeluar
 
 class Pengguna {
-    <<Abstract>>
-    #username : String
-    #password : String
+    <<abstract>>
+    +username : String
+    +password : String
     +login()
     +tampilkanIdentitas()
 }
@@ -1115,11 +1128,11 @@ BarangMasuk --> Barang
 BarangKeluar --> Barang
 StokBarang --> Barang
 User --> Barang
-   
-                        }</code>
-                </div>
-            </div>
-        </div>
+</code>
+</div>
+</div>
+</div>
+</div>
 
         <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
