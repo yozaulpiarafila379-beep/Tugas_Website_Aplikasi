@@ -907,7 +907,6 @@ class Barang {
 }
 
 EntitasGudang <|-- Barang
-
 class Transaksi {
     <<abstract>>
     +idTransaksi : String
@@ -938,10 +937,10 @@ Transaksi <|-- BarangKeluar
 
 class Pengguna {
     <<abstract>>
-    +username : String
-    +password : String
-    +login()
-    +tampilkanIdentitas()
+    #String username
+    #String password
+    +login() void*
+    +tampilkanIdentitas() void
 }
 
 class User {
@@ -1128,7 +1127,6 @@ BarangMasuk --> Barang
 BarangKeluar --> Barang
 StokBarang --> Barang
 User --> Barang
-</code>
 </div>
 </div>
 </div>
