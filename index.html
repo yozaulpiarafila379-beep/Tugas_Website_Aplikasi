@@ -1499,6 +1499,43 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
+// ==============================
+// PERBAIKAN SISTEM GUDANG
+// ==============================
+
+function cariBarang(kode) {
+    return barangList.find(b => b.kode === kode);
+}
+
+function tambahRiwayat(aktivitas) {
+    riwayat.push({
+        waktu: new Date().toLocaleString(),
+        aktivitas: aktivitas
+    });
+}
+
+const oldLog = log;
+
+log = function(msg, cls = '') {
+    oldLog(msg, cls);
+    tambahRiwayat(msg);
+};
+
+function validNumber(value) {
+    return !isNaN(value) && value > 0;
+}
+
+window.addEventListener('focus', () => {
+    refreshSelect();
+});
+
+window.onerror = function(msg, url, line) {
+    log(`❌ Error: ${msg} (Baris ${line})`, 'red');
+};
+
+// ==============================
+// AKHIR PERBAIKAN
+// ==============================   
     </script>
 
 </body>
