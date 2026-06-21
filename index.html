@@ -1045,94 +1045,209 @@ class Pengguna {
     +login() void*
 classDiagram
 
-class EntitasGudang {
-    <<Abstract>>
-<div id="classdiagram-code" class="code-block">
-<span class="label">📌 Kode Mermaid — Class Diagram</span>
-<code>
-class EntitasGudang {
-    <<abstract>>
-    +kode : String
-    +nama : String
-    +tampilkanInfo()
-    +cetakIdentitas()
-}
+<!-- ─── CLASS DIAGRAM ─── -->
+<div class="diagram-wrapper">
+    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
+        📦 Class Diagram — UML
+    </h3>
+    <p style="color:#94a3b8; font-size:0.85em;">
+        Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
+        panah <span style="color:#22d3ee;">▷</span> = pewarisan.
+    </p>
 
-class Barang {
-    +kodeBarang : String
-    +namaBarang : String
-    +kategori : String
-    +merk : String
-    +jumlahStok : int
-    +satuan : String
-    +kondisi : String
-    +tampilkanInfo()
-    +tambahStok(jml:int)
-    +kurangiStok(jml:int)
-}
+    <div class="mermaid-wrapper">
+        <div class="mermaid">
+%%{init: {'theme': 'dark', 'themeVariables': { 
+    'primaryColor': '#22d3ee', 
+    'primaryTextColor': '#fff', 
+    'primaryBorderColor': '#a855f7', 
+    'lineColor': '#94a3b8', 
+    'secondaryColor': '#1e293b', 
+    'tertiaryColor': '#0f172a', 
+    'background': '#020617' 
+}}}%%
+classDiagram
+    direction TB
 
-EntitasGudang <|-- Barang
+    class EntitasGudang {
+        <<abstract>>
+        +String kode
+        +String nama
+        +tampilkanInfo() void*
+        +cetakIdentitas() void
+    }
 
-class Transaksi {
-    <<abstract>>
-    +idTransaksi : String
-    +tanggal : String
-    +kodeBarang : String
-    +jumlah : int
-    +prosesTransaksi()
-    +cetakHeader()
-}
+    class Barang {
+        +String kode
+        +String nama
+        +String kategori
+        +String merk
+        +int jumlahStok
+        +String satuan
+        +String kondisi
+        +tampilkanInfo() void
+        +tambahStok(int jumlah) void
+        +kurangiStok(int jumlah) void
+    }
 
-class BarangMasuk {
-    +idMasuk : String
-    +tanggalMasuk : String
-    +namaSupplier : String
-    +prosesTransaksi()
-    +tambahStok()
-}
+    EntitasGudang <|-- Barang : extends
 
-class BarangKeluar {
-    +idKeluar : String
-    +tanggalKeluar : String
-    +tujuan : String
-    +prosesTransaksi()
-    +kurangiStok()
-}
+    class Transaksi {
+        <<abstract>>
+        +String idTransaksi
+        +String tanggal
+        +String kodeBarang
+        +int jumlah
+        +prosesTransaksi() void*
+        +cetakHeader() void
+    }
 
-Transaksi <|-- BarangMasuk
-Transaksi <|-- BarangKeluar
+    class BarangMasuk {
+        +String namaSupplier
+        +prosesTransaksi() void
+    }
 
-class Pengguna {
-    <<abstract>>
-    +username : String
-    +password : String
-    +login()
-    +tampilkanIdentitas()
-}
+    class BarangKeluar {
+        +String tujuan
+        +prosesTransaksi() void
+    }
 
-class User {
-    +level : String
-    +login()
-}
+    Transaksi <|-- BarangMasuk : extends
+    Transaksi <|-- BarangKeluar : extends
 
-Pengguna <|-- User
+    class Pengguna {
+        <<abstract>>
+        +String username
+        +String password
+        +login() void*
+        +tampilkanIdentitas() void
+    }
 
-class StokBarang {
-    +stokAwal : int
-    +barangMasuk : int
-    +barangKeluar : int
-    +stokAkhir : int
-    +status : String
-    +hitungStok()
-}
+    class User {
+        +String level
+        +login() void
+    }
 
-BarangMasuk --> Barang : menambah
-BarangKeluar --> Barang : mengurangi
-StokBarang --> Barang : menghitung
-User --> Barang : mengelola
+    Pengguna <|-- User : extends
+
+    class StokBarang {
+        +int stokAwal
+        +int barangMasuk
+        +int barangKeluar
+        +int stokAkhir
+        +String status
+        +hitungStok() void
+    }
+
+    %% Relasi antar kelas
+    BarangMasuk --> Barang : menambah stok
+    BarangKeluar --> Barang : mengurangi stok
+    StokBarang --> Barang : menghitung stok
+    User --> Barang : mengelola
         </div>
     </div>
+
+    <div class="copy-section">
+        <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
+            📋 Tampilkan Kode Mermaid
+        </button>
+        <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
+            📋 Salin Kode
+        </button>
+    </div>
+
+    <div id="classdiagram-code" class="code-block">
+        <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
+        <code>%%{init: {'theme': 'dark', 'themeVariables': { 
+    'primaryColor': '#22d3ee', 
+    'primaryTextColor': '#fff', 
+    'primaryBorderColor': '#a855f7', 
+    'lineColor': '#94a3b8', 
+    'secondaryColor': '#1e293b', 
+    'tertiaryColor': '#0f172a', 
+    'background': '#020617' 
+}}}%%
+classDiagram
+    direction TB
+
+    class EntitasGudang {
+        <<abstract>>
+        +String kode
+        +String nama
+        +tampilkanInfo() void*
+        +cetakIdentitas() void
+    }
+
+    class Barang {
+        +String kode
+        +String nama
+        +String kategori
+        +String merk
+        +int jumlahStok
+        +String satuan
+        +String kondisi
+        +tampilkanInfo() void
+        +tambahStok(int jumlah) void
+        +kurangiStok(int jumlah) void
+    }
+
+    EntitasGudang <|-- Barang : extends
+
+    class Transaksi {
+        <<abstract>>
+        +String idTransaksi
+        +String tanggal
+        +String kodeBarang
+        +int jumlah
+        +prosesTransaksi() void*
+        +cetakHeader() void
+    }
+
+    class BarangMasuk {
+        +String namaSupplier
+        +prosesTransaksi() void
+    }
+
+    class BarangKeluar {
+        +String tujuan
+        +prosesTransaksi() void
+    }
+
+    Transaksi <|-- BarangMasuk : extends
+    Transaksi <|-- BarangKeluar : extends
+
+    class Pengguna {
+        <<abstract>>
+        +String username
+        +String password
+        +login() void*
+        +tampilkanIdentitas() void
+    }
+
+    class User {
+        +String level
+        +login() void
+    }
+
+    Pengguna <|-- User : extends
+
+    class StokBarang {
+        +int stokAwal
+        +int barangMasuk
+        +int barangKeluar
+        +int stokAkhir
+        +String status
+        +hitungStok() void
+    }
+
+    BarangMasuk --> Barang : menambah stok
+    BarangKeluar --> Barang : mengurangi stok
+    StokBarang --> Barang : menghitung stok
+    User --> Barang : mengelola
+        </code>
+    </div>
 </div>
+
 
 <div class="copy-section">
 
