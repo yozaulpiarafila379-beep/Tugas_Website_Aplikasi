@@ -1450,8 +1450,7 @@ classDiagram
 mermaid.initialize({
     startOnLoad: true,
     theme: 'dark',
-    securityLevel: 'loose'
-});
+    securityLevel: 'loose',
     themeVariables: {
         primaryColor: '#22d3ee',
         primaryTextColor: '#fff',
@@ -1466,9 +1465,6 @@ mermaid.initialize({
     flowchart: {
         htmlLabels: true,
         curve: 'basis',
-        useMaxWidth: true
-    },
-    classDiagram: {
         useMaxWidth: true
     }
 });
@@ -1500,13 +1496,7 @@ function init() {
     }
 
     log('🟢 Sistem siap.', 'cyan');
-
-    // Render semua diagram Mermaid
-    mermaid.initialize({
-        startOnLoad: false,
-        theme: 'dark',
-        securityLevel: 'loose'
-    });
+}
 
 document.addEventListener('DOMContentLoaded', init);
     </script>
