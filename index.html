@@ -870,6 +870,7 @@ graph TD
             </div>
 
 
+
 <!-- ─── CLASS DIAGRAM ─── -->
 <div class="diagram-wrapper">
     <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
@@ -899,7 +900,7 @@ classDiagram
         <<abstract>>
         +String kode
         +String nama
-        +tampilkanInfo() void*
+        +tampilkanInfo() void
         +cetakIdentitas() void
     }
 
@@ -924,7 +925,7 @@ classDiagram
         +String tanggal
         +String kodeBarang
         +int jumlah
-        +prosesTransaksi() void*
+        +prosesTransaksi() void
         +cetakHeader() void
     }
 
@@ -945,7 +946,7 @@ classDiagram
         <<abstract>>
         #String username
         #String password
-        +login() void*
+        +login() void
         +tampilkanIdentitas() void
     }
 
@@ -1000,7 +1001,7 @@ classDiagram
         <<abstract>>
         +String kode
         +String nama
-        +tampilkanInfo() void*
+        +tampilkanInfo() void
         +cetakIdentitas() void
     }
 
@@ -1025,7 +1026,7 @@ classDiagram
         +String tanggal
         +String kodeBarang
         +int jumlah
-        +prosesTransaksi() void*
+        +prosesTransaksi() void
         +cetakHeader() void
     }
 
@@ -1046,7 +1047,7 @@ classDiagram
         <<abstract>>
         #String username
         #String password
-        +login() void*
+        +login() void
         +tampilkanIdentitas() void
     }
 
@@ -1072,8 +1073,7 @@ classDiagram
     User --> Barang : mengelola
         </code>
     </div>
-</div>
-
+    </div>
             
 
         <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
@@ -1527,7 +1527,9 @@ function init() {
     log('🟢 Sistem siap.', 'cyan');
 
     // Render ulang diagram
-    mermaid.init(undefined, '.mermaid');
+    mermaid.run({
+        querySelector: '.mermaid'
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);
