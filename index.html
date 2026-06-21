@@ -1471,29 +1471,30 @@ classDiagram
             if (b) log(`ℹ️ ${b.tampilkanInfo()}`, 'cyan');
         }
 
-        // ─── MERMAID INIT ───
-        mermaid.initialize({
-            theme: 'dark',
-            themeVariables: {
-                primaryColor: '#22d3ee',
-                primaryTextColor: '#fff',
-                primaryBorderColor: '#a855f7',
-                lineColor: '#94a3b8',
-                secondaryColor: '#1e293b',
-                tertiaryColor: '#0f172a',
-                background: '#020617',
-                fontFamily: 'Courier New, monospace',
-                fontSize: '14px',
-            },
-            flowchart: {
-                htmlLabels: true,
-                curve: 'basis',
-                useMaxWidth: true,
-            },
-            classDiagram: {
-                useMaxWidth: true,
-            }
-        });
+mermaid.initialize({
+    startOnLoad: false,
+    theme: 'dark',
+    securityLevel: 'loose',
+    themeVariables: {
+        primaryColor: '#22d3ee',
+        primaryTextColor: '#fff',
+        primaryBorderColor: '#a855f7',
+        lineColor: '#94a3b8',
+        secondaryColor: '#1e293b',
+        tertiaryColor: '#0f172a',
+        background: '#020617',
+        fontFamily: 'Courier New, monospace',
+        fontSize: '14px'
+    },
+    flowchart: {
+        htmlLabels: true,
+        curve: 'basis',
+        useMaxWidth: true
+    },
+    classDiagram: {
+        useMaxWidth: true
+    }
+});
 
         // ─── INIT ───
 function init() {
