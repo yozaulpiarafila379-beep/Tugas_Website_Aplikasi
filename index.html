@@ -1446,7 +1446,6 @@ classDiagram
             const b = barangList.find(x => x.kode === k);
             if (b) log(`ℹ️ ${b.tampilkanInfo()}`, 'cyan');
         }
-
 mermaid.initialize({
     startOnLoad: true,
     theme: 'dark',
@@ -1469,36 +1468,6 @@ mermaid.initialize({
     }
 });
 
-        // ─── INIT ───
-function init() {
-    initialData.forEach(d =>
-        barangList.push(
-            new Barang(
-                d.kode,
-                d.nama,
-                d.kategori,
-                d.merk,
-                d.stok,
-                d.satuan,
-                d.kondisi
-            )
-        )
-    );
-
-    log(`📦 ${barangList.length} barang siap.`, 'green');
-
-    refreshSelect();
-    renderInventory();
-
-    const sel = document.getElementById('selectBarang');
-    if (sel) {
-        sel.addEventListener('change', onSelectChange);
-    }
-
-    log('🟢 Sistem siap.', 'cyan');
-}
-
-document.addEventListener('DOMContentLoaded', init);
 // ==============================
 // PERBAIKAN SISTEM GUDANG
 // ==============================
@@ -1535,7 +1504,38 @@ window.onerror = function(msg, url, line) {
 
 // ==============================
 // AKHIR PERBAIKAN
-// ==============================   
+// ==============================
+
+// ─── INIT ───
+function init() {
+    initialData.forEach(d =>
+        barangList.push(
+            new Barang(
+                d.kode,
+                d.nama,
+                d.kategori,
+                d.merk,
+                d.stok,
+                d.satuan,
+                d.kondisi
+            )
+        )
+    );
+
+    log(`📦 ${barangList.length} barang siap.`, 'green');
+
+    refreshSelect();
+    renderInventory();
+
+    const sel = document.getElementById('selectBarang');
+    if (sel) {
+        sel.addEventListener('change', onSelectChange);
+    }
+
+    log('🟢 Sistem siap.', 'cyan');
+}
+
+document.addEventListener('DOMContentLoaded', init);
     </script>
 
 </body>
