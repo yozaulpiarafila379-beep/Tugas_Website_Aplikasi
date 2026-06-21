@@ -870,78 +870,56 @@ graph TD
             </div>
 
 
-           <!-- ─── CLASS DIAGRAM ─── -->
+<!-- ─── CLASS DIAGRAM ─── -->
 <div class="diagram-wrapper">
-    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">📦 Class Diagram — UML (Vertical)</h3>
-    <p style="color:#94a3b8; font-size:0.85em;">Relasi inheritance antar class. <span style="color:#f472b6;">⟨abstract⟩</span> = abstract class, panah <span style="color:#f472b6;">▷</span> = extends.</p>
+    <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
+        📦 Class Diagram — UML
+    </h3>
+
+    <p style="color:#94a3b8; font-size:0.85em;">
+        Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
+        panah <span style="color:#22d3ee;">▷</span> = pewarisan,
+        panah <span style="color:#facc15;">→</span> = menggunakan.
+    </p>
+
     <div class="mermaid-wrapper">
         <div class="mermaid">
-%%{init: {'theme': 'dark', 'themeVariables': { 
-    'primaryColor': '#22d3ee', 
-    'primaryTextColor': '#ffffff', 
-    'primaryBorderColor': '#a855f7', 
-    'lineColor': '#94a3b8', 
-    'secondaryColor': '#1e293b', 
-    'tertiaryColor': '#0f172a', 
-    'background': '#020617' 
-}}}%%
+%%{init: {
+    'theme': 'dark',
+    'themeVariables': {
+        'primaryColor': '#22d3ee',
+        'primaryTextColor': '#ffffff',
+        'primaryBorderColor': '#a855f7',
+        'lineColor': '#94a3b8',
+        'secondaryColor': '#1e293b',
+        'tertiaryColor': '#0f172a',
+        'background': '#020617'
+    },
+    'classDiagram': {
+        'useMaxWidth': true
+    }
+}}%%
 classDiagram
     direction TB
 
+    %% Kelas Induk Abstrak
     class EntitasGudang {
         <<abstract>>
-        #String kode
-        #String nama
+        +String kode
+        +String nama
         +tampilkanInfo() void
         +cetakIdentitas() void
     }
 
-    class Barang {
-        +String kodeBarang
-        +String namaBarang
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo() void
-        +tambahStok(int jml) void
-        +kurangiStok(int jml) void
-    }
-
-    EntitasGudang <|-- Barang : extends
-
     class Transaksi {
         <<abstract>>
-        #String idTransaksi
-        #String tanggal
-        #String kodeBarang
-        #int jumlah
+        +String idTransaksi
+        +String tanggal
+        +String kodeBarang
+        +int jumlah
         +prosesTransaksi() void
         +cetakHeader() void
     }
-
-    class BarangMasuk {
-        +String idMasuk
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +String namaSupplier
-        +prosesTransaksi() void
-        +tambahStok() void
-    }
-
-    class BarangKeluar {
-        +String idKeluar
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +String tujuan
-        +prosesTransaksi() void
-    }
-
-    Transaksi <|-- BarangMasuk : extends
-    Transaksi <|-- BarangKeluar : extends
 
     class Pengguna {
         <<abstract>>
@@ -951,14 +929,34 @@ classDiagram
         +tampilkanIdentitas() void
     }
 
+    %% Kelas Turunan
+    class Barang {
+        +String kode
+        +String nama
+        +String kategori
+        +String merk
+        +int jumlahStok
+        +String satuan
+        +String kondisi
+        +tampilkanInfo() void
+        +tambahStok(int jumlah) void
+        +kurangiStok(int jumlah) void
+    }
+
+    class BarangMasuk {
+        +String namaSupplier
+        +prosesTransaksi() void
+    }
+
+    class BarangKeluar {
+        +String tujuan
+        +prosesTransaksi() void
+    }
+
     class User {
-        +String username
-        +String password
         +String level
         +login() void
     }
-
-    Pengguna <|-- User : extends
 
     class StokBarang {
         +int stokAwal
@@ -969,7 +967,13 @@ classDiagram
         +hitungStok() void
     }
 
-    %% Relasi penggunaan
+    %% Relasi Pewarisan
+    EntitasGudang <|-- Barang : extends
+    Transaksi <|-- BarangMasuk : extends
+    Transaksi <|-- BarangKeluar : extends
+    Pengguna <|-- User : extends
+
+    %% Relasi Penggunaan
     BarangMasuk --> Barang : menambah stok
     BarangKeluar --> Barang : mengurangi stok
     StokBarang --> Barang : menghitung stok
@@ -978,78 +982,51 @@ classDiagram
     </div>
 
     <div class="copy-section">
-        <button class="copy-btn" onclick="toggleCode('classdiagram-code')">📋 Tampilkan Kode Mermaid</button>
-        <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">📋 Salin Kode</button>
+        <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
+            📋 Tampilkan Kode Mermaid
+        </button>
+        <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
+            📋 Salin Kode
+        </button>
     </div>
 
     <div id="classdiagram-code" class="code-block">
-        <span class="label">📌 Kode Mermaid — Class Diagram</span>
-        <code>%%{init: {'theme': 'dark', 'themeVariables': { 
-    'primaryColor': '#22d3ee', 
-    'primaryTextColor': '#ffffff', 
-    'primaryBorderColor': '#a855f7', 
-    'lineColor': '#94a3b8', 
-    'secondaryColor': '#1e293b', 
-    'tertiaryColor': '#0f172a', 
-    'background': '#020617' 
-}}}%%
+        <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
+        <code>%%{init: {
+    'theme': 'dark',
+    'themeVariables': {
+        'primaryColor': '#22d3ee',
+        'primaryTextColor': '#ffffff',
+        'primaryBorderColor': '#a855f7',
+        'lineColor': '#94a3b8',
+        'secondaryColor': '#1e293b',
+        'tertiaryColor': '#0f172a',
+        'background': '#020617'
+    },
+    'classDiagram': {
+        'useMaxWidth': true
+    }
+}}%%
 classDiagram
     direction TB
 
     class EntitasGudang {
         <<abstract>>
-        #String kode
-        #String nama
+        +String kode
+        +String nama
         +tampilkanInfo() void
         +cetakIdentitas() void
     }
 
-    class Barang {
-        +String kodeBarang
-        +String namaBarang
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo() void
-        +tambahStok(int jml) void
-        +kurangiStok(int jml) void
-    }
-
-    EntitasGudang <|-- Barang : extends
-
     class Transaksi {
         <<abstract>>
-        #String idTransaksi
-        #String tanggal
-        #String kodeBarang
-        #int jumlah
+        +String idTransaksi
+        +String tanggal
+        +String kodeBarang
+        +int jumlah
         +prosesTransaksi() void
         +cetakHeader() void
     }
-
-    class BarangMasuk {
-        +String idMasuk
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +String namaSupplier
-        +prosesTransaksi() void
-        +tambahStok() void
-    }
-
-    class BarangKeluar {
-        +String idKeluar
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +String tujuan
-        +prosesTransaksi() void
-    }
-
-    Transaksi <|-- BarangMasuk : extends
-    Transaksi <|-- BarangKeluar : extends
 
     class Pengguna {
         <<abstract>>
@@ -1059,14 +1036,33 @@ classDiagram
         +tampilkanIdentitas() void
     }
 
+    class Barang {
+        +String kode
+        +String nama
+        +String kategori
+        +String merk
+        +int jumlahStok
+        +String satuan
+        +String kondisi
+        +tampilkanInfo() void
+        +tambahStok(int jumlah) void
+        +kurangiStok(int jumlah) void
+    }
+
+    class BarangMasuk {
+        +String namaSupplier
+        +prosesTransaksi() void
+    }
+
+    class BarangKeluar {
+        +String tujuan
+        +prosesTransaksi() void
+    }
+
     class User {
-        +String username
-        +String password
         +String level
         +login() void
     }
-
-    Pengguna <|-- User : extends
 
     class StokBarang {
         +int stokAwal
@@ -1077,6 +1073,11 @@ classDiagram
         +hitungStok() void
     }
 
+    EntitasGudang <|-- Barang : extends
+    Transaksi <|-- BarangMasuk : extends
+    Transaksi <|-- BarangKeluar : extends
+    Pengguna <|-- User : extends
+
     BarangMasuk --> Barang : menambah stok
     BarangKeluar --> Barang : mengurangi stok
     StokBarang --> Barang : menghitung stok
@@ -1084,6 +1085,7 @@ classDiagram
         </code>
     </div>
 </div>
+           
  
                 
 
