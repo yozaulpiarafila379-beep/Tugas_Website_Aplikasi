@@ -870,47 +870,30 @@ graph TD
             </div>
 
 
-
-    <!-- ─── CLASS DIAGRAM ─── -->
+<!-- ─── CLASS DIAGRAM ─── -->
 <div class="diagram-wrapper">
     <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
         📦 Class Diagram — UML
     </h3>
 
     <p style="color:#94a3b8; font-size:0.85em;">
-        Keterangan: <span style="color:#f472b6;">⟨abstract⟩</span> = Kelas Abstrak,
+        Keterangan:
+        <span style="color:#f472b6;">⟨abstract⟩</span> = Kelas Abstrak,
         <span style="color:#22d3ee;">◁──</span> = Pewarisan,
         <span style="color:#facc15;">──→</span> = Menggunakan.
     </p>
 
     <div class="mermaid-wrapper">
         <div class="mermaid">
-%%{init: {
-    'theme': 'dark',
-    'themeVariables': {
-        'primaryColor': '#22d3ee',
-        'primaryTextColor': '#ffffff',
-        'primaryBorderColor': '#a855f7',
-        'lineColor': '#94a3b8',
-        'secondaryColor': '#1e293b',
-        'tertiaryColor': '#0f172a',
-        'background': '#020617'
-    },
-    'classDiagram': {
-        'useMaxWidth': true,
-        'padding': 12
-    }
-}}%%
 classDiagram
     direction TB
 
-    -- Kelas Induk --
     class EntitasGudang {
         <<abstract>>
         +String kode
         +String nama
-        +tampilkanInfo() void
-        +cetakIdentitas() void
+        +tampilkanInfo()
+        +cetakIdentitas()
     }
 
     class Transaksi {
@@ -919,19 +902,18 @@ classDiagram
         +String tanggal
         +String kodeBarang
         +int jumlah
-        +prosesTransaksi() void
-        +cetakHeader() void
+        +prosesTransaksi()
+        +cetakHeader()
     }
 
     class Pengguna {
         <<abstract>>
         #String username
         #String password
-        +login() void
-        +tampilkanIdentitas() void
+        +login()
+        +tampilkanIdentitas()
     }
 
-    -- Kelas Turunan --
     class Barang {
         +String kode
         +String nama
@@ -940,24 +922,24 @@ classDiagram
         +int jumlahStok
         +String satuan
         +String kondisi
-        +tampilkanInfo() void
-        +tambahStok(int jumlah) void
-        +kurangiStok(int jumlah) void
+        +tampilkanInfo()
+        +tambahStok(int jumlah)
+        +kurangiStok(int jumlah)
     }
 
     class BarangMasuk {
         +String namaSupplier
-        +prosesTransaksi() void
+        +prosesTransaksi()
     }
 
     class BarangKeluar {
         +String tujuan
-        +prosesTransaksi() void
+        +prosesTransaksi()
     }
 
     class User {
         +String level
-        +login() void
+        +login()
     }
 
     class StokBarang {
@@ -966,20 +948,18 @@ classDiagram
         +int barangKeluar
         +int stokAkhir
         +String status
-        +hitungStok() void
+        +hitungStok()
     }
 
-    -- Relasi Pewarisan --
     EntitasGudang <|-- Barang
     Transaksi <|-- BarangMasuk
     Transaksi <|-- BarangKeluar
     Pengguna <|-- User
 
-    -- Relasi Penggunaan --
-    BarangMasuk --> Barang : menambah stok
-    BarangKeluar --> Barang : mengurangi stok
-    StokBarang --> Barang : menghitung stok
-    User --> Barang : mengelola
+    BarangMasuk --> Barang : tambah stok
+    BarangKeluar --> Barang : kurangi stok
+    StokBarang --> Barang : hitung stok
+    User --> Barang : kelola
         </div>
     </div>
 
@@ -987,6 +967,7 @@ classDiagram
         <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
             📋 Tampilkan Kode Mermaid
         </button>
+
         <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
             📋 Salin Kode
         </button>
@@ -994,22 +975,8 @@ classDiagram
 
     <div id="classdiagram-code" class="code-block">
         <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
-        <code>%%{init: {
-    'theme': 'dark',
-    'themeVariables': {
-        'primaryColor': '#22d3ee',
-        'primaryTextColor': '#ffffff',
-        'primaryBorderColor': '#a855f7',
-        'lineColor': '#94a3b8',
-        'secondaryColor': '#1e293b',
-        'tertiaryColor': '#0f172a',
-        'background': '#020617'
-    },
-    'classDiagram': {
-        'useMaxWidth': true,
-        'padding': 12
-    }
-}}%%
+
+<code>
 classDiagram
     direction TB
 
@@ -1017,8 +984,8 @@ classDiagram
         <<abstract>>
         +String kode
         +String nama
-        +tampilkanInfo() void
-        +cetakIdentitas() void
+        +tampilkanInfo()
+        +cetakIdentitas()
     }
 
     class Transaksi {
@@ -1027,16 +994,16 @@ classDiagram
         +String tanggal
         +String kodeBarang
         +int jumlah
-        +prosesTransaksi() void
-        +cetakHeader() void
+        +prosesTransaksi()
+        +cetakHeader()
     }
 
     class Pengguna {
         <<abstract>>
         #String username
         #String password
-        +login() void
-        +tampilkanIdentitas() void
+        +login()
+        +tampilkanIdentitas()
     }
 
     class Barang {
@@ -1047,24 +1014,24 @@ classDiagram
         +int jumlahStok
         +String satuan
         +String kondisi
-        +tampilkanInfo() void
-        +tambahStok(int jumlah) void
-        +kurangiStok(int jumlah) void
+        +tampilkanInfo()
+        +tambahStok(int jumlah)
+        +kurangiStok(int jumlah)
     }
 
     class BarangMasuk {
         +String namaSupplier
-        +prosesTransaksi() void
+        +prosesTransaksi()
     }
 
     class BarangKeluar {
         +String tujuan
-        +prosesTransaksi() void
+        +prosesTransaksi()
     }
 
     class User {
         +String level
-        +login() void
+        +login()
     }
 
     class StokBarang {
@@ -1073,7 +1040,7 @@ classDiagram
         +int barangKeluar
         +int stokAkhir
         +String status
-        +hitungStok() void
+        +hitungStok()
     }
 
     EntitasGudang <|-- Barang
@@ -1081,16 +1048,14 @@ classDiagram
     Transaksi <|-- BarangKeluar
     Pengguna <|-- User
 
-    BarangMasuk --> Barang : menambah stok
-    BarangKeluar --> Barang : mengurangi stok
-    StokBarang --> Barang : menghitung stok
-    User --> Barang : mengelola
-        </code>
-    </div>
-</div>
+    BarangMasuk --> Barang : tambah stok
+    BarangKeluar --> Barang : kurangi stok
+    StokBarang --> Barang : hitung stok
+    User --> Barang : kelola
+</code>
 
-           
- 
+    </div>
+</div>           
                 
 
         <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
@@ -1531,24 +1496,47 @@ classDiagram
         });
 
         // ─── INIT ───
-        function init() {
-            initialData.forEach(d =>
-                barangList.push(new Barang(d.kode, d.nama, d.kategori, d.merk, d.stok, d.satuan, d.kondisi))
-            );
-            log(`📦 ${barangList.length} barang siap.`, 'green');
-            refreshSelect();
-            renderInventory();
-            const sel = document.getElementById('selectBarang');
-            if (sel) sel.addEventListener('change', onSelectChange);
-            log('🟢 Sistem siap.', 'cyan');
+function init() {
+    initialData.forEach(d =>
+        barangList.push(
+            new Barang(
+                d.kode,
+                d.nama,
+                d.kategori,
+                d.merk,
+                d.stok,
+                d.satuan,
+                d.kondisi
+            )
+        )
+    );
 
-            // Render Mermaid
-            mermaid.run({
-                querySelector: '.mermaid',
-            });
-        }
+    log(`📦 ${barangList.length} barang siap.`, 'green');
 
-        document.addEventListener('DOMContentLoaded', init);
+    refreshSelect();
+    renderInventory();
+
+    const sel = document.getElementById('selectBarang');
+    if (sel) {
+        sel.addEventListener('change', onSelectChange);
+    }
+
+    log('🟢 Sistem siap.', 'cyan');
+
+    // Render semua diagram Mermaid
+    mermaid.initialize({
+        startOnLoad: false,
+        theme: 'dark',
+        securityLevel: 'loose'
+    });
+
+    mermaid.init(
+        undefined,
+        document.querySelectorAll('.mermaid')
+    );
+}
+
+document.addEventListener('DOMContentLoaded', init);
     </script>
 
 </body>
