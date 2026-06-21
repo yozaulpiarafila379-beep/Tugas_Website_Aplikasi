@@ -1643,32 +1643,29 @@ Rifqi Prayoga (251410005)
                        </span></pre>
 
 
-<!-- ✔️ DARTPAD MASIH DI DALAM SECTION -->
+<!-- Tombol DartPad -->
 <div class="dartpad-row">
 
-    <button class="btn"
-    onclick="runDart('d1',
-    'https://dartpad.dev/embed-inline.html?id=0df1cf550e767c6ec62f4559942f1354&split=60&run=true')">
-        ▶ Tampilkan DartPad
-    </button>
+<button class="btn" onclick="runDart()">
+▶ Tampilkan DartPad
+</button>
 
 </div>
 
 <iframe 
-    id="d1"
-    width="100%"
-    height="600"
-    style="border:1px solid #ccc; border-radius:8px;"
-    allow="clipboard-write">
+id="d1"
+width="100%"
+height="600"
+style="border:1px solid #ccc; border-radius:8px;">
 </iframe>
 
 
 <script>
-function runDart(id, url) {
-    document.getElementById(id).src = url;
+function runDart() {
+    document.getElementById("d1").src =
+    "https://dartpad.dev/embed-inline.html?id=0df1cf550e767c6ec62f4559942f1354&split=60&run=true";
 }
 </script>
-
 
 <!-- JARAK SEBELUM FOOTER -->
 <div style="height:50px;"></div>
