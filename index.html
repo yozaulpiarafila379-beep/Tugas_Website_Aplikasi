@@ -1039,134 +1039,238 @@ classDiagram
 </div>           
                 
 
-        <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
-        <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
-            <h2 style="color:#f472b6 !important;">📝 Pseudocode + DartPad</h2>
-            <p style="color:#94a3b8; font-size:0.85em;">Klik tombol untuk melihat implementasi Dart.</p>
 
-            <!-- 1. Abstract Class EntitasGudang -->
-            <h3 style="color:#f472b6; margin-top:16px;">1. Abstract Class EntitasGudang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// ABSTRACT CLASS: EntitasGudang</span><br />
-                <span class="p-keyword">abstract class</span> <span class="p-class">EntitasGudang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">kode</span>, <span class="p-var">nama</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">abstract</span> <span class="p-keyword">void</span> <span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">cetakIdentitas</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d0','https://dartpad.dev/embed-inline.html?id=00afd86673c22e4df79467b1f4be113a&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d0"></iframe>
+🔄 SYSTEM INITIALIZED
+📦 SISTEM PENDATAAN BARANG DI GUDANG
+👥 Kelompok: Yoza Ulpia Rafila (251410004) & Rifqi Prayoga (251410005)
 
-            <!-- 2. Class Barang -->
-            <h3 style="color:#22d3ee; margin-top:16px;">2. Class Barang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: Barang extends EntitasGudang</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">Barang</span> <span class="p-keyword">extends</span> <span class="p-class">EntitasGudang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">kategori</span>, <span class="p-var">merk</span>, <span class="p-var">satuan</span>, <span class="p-var">kondisi</span><br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">jumlahStok</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">tambahStok</span>(<span class="p-type">int</span> <span class="p-var">jml</span>)<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">kurangiStok</span>(<span class="p-type">int</span> <span class="p-var">jml</span>)<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d1','https://dartpad.dev/embed-inline.html?id=715ed6aadf60f9d87ba5a111f199b260&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d1"></iframe>
+📊 Data barang (15 unit) dan Pelanggan (15 orang) berhasil di-instansiasi di memori.
 
-            <!-- 3. Abstract Class Transaksi -->
-            <h3 style="color:#f472b6; margin-top:16px;">3. Abstract Class Transaksi</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// ABSTRACT CLASS: Transaksi</span><br />
-                <span class="p-keyword">abstract class</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">idTransaksi</span>, <span class="p-var">tanggal</span>, <span class="p-var">kodeBarang</span><br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">jumlah</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">abstract</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">cetakHeader</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d2','https://dartpad.dev/embed-inline.html?id=1bfaab26e1c7aacc40186fdb3213e7d9&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d2"></iframe>
+============================================================
+🚀 MEMULAI SIMULASI PENDATAAN GUDANG
+============================================================
 
-            <!-- 4. Class BarangMasuk -->
-            <h3 style="color:#a855f7; margin-top:16px;">4. Class BarangMasuk</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: BarangMasuk extends Transaksi</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">BarangMasuk</span> <span class="p-keyword">extends</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">namaBarang</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">barang</span> = <span class="p-function">cariBarang</span>(<span class="p-var">kodeBarang</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">barang</span> <span class="p-op">!=</span> <span class="p-keyword">null</span>) <span class="p-var">barang</span>.<span class="p-function">tambahStok</span>(<span class="p-var">jumlah</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-function">print</span>(<span class="p-string">"❌ Barang tidak ditemukan!"</span>)<br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d3','https://dartpad.dev/embed-inline.html?id=f4bfe7845e8da34250ef925a9447b76c&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d3"></iframe>
+>> TRANSAKSI 1: Yoza Ulpia Rafila menambah stok Beras Premium 5kg <<
+Status stok [BRG001] berhasil diubah menjadi: TERSEDIA.
+Stok Beras Premium 5kg: 70 Karung (+20)
+Total harga: Rp1100000
+Pemberitahuan: Transaksi TRX-001 Berhasil! Yoza Ulpia Rafila berhasil menambah stok Beras Premium 5kg.
 
-            <!-- 5. Class BarangKeluar -->
-            <h3 style="color:#fb923c; margin-top:16px;">5. Class BarangKeluar</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: BarangKeluar extends Transaksi</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">BarangKeluar</span> <span class="p-keyword">extends</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">tujuan</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">barang</span> = <span class="p-function">cariBarang</span>(<span class="p-var">kodeBarang</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">barang</span> <span class="p-op">!=</span> <span class="p-keyword">null</span>) <span class="p-var">barang</span>.<span class="p-function">kurangiStok</span>(<span class="p-var">jumlah</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-function">print</span>(<span class="p-string">"❌ Barang tidak ditemukan!"</span>)<br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d4','https://dartpad.dev/embed-inline.html?id=bb5aff697e49cdf7722ffe798e5efc0b&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d4"></iframe>
+>> TRANSAKSI 2: Rifqi Prayoga menambah stok Minyak Goreng 2L <<
+Status stok [BRG003] berhasil diubah menjadi: TERSEDIA.
+Stok Minyak Goreng 2L: 50 Liter (+15)
+Total harga: Rp330000
+Pemberitahuan: Transaksi TRX-002 Berhasil! Rifqi Prayoga berhasil menambah stok Minyak Goreng 2L.
 
-            <!-- 6. Class StokBarang -->
-            <h3 style="color:#facc15; margin-top:16px;">6. Class StokBarang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: StokBarang</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">StokBarang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">stokAwal</span>, <span class="p-var">barangMasuk</span>, <span class="p-var">barangKeluar</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">hitungStok</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">stokAkhir</span> = <span class="p-var">stokAwal</span> + <span class="p-var">barangMasuk</span> - <span class="p-var">barangKeluar</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">stokAkhir</span> <span class="p-op">==</span> 0) <span class="p-var">status</span> = <span class="p-string">"Habis"</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else if</span> (<span class="p-var">stokAkhir</span> <span class="p-op">&lt;</span> 5) <span class="p-var">status</span> = <span class="p-string">"Menipis"</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-var">status</span> = <span class="p-string">"Aman"</span><br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d5','https://dartpad.dev/embed-inline.html?id=8d289db6c0b98a3ffd7d7dce34ad6667&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d5"></iframe>
+>> TRANSAKSI 3: Budi Santoso menambah stok Teh Celup 50pcs <<
+Status stok [BRG008] berhasil diubah menjadi: TERSEDIA.
+Stok Teh Celup 50pcs: 53 Box (+25)
+Total harga: Rp200000
+Pemberitahuan: Transaksi TRX-003 Berhasil! Budi Santoso berhasil menambah stok Teh Celup 50pcs.
 
-            <!-- 7. Program Utama -->
-            <h3 style="color:#34d399; margin-top:16px;">7. Program Utama (main)</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// PROGRAM UTAMA</span><br />
-                <span class="p-keyword">void</span> <span class="p-function">main</span>() {<br />
-                &nbsp;&nbsp;<span class="p-var">barangList</span> = []; <span class="p-var">riwayat</span> = []<br />
-                &nbsp;&nbsp;<span class="p-var">b1</span> = <span class="p-keyword">new</span> <span class="p-class">Barang</span>(<span class="p-string">"BRG-001"</span>, <span class="p-string">"Laptop"</span>, ...)<br />
-                &nbsp;&nbsp;<span class="p-keyword">for</span> (<span class="p-var">barang</span> <span class="p-keyword">in</span> <span class="p-var">barangList</span>) <span class="p-var">barang</span>.<span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-var">transaksiMasuk</span> = <span class="p-keyword">new</span> <span class="p-class">BarangMasuk</span>(...)<br />
-                &nbsp;&nbsp;<span class="p-var">transaksiMasuk</span>.<span class="p-function">prosesTransaksi</span>()<br />
-                &nbsp;&nbsp;<span class="p-var">stok</span> = <span class="p-keyword">new</span> <span class="p-class">StokBarang</span>(<span class="p-number">10</span>, <span class="p-number">3</span>, <span class="p-number">2</span>); <span class="p-var">stok</span>.<span class="p-function">hitungStok</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d6','https://dartpad.dev/embed-inline.html?id=8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d6"></iframe>
-        </div>
+>> TRANSAKSI 4: Siti Aminah membeli Tepung Terigu 1kg <<
+Status stok [BRG005] berhasil diubah menjadi: TERSEDIA.
+Stok Tepung Terigu 1kg: 35 Kg (-10)
+Total harga: Rp130000
+Pemberitahuan: Transaksi TRX-004 Berhasil! Siti Aminah berhasil membeli Tepung Terigu 1kg.
 
-        <!-- ════════════════════ 4 PILAR OOP ════════════════════ -->
+>> TRANSAKSI 5: Ahmad Fauzi membeli Susu Bubuk 400g <<
+Status stok [BRG006] berhasil diubah menjadi: TERSEDIA.
+Stok Susu Bubuk 400g: 17 Pcs (-8)
+Total harga: Rp360000
+Pemberitahuan: Transaksi TRX-005 Berhasil! Ahmad Fauzi berhasil membeli Susu Bubuk 400g.
+
+>> TRANSAKSI 6: Dewi Lestari membeli Kecap Manis 600ml <<
+Status stok [BRG011] berhasil diubah menjadi: TERSEDIA.
+Stok Kecap Manis 600ml: 10 Botol (-12)
+Total harga: Rp192000
+Pemberitahuan: Transaksi TRX-006 Berhasil! Dewi Lestari berhasil membeli Kecap Manis 600ml.
+
+>> TRANSAKSI 7: Rizky Pratama membeli Gula Pasir 1kg <<
+Status stok [BRG002] berhasil diubah menjadi: TERSEDIA.
+Stok Gula Pasir 1kg: 35 Kg (-5)
+Total harga: Rp75000
+Pemberitahuan: Transaksi TRX-007 Berhasil! Rizky Pratama berhasil membeli Gula Pasir 1kg.
+Status transaksi akan selesai setelah 3 hari.
+Status stok [BRG002] akan dikembalikan setelah 3 hari.
+
+>> TRANSAKSI 8: Fitriani Putri membeli Kopi Bubuk 200g <<
+Status stok [BRG007] berhasil diubah menjadi: TERSEDIA.
+Stok Kopi Bubuk 200g: 17 Pcs (-3)
+Total harga: Rp75000
+Pemberitahuan: Transaksi TRX-008 Berhasil! Fitriani Putri berhasil membeli Kopi Bubuk 200g.
+Status transaksi akan selesai setelah 3 hari.
+Status stok [BRG007] akan dikembalikan setelah 3 hari.
+
+>> TRANSAKSI 9: Irfan Maulana membeli Air Mineral 600ml <<
+Status stok [BRG009] berhasil diubah menjadi: TERSEDIA.
+Stok Air Mineral 600ml: 56 Botol (-4)
+Total harga: Rp20000
+Pemberitahuan: Transaksi TRX-009 Berhasil! Irfan Maulana berhasil membeli Air Mineral 600ml.
+Status transaksi akan selesai setelah 3 hari.
+Status stok [BRG009] akan dikembalikan setelah 3 hari.
+
+>> TRANSAKSI 10: Pelanggan mencoba membeli barang dengan stok habis (Seharusnya Gagal) <<
+
+❌ Pemberitahuan: Transaksi Gagal! Stok Keju Cheddar 150g tidak mencukupi. Stok tersedia: 12 Pcs
+
+>> TRANSAKSI 11: Pelanggan mencoba membeli barang yang tidak tersedia (Seharusnya Gagal) <<
+
+❌ Pemberitahuan: Transaksi Gagal! Barang dengan kode BRG099 tidak ditemukan.
+
+>> TRANSAKSI 12: Lestari Dewi membeli Telur Ayam 1kg <<
+Status stok [BRG004] berhasil diubah menjadi: TERSEDIA.
+Stok Telur Ayam 1kg: 22 Kg (-8)
+Total harga: Rp240000
+Pemberitahuan: Transaksi TRX-012 Berhasil! Lestari Dewi berhasil membeli Telur Ayam 1kg.
+
+>> TRANSAKSI 13: Mulyono membeli Mie Instan 1kg <<
+Status stok [BRG010] berhasil diubah menjadi: TERSEDIA.
+Stok Mie Instan 1kg: 40 Kg (-15)
+Total harga: Rp300000
+Pemberitahuan: Transaksi TRX-013 Berhasil! Mulyono berhasil membeli Mie Instan 1kg.
+
+================================================================================
+📋 DAFTAR SEMUA TRANSAKSI
+================================================================================
+TRX-001 | BARANG MASUK | Beras Premium 5kg | 20 unit | Rp1100000 | Yoza Ulpia Rafila | BERHASIL
+TRX-002 | BARANG MASUK | Minyak Goreng 2L | 15 unit | Rp330000 | Rifqi Prayoga | BERHASIL
+TRX-003 | BARANG MASUK | Teh Celup 50pcs | 25 unit | Rp200000 | Budi Santoso | BERHASIL
+TRX-004 | BARANG KELUAR | Tepung Terigu 1kg | 10 unit | Rp130000 | Siti Aminah | BERHASIL
+TRX-005 | BARANG KELUAR | Susu Bubuk 400g | 8 unit | Rp360000 | Ahmad Fauzi | BERHASIL
+TRX-006 | BARANG KELUAR | Kecap Manis 600ml | 12 unit | Rp192000 | Dewi Lestari | BERHASIL
+TRX-007 | PEMBELIAN | Gula Pasir 1kg | 5 unit | Rp75000 | Rizky Pratama | BERHASIL
+TRX-008 | PEMBELIAN | Kopi Bubuk 200g | 3 unit | Rp75000 | Fitriani Putri | BERHASIL
+TRX-009 | PEMBELIAN | Air Mineral 600ml | 4 unit | Rp20000 | Irfan Maulana | BERHASIL
+TRX-012 | BARANG KELUAR | Telur Ayam 1kg | 8 unit | Rp240000 | Lestari Dewi | BERHASIL
+TRX-013 | BARANG KELUAR | Mie Instan 1kg | 15 unit | Rp300000 | Mulyono | BERHASIL
+================================================================================
+Total: 11 transaksi
+
+============================================================
+💰 LAPORAN KEUANGAN GUDANG
+============================================================
+Periode: 2026-06-21
+------------------------------------------------------------
+📊 RINGKASAN TRANSAKSI:
+  Total Barang Masuk    : 60 unit
+  Total Barang Keluar   : 53 unit
+  Total Pembelian       : 12 unit
+  Total Transaksi       : 11 transaksi
+------------------------------------------------------------
+💵 TOTAL PEMASUKAN:
+  Dari Penjualan        : Rp1392000
+------------------------------------------------------------
+💸 TOTAL PENGELUARAN:
+  Untuk Pembelian Stok  : Rp1630000
+------------------------------------------------------------
+📈 LABA/RUGI:
+  Laba Kotor            : Rp -238000
+  Persentase Laba       : -14.60%
+  Status                : ❌ RUGI
+============================================================
+
+============================================================
+🧾 STRUK TRANSAKSI
+============================================================
+
+============================================================
+🧾 STRUK TRANSAKSI BARANG GUDANG
+============================================================
+ID Transaksi    : TRX-001
+Tanggal         : 2026-06-21
+------------------------------------------------------------
+👤 DATA PELANGGAN:
+  Nama          : Yoza Ulpia Rafila
+  NIK           : 3201010101010001
+  Alamat        : Jl. Merdeka No. 10, Jakarta
+  No. Telepon   : 081234567890
+------------------------------------------------------------
+📦 DATA BARANG:
+  Kode Barang   : BRG001
+  Nama Barang   : Beras Premium 5kg
+  Satuan        : Karung
+  Jumlah        : 20 unit
+------------------------------------------------------------
+💰 DETAIL TRANSAKSI:
+  Jenis         : MASUK
+  Total Harga   : Rp1100000
+  Status        : BERHASIL
+  Keterangan    : Yoza menambah stok beras
+============================================================
+Terima kasih telah bertransaksi!
+============================================================
+
+============================================================
+🧾 STRUK TRANSAKSI BARANG GUDANG
+============================================================
+ID Transaksi    : TRX-002
+Tanggal         : 2026-06-21
+------------------------------------------------------------
+👤 DATA PELANGGAN:
+  Nama          : Rifqi Prayoga
+  NIK           : 3201010101010002
+  Alamat        : Jl. Sudirman No. 5, Bandung
+  No. Telepon   : 081234567891
+------------------------------------------------------------
+📦 DATA BARANG:
+  Kode Barang   : BRG003
+  Nama Barang   : Minyak Goreng 2L
+  Satuan        : Liter
+  Jumlah        : 15 unit
+------------------------------------------------------------
+💰 DETAIL TRANSAKSI:
+  Jenis         : MASUK
+  Total Harga   : Rp330000
+  Status        : BERHASIL
+  Keterangan    : Rifqi menambah stok minyak goreng
+============================================================
+Terima kasih telah bertransaksi!
+============================================================
+
+============================================================
+🧾 STRUK TRANSAKSI BARANG GUDANG
+============================================================
+ID Transaksi    : TRX-007
+Tanggal         : 2026-06-21
+------------------------------------------------------------
+👤 DATA PELANGGAN:
+  Nama          : Rizky Pratama
+  NIK           : 3201010101010007
+  Alamat        : Jl. Ahmad Yani No. 15, Makassar
+  No. Telepon   : 081234567896
+------------------------------------------------------------
+📦 DATA BARANG:
+  Kode Barang   : BRG002
+  Nama Barang   : Gula Pasir 1kg
+  Satuan        : Kg
+  Jumlah        : 5 unit
+------------------------------------------------------------
+💰 DETAIL TRANSAKSI:
+  Jenis         : PEMBELIAN
+  Total Harga   : Rp75000
+  Status        : BERHASIL
+  Keterangan    : Pembelian oleh Rizky Pratama
+============================================================
+Terima kasih telah bertransaksi!
+============================================================
+
+============================================================
+📊 LAPORAN AKHIR SISTEM GUDANG
+============================================================
+Total Transaksi Berhasil : 11 transaksi
+Total Transaksi Gagal    : 0 transaksi
+Total Barang Terjual     : 65 unit
+Total Barang Masuk       : 60 unit
+============================================================
+
+✅ SIMULASI SELESAI
+SISTEM PENDATAAN BARANG DI GUDANG
+Kelompok: Yoza Ulpia Rafila (251410004) & Rifqi Prayoga (251410005)
+============================================================
+
+    
+        <!-- ════════════════════ PILAR OOP ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
             <h2 style="color:#f472b6 !important;">🧬 4 Pilar OOP</h2>
             <div class="grid-2">
