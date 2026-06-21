@@ -1038,134 +1038,381 @@ classDiagram
     </div>
 </div>           
                 
+<!-- ════════════════════ SISTEM PENDATAAN BARANG DI GUDANG ════════════════════ -->
+<div class="section">
 
-        <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
-        <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
-            <h2 style="color:#f472b6 !important;">📝 Pseudocode + DartPad</h2>
-            <p style="color:#94a3b8; font-size:0.85em;">Klik tombol untuk melihat implementasi Dart.</p>
+<h2>🏪 Sistem Pendataan Barang di Gudang</h2>
 
-            <!-- 1. Abstract Class EntitasGudang -->
-            <h3 style="color:#f472b6; margin-top:16px;">1. Abstract Class EntitasGudang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// ABSTRACT CLASS: EntitasGudang</span><br />
-                <span class="p-keyword">abstract class</span> <span class="p-class">EntitasGudang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">kode</span>, <span class="p-var">nama</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">abstract</span> <span class="p-keyword">void</span> <span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">cetakIdentitas</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d0','https://dartpad.dev/embed-inline.html?id=00afd86673c22e4df79467b1f4be113a&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d0"></iframe>
+<p>
+Kelompok:
+<br>Yoza Ulpia Rafila (251410004)
+<br>Rifqi Prayoga (251410005)
+</p>
 
-            <!-- 2. Class Barang -->
-            <h3 style="color:#22d3ee; margin-top:16px;">2. Class Barang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: Barang extends EntitasGudang</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">Barang</span> <span class="p-keyword">extends</span> <span class="p-class">EntitasGudang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">kategori</span>, <span class="p-var">merk</span>, <span class="p-var">satuan</span>, <span class="p-var">kondisi</span><br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">jumlahStok</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">tambahStok</span>(<span class="p-type">int</span> <span class="p-var">jml</span>)<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">kurangiStok</span>(<span class="p-type">int</span> <span class="p-var">jml</span>)<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d1','https://dartpad.dev/embed-inline.html?id=715ed6aadf60f9d87ba5a111f199b260&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d1"></iframe>
+<h3>1. Class Barang</h3>
 
-            <!-- 3. Abstract Class Transaksi -->
-            <h3 style="color:#f472b6; margin-top:16px;">3. Abstract Class Transaksi</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// ABSTRACT CLASS: Transaksi</span><br />
-                <span class="p-keyword">abstract class</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">idTransaksi</span>, <span class="p-var">tanggal</span>, <span class="p-var">kodeBarang</span><br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">jumlah</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">abstract</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>()<br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">cetakHeader</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d2','https://dartpad.dev/embed-inline.html?id=1bfaab26e1c7aacc40186fdb3213e7d9&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d2"></iframe>
+<div class="pseudo-block">
 
-            <!-- 4. Class BarangMasuk -->
-            <h3 style="color:#a855f7; margin-top:16px;">4. Class BarangMasuk</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: BarangMasuk extends Transaksi</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">BarangMasuk</span> <span class="p-keyword">extends</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">namaBarang</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">barang</span> = <span class="p-function">cariBarang</span>(<span class="p-var">kodeBarang</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">barang</span> <span class="p-op">!=</span> <span class="p-keyword">null</span>) <span class="p-var">barang</span>.<span class="p-function">tambahStok</span>(<span class="p-var">jumlah</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-function">print</span>(<span class="p-string">"❌ Barang tidak ditemukan!"</span>)<br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d3','https://dartpad.dev/embed-inline.html?id=f4bfe7845e8da34250ef925a9447b76c&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d3"></iframe>
+class Barang {
 
-            <!-- 5. Class BarangKeluar -->
-            <h3 style="color:#fb923c; margin-top:16px;">5. Class BarangKeluar</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: BarangKeluar extends Transaksi</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">BarangKeluar</span> <span class="p-keyword">extends</span> <span class="p-class">Transaksi</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">String</span> <span class="p-var">tujuan</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">@override</span> <span class="p-keyword">void</span> <span class="p-function">prosesTransaksi</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">barang</span> = <span class="p-function">cariBarang</span>(<span class="p-var">kodeBarang</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">barang</span> <span class="p-op">!=</span> <span class="p-keyword">null</span>) <span class="p-var">barang</span>.<span class="p-function">kurangiStok</span>(<span class="p-var">jumlah</span>)<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-function">print</span>(<span class="p-string">"❌ Barang tidak ditemukan!"</span>)<br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d4','https://dartpad.dev/embed-inline.html?id=bb5aff697e49cdf7722ffe798e5efc0b&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d4"></iframe>
+  kodeBarang
 
-            <!-- 6. Class StokBarang -->
-            <h3 style="color:#facc15; margin-top:16px;">6. Class StokBarang</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// CLASS: StokBarang</span><br />
-                <span class="p-keyword">class</span> <span class="p-class">StokBarang</span> {<br />
-                &nbsp;&nbsp;<span class="p-type">int</span> <span class="p-var">stokAwal</span>, <span class="p-var">barangMasuk</span>, <span class="p-var">barangKeluar</span><br />
-                &nbsp;&nbsp;<span class="p-keyword">void</span> <span class="p-function">hitungStok</span>() {<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-var">stokAkhir</span> = <span class="p-var">stokAwal</span> + <span class="p-var">barangMasuk</span> - <span class="p-var">barangKeluar</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">if</span> (<span class="p-var">stokAkhir</span> <span class="p-op">==</span> 0) <span class="p-var">status</span> = <span class="p-string">"Habis"</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else if</span> (<span class="p-var">stokAkhir</span> <span class="p-op">&lt;</span> 5) <span class="p-var">status</span> = <span class="p-string">"Menipis"</span><br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="p-cond">else</span> <span class="p-var">status</span> = <span class="p-string">"Aman"</span><br />
-                &nbsp;&nbsp;}<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d5','https://dartpad.dev/embed-inline.html?id=8d289db6c0b98a3ffd7d7dce34ad6667&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d5"></iframe>
+  namaBarang
 
-            <!-- 7. Program Utama -->
-            <h3 style="color:#34d399; margin-top:16px;">7. Program Utama (main)</h3>
-            <div class="pseudo-block">
-                <span class="p-comment">// PROGRAM UTAMA</span><br />
-                <span class="p-keyword">void</span> <span class="p-function">main</span>() {<br />
-                &nbsp;&nbsp;<span class="p-var">barangList</span> = []; <span class="p-var">riwayat</span> = []<br />
-                &nbsp;&nbsp;<span class="p-var">b1</span> = <span class="p-keyword">new</span> <span class="p-class">Barang</span>(<span class="p-string">"BRG-001"</span>, <span class="p-string">"Laptop"</span>, ...)<br />
-                &nbsp;&nbsp;<span class="p-keyword">for</span> (<span class="p-var">barang</span> <span class="p-keyword">in</span> <span class="p-var">barangList</span>) <span class="p-var">barang</span>.<span class="p-function">tampilkanInfo</span>()<br />
-                &nbsp;&nbsp;<span class="p-var">transaksiMasuk</span> = <span class="p-keyword">new</span> <span class="p-class">BarangMasuk</span>(...)<br />
-                &nbsp;&nbsp;<span class="p-var">transaksiMasuk</span>.<span class="p-function">prosesTransaksi</span>()<br />
-                &nbsp;&nbsp;<span class="p-var">stok</span> = <span class="p-keyword">new</span> <span class="p-class">StokBarang</span>(<span class="p-number">10</span>, <span class="p-number">3</span>, <span class="p-number">2</span>); <span class="p-var">stok</span>.<span class="p-function">hitungStok</span>()<br />
-                }
-            </div>
-            <div class="dartpad-row">
-                <button class="btn" onclick="runDart('d6','https://dartpad.dev/embed-inline.html?id=8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a&split=60&run=true')">▶ Tampilkan DartPad</button>
-            </div>
-            <iframe id="d6"></iframe>
-        </div>
+  stok
 
+  hargaBeli
+
+  hargaJual
+
+  kategori
+
+  satuan
+
+}
+
+</div>
+
+<h3>2. Class Pelanggan</h3>
+
+<div class="pseudo-block">
+
+class Pelanggan {
+
+  idPelanggan
+
+  namaPelanggan
+
+  alamat
+
+  noTelepon
+
+  email
+
+  jenisKelamin
+
+  tanggalDaftar
+
+}
+
+</div>
+
+<h3>3. Class Transaksi</h3>
+
+<div class="pseudo-block">
+
+class Transaksi {
+
+  idTransaksi
+
+  kodeBarang
+
+  namaBarang
+
+  jumlah
+
+  jenisTransaksi
+
+  tanggal
+
+  totalHarga
+
+  idPelanggan
+
+  namaPelanggan
+
+  keterangan
+
+}
+
+</div>
+
+<h3>4. Data Barang Gudang</h3>
+
+<div class="pseudo-block">
+
+BRG001 = Beras Premium 5kg
+
+BRG002 = Gula Pasir 1kg
+
+BRG003 = Minyak Goreng 2L
+
+BRG004 = Telur Ayam 1kg
+
+BRG005 = Tepung Terigu 1kg
+
+BRG006 = Susu Bubuk 400g
+
+BRG007 = Kopi Bubuk 200g
+
+BRG008 = Teh Celup 50pcs
+
+BRG009 = Air Mineral 600ml
+
+BRG010 = Mie Instan 1kg
+
+BRG011 = Kecap Manis 600ml
+
+BRG012 = Saus Tomat 500ml
+
+BRG013 = Mayones 250ml
+
+BRG014 = Mentega 200g
+
+BRG015 = Keju Cheddar 150g
+
+</div>
+
+<h3>5. Data Pelanggan</h3>
+
+<div class="pseudo-block">
+
+PLG001 = Ahmad Fauzi
+
+PLG002 = Siti Nurhaliza
+
+PLG003 = Budi Santoso
+
+PLG004 = Dewi Anggraeni
+
+PLG005 = Eko Prasetyo
+
+PLG006 = Fitriani Putri
+
+PLG007 = Gilang Ramadhan
+
+PLG008 = Hani Fauziah
+
+PLG009 = Irfan Maulana
+
+PLG010 = Juwita Sari
+
+PLG011 = Kurniawan Hadi
+
+PLG012 = Lestari Dewi
+
+PLG013 = Mulyono
+
+PLG014 = Nurul Aini
+
+PLG015 = Oktavianus
+
+</div>
+
+<h3>6. Tambah Barang</h3>
+
+<div class="pseudo-block">
+
+tambahBarang(barang)
+
+simpan barang ke daftarBarang
+
+</div>
+
+<h3>7. Tambah Pelanggan</h3>
+
+<div class="pseudo-block">
+
+tambahPelanggan(pelanggan)
+
+simpan pelanggan ke daftarPelanggan
+
+</div>
+
+<h3>8. Cari Barang</h3>
+
+<div class="pseudo-block">
+
+cariBarang(kodeBarang)
+
+jika ditemukan
+
+→ tampilkan data barang
+
+jika tidak ditemukan
+
+→ tampilkan pesan error
+
+</div>
+
+<h3>9. Cari Pelanggan</h3>
+
+<div class="pseudo-block">
+
+cariPelanggan(idPelanggan)
+
+jika ditemukan
+
+→ tampilkan data pelanggan
+
+jika tidak ditemukan
+
+→ tampilkan pesan error
+
+</div>
+
+<h3>10. Transaksi Barang Masuk</h3>
+
+<div class="pseudo-block">
+
+input kode barang
+
+input jumlah barang
+
+input keterangan
+
+stok = stok + jumlah
+
+totalHarga = hargaBeli × jumlah
+
+simpan transaksi masuk
+
+</div>
+
+<h3>11. Transaksi Barang Keluar</h3>
+
+<div class="pseudo-block">
+
+input kode barang
+
+input jumlah barang
+
+input keterangan
+
+jika stok mencukupi
+
+stok = stok - jumlah
+
+totalHarga = hargaJual × jumlah
+
+simpan transaksi keluar
+
+jika stok tidak cukup
+
+tampilkan pesan error
+
+</div>
+
+<h3>12. Transaksi Pembelian Pelanggan</h3>
+
+<div class="pseudo-block">
+
+input ID pelanggan
+
+input kode barang
+
+input jumlah barang
+
+cek pelanggan
+
+cek barang
+
+cek stok
+
+stok = stok - jumlah
+
+totalHarga = hargaJual × jumlah
+
+simpan transaksi pembelian
+
+</div>
+
+<h3>13. Menampilkan Data</h3>
+
+<div class="pseudo-block">
+
+tampilkanDaftarBarang()
+
+tampilkanDaftarPelanggan()
+
+tampilkanDaftarTransaksi()
+
+</div>
+
+<h3>14. Laporan Stok Akhir</h3>
+
+<div class="pseudo-block">
+
+untuk setiap barang
+
+nilaiStok = stok × hargaBeli
+
+totalNilaiStok += nilaiStok
+
+totalUnit += stok
+
+tampilkan laporan stok
+
+</div>
+
+<h3>15. Laporan Keuangan</h3>
+
+<div class="pseudo-block">
+
+hitung total pemasukan
+
+hitung total pengeluaran
+
+labaKotor = pemasukan - pengeluaran
+
+persentaseLaba =
+(labaKotor / pengeluaran) × 100
+
+tampilkan laporan keuangan
+
+</div>
+
+<h3>16. Menu Utama</h3>
+
+<div class="pseudo-block">
+
+1. Lihat Daftar Barang
+
+2. Lihat Daftar Pelanggan
+
+3. Lihat Daftar Transaksi
+
+4. Transaksi Barang Masuk
+
+5. Transaksi Barang Keluar
+
+6. Transaksi Pembelian Pelanggan
+
+7. Laporan Keuangan
+
+8. Laporan Stok Akhir
+
+9. Laporan Lengkap
+
+0. Keluar
+
+</div>
+
+<h3>17. Program Utama (Main)</h3>
+
+<div class="pseudo-block">
+
+void main() {
+
+  buat objek GudangSystem
+
+  inisialisasiData()
+
+  tampilkan menuUtama()
+
+}
+
+Pembuat Program:
+
+Yoza Ulpia Rafila (251410004)
+
+Rifqi Prayoga (251410005)
+
+</div>
+
+</div>
+
+        
         <!-- ════════════════════ 4 PILAR OOP ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
             <h2 style="color:#f472b6 !important;">🧬 4 Pilar OOP</h2>
