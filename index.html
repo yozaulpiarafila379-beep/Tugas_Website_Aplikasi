@@ -937,10 +937,10 @@ Transaksi <|-- BarangKeluar
 
 class Pengguna {
     <<abstract>>
-    #String username
-    #String password
-    +login() void*
-    +tampilkanIdentitas() void
+    #username : String
+    #password : String
+    +login()
+    +tampilkanIdentitas()
 }
 
 class User {
@@ -966,10 +966,15 @@ User --> Barang : mengelola
         </div>
     </div>
 </div>
-                <div class="copy-section">
-                    <button class="copy-btn" onclick="toggleCode('classdiagram-code')">📋 Tampilkan Kode Mermaid</button>
-                    <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">📋 Salin Kode</button>
-                </div>
+
+<div class="copy-section">
+    <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
+        📋 Tampilkan Kode Mermaid
+    </button>
+    <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
+        📋 Salin Kode
+    </button>
+</div>
                 <div id="classdiagram-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Class Diagram</span>
                     <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
@@ -1123,14 +1128,15 @@ class StokBarang {
     +hitungStok()
 }
 
-BarangMasuk --> Barang
-BarangKeluar --> Barang
-StokBarang --> Barang
-User --> Barang
+BarangMasuk --> Barang : menambah
+BarangKeluar --> Barang : mengurangi
+StokBarang --> Barang : menghitung
+User --> Barang : mengelola
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
+
+<div class="copy-section">
 
         <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
