@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Pendataan Barang — OOP + Diagram</title>
-    <!-- MERMAID v9 - LEBIH STABIL -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.min.js"></script>
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js">
+    </script>
     <style>
         /* ─── RESET & GLOBAL ─── */
         * {
@@ -562,6 +563,7 @@
             activeIframe = frame;
         }
 
+        // ─── MERMAID FUNCTIONS ───
         function toggleCode(id) {
             const el = document.getElementById(id);
             if (el) {
@@ -611,7 +613,7 @@
 
 <body>
 
-    <!-- HEADER -->
+    <!-- ════════════════════ HEADER ════════════════════ -->
     <header class="header">
         <h1>Sistem Pendataan Barang di Gudang</h1>
         <div class="subtitle">— Tugas Kelompok —</div>
@@ -625,9 +627,10 @@
 
     <div class="container">
 
-        <!-- DASHBOARD -->
+        <!-- ════════════════════ DASHBOARD ════════════════════ -->
         <div class="section">
             <h2>📋 Dashboard &amp; Kontrol</h2>
+
             <div class="card" style="border-color:#a855f7;">
                 <div class="card-title">➕ Tambah Barang Baru</div>
                 <div class="form-row">
@@ -642,6 +645,7 @@
                     <button class="btn green" onclick="tambahBarang()">➕ Tambah</button>
                 </div>
             </div>
+
             <div class="card" style="margin-top:12px;">
                 <div class="card-title">🎯 Pilih Barang &amp; Aksi</div>
                 <div class="form-row">
@@ -661,13 +665,13 @@
             </div>
         </div>
 
-        <!-- INVENTORY -->
+        <!-- ════════════════════ INVENTORY ════════════════════ -->
         <div class="section">
             <h2>📦 Daftar Barang di Gudang</h2>
             <div id="inventoryGrid" class="grid-3"></div>
         </div>
 
-        <!-- TERMINAL -->
+        <!-- ════════════════════ TERMINAL ════════════════════ -->
         <div class="section" style="border-color:#a855f7;">
             <h2 style="color:#a855f7 !important;">🖥️ Terminal Console</h2>
             <div class="terminal" id="terminal">
@@ -677,19 +681,20 @@
             <button class="btn small" onclick="clearTerminal()" style="margin-top:8px;">🧹 Clear Log</button>
         </div>
 
-        <!-- MERMAID DIAGRAMS -->
+        <!-- ════════════════════ MERMAID DIAGRAMS ════════════════════ -->
         <div class="section" style="border:2px solid rgba(168,85,247,0.3);">
             <h2 style="color:#a855f7 !important;">📊 Mermaid Diagram</h2>
             <p style="color:#94a3b8; font-size:0.9em; margin-bottom:6px;">
                 Diagram interaktif yang dapat dilihat kode sumbernya dan disalin.
             </p>
 
-            <!-- FLOWCHART -->
+            <!-- ─── FLOWCHART ─── -->
             <div class="diagram-wrapper">
                 <h3 style="color:#34d399 !important; text-shadow:0 0 12px #34d399;">🔄 Flowchart Sistem — Interaksi Pengguna</h3>
                 <p style="color:#94a3b8; font-size:0.85em;">Alur interaksi pengguna: mulai, inisialisasi, tambah/pilih barang, validasi, selesai.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
+                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
                         graph TD
                             A(🚀 MULAI) --> B[⚙️ Inisialisasi Sistem]
                             B --> C[🖥️ Tampilkan Dashboard]
@@ -697,7 +702,7 @@
 
                             D -->|Tambah Barang| E[📝 Input Data]
                             E --> F{❓ Kode unik?}
-                            F -->|✅ Ya| G[✅ Simpan & Tampilkan]
+                            F -->|✅ Ya| G[✅ Simpan &amp; Tampilkan]
                             F -->|❌ Tidak| H[⚠️ Error: Duplikat]
                             G --> I[↻ Kembali ke Dashboard]
                             H --> I
@@ -733,14 +738,15 @@
                 </div>
                 <div id="flowchart-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Flowchart Sistem</span>
-                    <code>graph TD
+                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
+                    graph TD
                         A( MULAI) --> B[ Inisialisasi Sistem]
                         B --> C[ Tampilkan Dashboard]
                         C --> D{ Pilih Aksi}
 
                         D -->|Tambah Barang| E[ Input Data]
                         E --> F{ Kode unik?}
-                        F -->| Ya| G[ Simpan & Tampilkan]
+                        F -->| Ya| G[ Simpan &amp; Tampilkan]
                         F -->| Tidak| H[ Error: Duplikat]
                         G --> I[↻ Kembali ke Dashboard]
                         H --> I
@@ -771,19 +777,29 @@
                 </div>
             </div>
 
-            <!-- PSEUDOCODE -->
+            <!-- ─── PSEUDOCODE ─── -->
             <div class="diagram-wrapper">
                 <h3 style="color:#f472b6 !important; text-shadow:0 0 12px #f472b6;">📊 Diagram Alur Pseudocode — Jalur Eksekusi</h3>
                 <p style="color:#94a3b8; font-size:0.85em;">Alur logika program: inisialisasi, transaksi masuk/keluar, perhitungan stok akhir.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
+%%{init: {'theme':'dark','themeVariables':{
+'primaryColor':'#f472b6',
+'primaryTextColor':'#fff',
+'primaryBorderColor':'#a855f7',
+'lineColor':'#94a3b8',
+'secondaryColor':'#1e293b',
+'tertiaryColor':'#0f172a',
+'background':'#020617'
+}}}%%
+
 graph TD
     A["🚀 MULAI"] --> B["📂 Inisialisasi Data"]
     B --> C["🏭 Buat Objek Barang x5"]
     C --> D["📋 Tampilkan Daftar Barang"]
     D --> E["📥 Transaksi Barang Masuk"]
 
-    E --> F{"Barang ditemukan?"}
+    E --> F{"❓ Barang ditemukan?"}
 
     F -->|✅ Ya| G["➕ tambahStok()"]
     F -->|❌ Tidak| H["⚠️ Error: Tidak ditemukan"]
@@ -793,7 +809,7 @@ graph TD
 
     I --> J
 
-    J --> K{"Stok mencukupi?"}
+    J --> K{"❓ Stok mencukupi?"}
 
     K -->|✅ Ya| L["➖ kurangiStok()"]
     K -->|❌ Tidak| M["⚠️ Error: Stok tidak cukup"]
@@ -813,7 +829,17 @@ graph TD
                 </div>
                 <div id="pseudocode-code" class="code-block">
                     <span class="label">📌 Kode Mermaid — Diagram Pseudocode</span>
-<code>graph TD
+<code>%%{init: {'theme':'dark','themeVariables':{
+'primaryColor':'#f472b6',
+'primaryTextColor':'#fff',
+'primaryBorderColor':'#a855f7',
+'lineColor':'#94a3b8',
+'secondaryColor':'#1e293b',
+'tertiaryColor':'#0f172a',
+'background':'#020617'
+}}}%%
+    
+graph TD
     A["MULAI"] --> B["Inisialisasi Data"]
     B --> C["Buat Objek Barang x5"]
     C --> D["Tampilkan Daftar Barang"]
@@ -838,172 +864,176 @@ graph TD
     M --> O
 
     O --> P["Tampilkan Output"]
-    P --> Q["SELESAI"]</code>
+    P --> Q["SELESAI"]
+</code>
                 </div>
             </div>
 
-            <!-- CLASS DIAGRAM - VERSI PALING SEDERHANA & PASTI BERHASIL -->
+            <!-- ─── CLASS DIAGRAM ─── -->
             <div class="diagram-wrapper">
-                <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">
-                    📦 Class Diagram — UML
-                </h3>
-
-                <p style="color:#94a3b8; font-size:0.85em;">
-                    Relasi antar kelas: <span style="color:#f472b6;">⟨abstract⟩</span> = kelas abstrak,
-                    panah <span style="color:#22d3ee;">▷</span> = pewarisan.
-                </p>
-
+                <h3 style="color:#a855f7 !important; text-shadow:0 0 12px #a855f7;">📦 Class Diagram — UML (Vertical)</h3>
+                <p style="color:#94a3b8; font-size:0.85em;">Relasi inheritance antar class. <span style="color:#f472b6;">⟨abstract⟩</span> = abstract class, panah <span style="color:#f472b6;">▷</span> = extends.</p>
                 <div class="mermaid-wrapper">
                     <div class="mermaid">
-classDiagram
-    class EntitasGudang {
-        <<abstract>>
-        +String kode
-        +String nama
-        +tampilkanInfo()
-        +cetakIdentitas()
-    }
-    class Barang {
-        +String kode
-        +String nama
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo()
-        +tambahStok()
-        +kurangiStok()
-    }
-    class Transaksi {
-        <<abstract>>
-        +String idTransaksi
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +prosesTransaksi()
-        +cetakHeader()
-    }
-    class BarangMasuk {
-        +String namaSupplier
-        +prosesTransaksi()
-    }
-    class BarangKeluar {
-        +String tujuan
-        +prosesTransaksi()
-    }
-    class Pengguna {
-        <<abstract>>
-        +String username
-        +String password
-        +login()
-        +tampilkanIdentitas()
-    }
-    class User {
-        +String level
-        +login()
-    }
-    class StokBarang {
-        +int stokAwal
-        +int barangMasuk
-        +int barangKeluar
-        +int stokAkhir
-        +String status
-        +hitungStok()
-    }
+                        %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%%
+                        classDiagram
+                            class EntitasGudang {
+                                <<abstract>>
+                                #String kode
+                                #String nama
+                                +tampilkanInfo() void*
+                                +cetakIdentitas() void
+                            }
+                            class Barang {
+                                +String kodeBarang
+                                +String namaBarang
+                                +String kategori
+                                +String merk
+                                +int jumlahStok
+                                +String satuan
+                                +String kondisi
+                                +tampilkanInfo() void
+                                +tambahStok(int jml) void
+                                +kurangiStok(int jml) void
+                            }
+                            EntitasGudang <|-- Barang
 
-    EntitasGudang <|-- Barang
-    Transaksi <|-- BarangMasuk
-    Transaksi <|-- BarangKeluar
-    Pengguna <|-- User
-    BarangMasuk --> Barang
-    BarangKeluar --> Barang
-    StokBarang --> Barang
-    User --> Barang
+                            class Transaksi {
+                                <<abstract>>
+                                #String idTransaksi
+                                #String tanggal
+                                #String kodeBarang
+                                #int jumlah
+                                +prosesTransaksi() void*
+                                +cetakHeader() void
+                            }
+                            class BarangMasuk {
+                                +String idMasuk
+                                +String tanggal
+                                +String kodeBarang
+                                +int jumlah
+                                +String namaBarang
+                                +prosesTransaksi() void
+                                +tambahStok() void
+                            }
+                            class BarangKeluar {
+                                +String idKeluar
+                                +String tanggal
+                                +String kodeBarang
+                                +int jumlah
+                                +String tujuan
+                                +prosesTransaksi() void
+                            }
+                            Transaksi <|-- BarangMasuk
+                            Transaksi <|-- BarangKeluar
+
+                            class Pengguna {
+                                <<abstract>>
+                                #String username
+                                #String password
+                                +login() void*
+                                +tampilkanIdentitas() void
+                            }
+                            class User {
+                                +String username
+                                +String password
+                                +String level
+                                +login() void
+                            }
+                            Pengguna <|-- User
+
+                            class StokBarang {
+                                +int stokAwal
+                                +int barangMasuk
+                                +int barangKeluar
+                                +hitungStok() void
+                            }
                     </div>
                 </div>
-
                 <div class="copy-section">
-                    <button class="copy-btn" onclick="toggleCode('classdiagram-code')">
-                        📋 Tampilkan Kode Mermaid
-                    </button>
-                    <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">
-                        📋 Salin Kode
-                    </button>
+                    <button class="copy-btn" onclick="toggleCode('classdiagram-code')">📋 Tampilkan Kode Mermaid</button>
+                    <button class="copy-btn" onclick="copyMermaid('classdiagram-code')">📋 Salin Kode</button>
                 </div>
-
                 <div id="classdiagram-code" class="code-block">
-                    <span class="label">📌 Kode Mermaid — Class Diagram UML</span>
-                    <code>classDiagram
-    class EntitasGudang {
-        <<abstract>>
-        +String kode
-        +String nama
-        +tampilkanInfo()
-        +cetakIdentitas()
-    }
-    class Barang {
-        +String kode
-        +String nama
-        +String kategori
-        +String merk
-        +int jumlahStok
-        +String satuan
-        +String kondisi
-        +tampilkanInfo()
-        +tambahStok()
-        +kurangiStok()
-    }
-    class Transaksi {
-        <<abstract>>
-        +String idTransaksi
-        +String tanggal
-        +String kodeBarang
-        +int jumlah
-        +prosesTransaksi()
-        +cetakHeader()
-    }
-    class BarangMasuk {
-        +String namaSupplier
-        +prosesTransaksi()
-    }
-    class BarangKeluar {
-        +String tujuan
-        +prosesTransaksi()
-    }
-    class Pengguna {
-        <<abstract>>
-        +String username
-        +String password
-        +login()
-        +tampilkanIdentitas()
-    }
-    class User {
-        +String level
-        +login()
-    }
-    class StokBarang {
-        +int stokAwal
-        +int barangMasuk
-        +int barangKeluar
-        +int stokAkhir
-        +String status
-        +hitungStok()
-    }
+                    <span class="label">📌 Kode Mermaid — Class Diagram</span>
+                    <code>%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#22d3ee', 'primaryTextColor': '#fff', 'primaryBorderColor': '#a855f7', 'lineColor': '#94a3b8', 'secondaryColor': '#1e293b', 'tertiaryColor': '#0f172a', 'background': '#020617' }}}%
+                    classDiagram
+                        class EntitasGudang {
+                            <<abstract>>
+                            #String kode
+                            #String nama
+                            +tampilkanInfo() void*
+                            +cetakIdentitas() void
+                        }
+                        class Barang {
+                            +String kodeBarang
+                            +String namaBarang
+                            +String kategori
+                            +String merk
+                            +int jumlahStok
+                            +String satuan
+                            +String kondisi
+                            +tampilkanInfo() void
+                            +tambahStok(int jml) void
+                            +kurangiStok(int jml) void
+                        }
+                        EntitasGudang <|-- Barang
 
-    EntitasGudang <|-- Barang
-    Transaksi <|-- BarangMasuk
-    Transaksi <|-- BarangKeluar
-    Pengguna <|-- User
-    BarangMasuk --> Barang
-    BarangKeluar --> Barang
-    StokBarang --> Barang
-    User --> Barang</code>
+                        class Transaksi {
+                            <<abstract>>
+                            #String idTransaksi
+                            #String tanggal
+                            #String kodeBarang
+                            #int jumlah
+                            +prosesTransaksi() void*
+                            +cetakHeader() void
+                        }
+                        class BarangMasuk {
+                            +String idMasuk
+                            +String tanggal
+                            +String kodeBarang
+                            +int jumlah
+                            +String namaBarang
+                            +prosesTransaksi() void
+                            +tambahStok() void
+                        }
+                        class BarangKeluar {
+                            +String idKeluar
+                            +String tanggal
+                            +String kodeBarang
+                            +int jumlah
+                            +String tujuan
+                            +prosesTransaksi() void
+                        }
+                        Transaksi <|-- BarangMasuk
+                        Transaksi <|-- BarangKeluar
+
+                        class Pengguna {
+                            <<abstract>>
+                            #String username
+                            #String password
+                            +login() void*
+                            +tampilkanIdentitas() void
+                        }
+                        class User {
+                            +String username
+                            +String password
+                            +String level
+                            +login() void
+                        }
+                        Pengguna <|-- User
+
+                        class StokBarang {
+                            +int stokAwal
+                            +int barangMasuk
+                            +int barangKeluar
+                            +hitungStok() void
+                        }</code>
                 </div>
             </div>
         </div>
 
-        <!-- PSEUDOCODE + DARTPAD -->
+        <!-- ════════════════════ PSEUDOCODE + DARTPAD ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
             <h2 style="color:#f472b6 !important;">📝 Pseudocode + DartPad</h2>
             <p style="color:#94a3b8; font-size:0.85em;">Klik tombol untuk melihat implementasi Dart.</p>
@@ -1130,7 +1160,7 @@ classDiagram
             <iframe id="d6"></iframe>
         </div>
 
-        <!-- 4 PILAR OOP -->
+        <!-- ════════════════════ 4 PILAR OOP ════════════════════ -->
         <div class="section" style="border:2px solid rgba(244,114,182,0.5);">
             <h2 style="color:#f472b6 !important;">🧬 4 Pilar OOP</h2>
             <div class="grid-2">
@@ -1153,44 +1183,44 @@ classDiagram
             </div>
         </div>
 
-        <!-- SOURCE CODE -->
+        <!-- ════════════════════ SOURCE CODE ════════════════════ -->
         <div class="section">
             <h2>📄 Source Code — Class Barang (Dart)</h2>
             <div class="code-box">
                 <pre><span class="cmt">// ==========================================</span>
-<span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
-<span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
-<span class="cmt">// Kelas : SI2A</span>
-<span class="cmt">// Topik : Sistem Pendataan Barang di Gudang (OOP)</span>
-<span class="cmt">// ==========================================</span>
+                    <span class="cmt">// Nama  : Yoza Ulpia Rafila &amp; Rifqi Prayoga</span>
+                    <span class="cmt">// NIM   : 251410004 &amp; 251410005</span>
+                    <span class="cmt">// Kelas : SI2A</span>
+                    <span class="cmt">// Topik : Sistem Pendataan Barang di Gudang (OOP)</span>
+                    <span class="cmt">// ==========================================</span>
 
-<span class="kw">abstract</span> <span class="kw">class</span> <span class="cls">EntitasGudang</span> {
-    <span class="type">String</span> kode, nama;
-    <span class="cls">EntitasGudang</span>(<span class="kw">this</span>.kode, <span class="kw">this</span>.nama);
-    <span class="kw">void</span> <span class="fn">tampilkanInfo</span>();
-    <span class="kw">void</span> <span class="fn">cetakIdentitas</span>() {
-        <span class="fn">print</span>(<span class="str">"🔹 $kode — $nama"</span>);
-    }
-}
+                    <span class="kw">abstract</span> <span class="kw">class</span> <span class="cls">EntitasGudang</span> {
+                    <span class="type">String</span> kode, nama;
+                    <span class="cls">EntitasGudang</span>(<span class="kw">this</span>.kode, <span class="kw">this</span>.nama);
+                    <span class="kw">void</span> <span class="fn">tampilkanInfo</span>();
+                    <span class="kw">void</span> <span class="fn">cetakIdentitas</span>() {
+                    <span class="fn">print</span>(<span class="str">"🔹 $kode — $nama"</span>);
+                    }
+                    }
 
-<span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
-    <span class="type">String</span> kategori, merk, satuan, kondisi;
-    <span class="type">int</span> jumlahStok;
-    <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
-        <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
-    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
-        <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
-    }
-    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
-    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
-        <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
-        <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
-    }
-}</pre>
+                    <span class="kw">class</span> <span class="cls">Barang</span> <span class="kw">extends</span> <span class="cls">EntitasGudang</span> {
+                    <span class="type">String</span> kategori, merk, satuan, kondisi;
+                    <span class="type">int</span> jumlahStok;
+                    <span class="cls">Barang</span>(<span class="type">String</span> kode, <span class="type">String</span> nama, <span class="kw">this</span>.kategori, <span class="kw">this</span>.merk,
+                    <span class="kw">this</span>.jumlahStok, <span class="kw">this</span>.satuan, <span class="kw">this</span>.kondisi) : <span class="kw">super</span>(kode, nama);
+                    <span class="ovr">@override</span> <span class="kw">void</span> <span class="fn">tampilkanInfo</span>() {
+                    <span class="fn">print</span>(<span class="str">"📦 $kode | $nama | $kategori | Stok: $jumlahStok $satuan"</span>);
+                    }
+                    <span class="kw">void</span> <span class="fn">tambahStok</span>(<span class="type">int</span> jumlah) { jumlahStok += jumlah; }
+                    <span class="kw">void</span> <span class="fn">kurangiStok</span>(<span class="type">int</span> jumlah) {
+                    <span class="kw">if</span> (jumlahStok >= jumlah) jumlahStok -= jumlah;
+                    <span class="kw">else</span> <span class="fn">print</span>(<span class="str">"❌ Stok tidak mencukupi!"</span>);
+                    }
+                    }</span></pre>
             </div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- ════════════════════ FOOTER ════════════════════ -->
         <footer>
             Sistem Pendataan Barang di Gudang — OOP berbasis Dart<br />
             Universitas Bina Darma — SI2A — 2026<br />
@@ -1198,8 +1228,10 @@ classDiagram
         </footer>
 
     </div>
+    <!-- /container -->
 
-    <!-- JAVASCRIPT -->
+
+    <!-- ════════════════════ JAVASCRIPT ════════════════════ -->
     <script>
         // ─── DATA ───
         let barangList = [];
@@ -1426,18 +1458,16 @@ classDiagram
                 tertiaryColor: '#0f172a',
                 background: '#020617',
                 fontFamily: 'Courier New, monospace',
-                fontSize: '14px'
+                fontSize: '14px',
             },
             flowchart: {
                 htmlLabels: true,
                 curve: 'basis',
-                useMaxWidth: true
+                useMaxWidth: true,
             },
             classDiagram: {
-                useMaxWidth: true
-            },
-            startOnLoad: false,
-            logLevel: 'error'
+                useMaxWidth: true,
+            }
         });
 
         // ─── INIT ───
@@ -1453,15 +1483,9 @@ classDiagram
             log('🟢 Sistem siap.', 'cyan');
 
             // Render Mermaid
-            setTimeout(function() {
-                try {
-                    mermaid.run({
-                        querySelector: '.mermaid'
-                    });
-                } catch (e) {
-                    console.log('Mermaid error:', e);
-                }
-            }, 500);
+            mermaid.run({
+                querySelector: '.mermaid',
+            });
         }
 
         document.addEventListener('DOMContentLoaded', init);
