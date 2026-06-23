@@ -975,7 +975,6 @@ RETURN true</pre>
             <div class="code-block" style="display:block; max-height:600px; background:#0a0a1a; border-left-color:#38bdf8;">
                 <span class="label">📌 Kode Lengkap</span>
                 <pre style="color:#cbd5e1; font-family:'Courier New',monospace; font-size:0.75em; white-space:pre-wrap; word-break:break-word;">// ==========================================
-// ==========================================
 // Nama  : Yoza Ulpia Rafila dan Rifqi Prayoga
 // NIM   : 251410004 dan 251410005
 // Kelas : SI2A
@@ -1080,9 +1079,9 @@ class StokBarang {
 }
 
 class Gudang {
-    List<Barang> daftarBarang = [];
-    List<Transaksi> riwayatTransaksi = [];
-    Map<String, StokBarang> stokBarang = {};
+    List&lt;Barang&gt; daftarBarang = [];
+    List&lt;Transaksi&gt; riwayatTransaksi = [];
+    Map&lt;String, StokBarang&gt; stokBarang = {};
 
     void tambahBarang(Barang b) {
         if (cariBarang(b.kode) != null) {
@@ -1172,16 +1171,17 @@ void main() {
     var gudang = Gudang();
     gudang.init();
     gudang.simulasiTransaksi(); // Langsung jalankan simulasi tanpa input pengguna
-}
+}</pre>
+            </div> <!-- penutup code-block -->
 
-        <!-- Tombol DartPad -->
-        <div class="dartpad-row">
-            <button class="btn" onclick="runDart('d1','https://dartpad.dev/embed-inline.html?id=526a8fea48af9282cae0ce70c84dc079&split=60&run=true')">▶ Tampilkan DartPad</button>
+            <!-- Tombol DartPad dan iframe diletakkan di sini, di luar code-block -->
+            <div class="dartpad-row">
+                <button class="btn" onclick="runDart('d1','https://dartpad.dev/embed-inline.html?id=526a8fea48af9282cae0ce70c84dc079&split=60&run=true')">▶ Tampilkan DartPad</button>
+            </div>
+            <iframe id="d1" width="100%" height="500" style="border:1px solid #ccc; border-radius:8px; display:none;"></iframe>
+
+            <div class="spacer"></div>
         </div>
-
-        <iframe id="d1" width="100%" height="500" style="border:1px solid #ccc; border-radius:8px; display:none;"></iframe>
-
-        <div class="spacer"></div>
 
         <!-- ════════════════════ FOOTER ════════════════════ -->
         <footer>
